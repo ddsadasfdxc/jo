@@ -27,47 +27,4 @@
     </main>
     <footer>
         <p>© 2024 我的博客</p>
-    </footer>
-    <script src="script.js"></script>
-</body>
-</html>
-<aside id="sidebar">
-    <section id="search">
-        <input type="text" placeholder="搜索...">
-        <button>搜索</button>
-    </section>
 
-    <section id="categories">
-        <h2>类别</h2>
-        <ul>
-            <li><a href="#">前端开发</a></li>
-            <li><a href="#">设计灵感</a></li>
-            <li><a href="#">个人随笔</a></li>
-        </ul>
-    </section>
-
-    <section id="tag-cloud">
-        <h2>标签云</h2>
-        <!-- 这里将动态生成标签云 -->
-    </section>
-
-    <section id="popular-posts">
-        <h2>最受欢迎的文章</h2>
-        <ul>
-            <li><a href="#">文章1</a></li>
-            <li><a href="#">文章2</a></li>
-            <li><a href="#">文章3</a></li>
-        </ul>
-    </section>
-
-    <section id="profile">
-        <img src="path/to/your/photo.jpg" alt="Your Photo">
-        <h2>关于我</h2>
-        <p>这里写一段简短的自我介绍...</p>
-        <ul>
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">LinkedIn</a></li>
-        </ul>
-    </section>
-</aside>
