@@ -1,0 +1,4 @@
+header, footer {
+    backdrop-filter: blur(10px);
+    background-color: rgba(232, 225, 201, 0.8);
+}
