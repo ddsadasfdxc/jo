@@ -1,0 +1,38 @@
+#sidebar {
+    width: 30%;
+    float: right;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+#sidebar section {
+    margin-bottom: 20px;
+}
+
+#sidebar h2 {
+    color: #333;
+}
+
+#sidebar input[type="text"] {
+    width: 70%;
+    padding: 5px;
+}
+
+#sidebar button {
+    padding: 5px 10px;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    margin-bottom: 5px;
+}
+
+#profile img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
