@@ -21,12 +21,12 @@
         <h2>最新博文</h2>
         <article>
             <h3>我的第一篇博文</h3>
-            <p>这是我的第一篇博文的预览...</p>
+            <p>...</p>
             <a href="post.html">阅读更多</a>
         </article>
     </main>
     <footer>
-        <p>© 2023 我的博客</p>
+        <p>© 2024 我的博客</p>
     </footer>
     <script src="script.js"></script>
 </body>
