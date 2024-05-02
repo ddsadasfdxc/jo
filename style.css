@@ -200,4 +200,30 @@ footer {
     border-radius: 50%;
     margin-bottom: 10px;
 }
+#chat-interface {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+#chat-box {
+    width: 70%;
+}
+
+#messages {
+    height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+#chat-input {
+    width: calc(100% - 90px);
+}
+
+.chat-model {
+    width: 100px;
+}
 
