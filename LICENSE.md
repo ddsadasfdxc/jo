@@ -27,4 +27,16 @@
     </main>
     <footer>
         <p>© 2024 我的博客</p>
+        <div id="chat-interface">
+    <div id="chat-box">
+        <div id="messages"></div>
+        <input type="text" id="chat-input" placeholder="输入消息...">
+        <button onclick="sendMessage()">发送</button>
+    </div>
+    <div id="chat-models">
+        <img src="path/to/gpt4.png" alt="GPT-4 Model" class="chat-model">
+        <img src="path/to/claude3.png" alt="Claude3 Opus Model" class="chat-model">
+    </div>
+</div>
+
 
