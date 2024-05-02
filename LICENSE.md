@@ -38,5 +38,6 @@
         <img src="path/to/claude3.png" alt="Claude3 Opus Model" class="chat-model">
     </div>
 </div>
+<script src="script.js"></script>
 
 
