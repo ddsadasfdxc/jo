@@ -68,3 +68,4 @@ function sendMessage() {
         messagesContainer.scrollTop = messagesContainer.scrollHeight; // 滚动到底部
     }
 }
+document.querySelector('#chat-input button').addEventListener('click', sendMessage);
