@@ -90,6 +90,14 @@ export default function BilibiliParser() {
         </div>
 
         <div className="mx-auto mt-10 max-w-2xl">
+          <div className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            <p>
+              本功能需要后端解析服务支持。在线预览版暂未部署后端，建议在本地运行：
+              <code className="mx-1 rounded bg-amber-100 px-1.5 py-0.5 font-mono">pnpm run dev</code>
+              后使用。
+            </p>
+          </div>
+
           <form onSubmit={handleSubmit} className="overflow-hidden rounded-apple bg-white p-2 shadow-apple">
             <div className="flex flex-col gap-2 sm:flex-row">
               <input
