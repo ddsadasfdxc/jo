@@ -1,15 +1,25 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { tools, ToolCategory } from '@/data/tools';
 import CategoryFilter from './CategoryFilter';
 import ToolCard from './ToolCard';
 
 export default function ToolGrid() {
   const [activeCategory, setActiveCategory] = useState<ToolCategory>('all');
+  const navigate = useNavigate();
 
   const filteredTools = useMemo(() => {
     if (activeCategory === 'all') return tools;
     return tools.filter((tool) => tool.category === activeCategory);
   }, [activeCategory]);
+
+  const handleToolClick = (toolId: string) => {
+    if (toolId === 'bilibili') {
+      navigate('/tool/bilibili');
+    } else {
+      alert(`「${tools.find((t) => t.id === toolId)?.name}」功能开发中，敬请期待！`);
+    }
+  };
 
   return (
     <section id="tools" className="relative py-24">
@@ -33,9 +43,7 @@ export default function ToolGrid() {
               key={tool.id}
               tool={tool}
               index={index}
-              onClick={() => {
-                alert(`「${tool.name}」功能开发中，敬请期待！`);
-              }}
+              onClick={() => handleToolClick(tool.id)}
             />
           ))}
         </div>
