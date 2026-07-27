@@ -337,6 +337,74 @@
   var userName='',userSex='';
 
   
+
+var subData={
+g4a:[
+{k:"g4a1",n:"骊珠洞天",c:0,d:"依附宝瓶洲，三教共管气运棋局，本命瓷规则，核心区术法禁绝"},
+{k:"g4a2",n:"书简湖",c:0,d:"宝瓶洲中部三不管地带，无王朝礼乐，弱肉强食"},
+{k:"g4a3",n:"落魄山",c:50,d:"龙泉郡境内，陈平安建宗之地，人情味最浓"},
+{k:"g4a4",n:"倒悬山",c:100,d:"南婆娑洲东南空域，浩然通往剑气长城官方枢纽，入境需签山盟压半境"},
+{k:"g4a5",n:"藕花福地",c:50,d:"桐叶洲空域，四国并立，武运浓郁修道艰难，后更名莲藕福地"},
+{k:"g4a6",n:"宝瓶洲·大骊",c:0,d:"浩然九洲之一，大骊王朝所在，陈平安故乡"},
+{k:"g4a7",n:"桐叶洲",c:0,d:"浩然九洲之一，后遭妖族攻陷"},
+{k:"g4a8",n:"中土神洲",c:200,d:"浩然天下核心，文庙所在，天下秩序中枢"},
+{k:"g4a9",n:"北俱芦洲",c:0,d:"浩然九洲之一，以剑修闻名，民风彪悍"},
+{k:"g4a10",n:"龙宫洞天",c:150,d:"水龙宗祖业，浩然海域空域，四季如春雨水丰沛"},
+{k:"g4a11",n:"扶摇洲",c:0,d:"浩然九洲之一"},
+{k:"g4a12",n:"金甲洲",c:0,d:"浩然九洲之一"}
+],
+g4b:[
+{k:"g4b1",n:"城头酒馆",c:100,d:"太平无事牌的来处，阿良刻下猛字"},
+{k:"g4b2",n:"隐官一脉",c:50,d:"掌管谍报暗杀，陈平安曾任末代隐官"},
+{k:"g4b3",n:"城下战场",c:-50,d:"人妖两界最前线，随时接敌"}
+],
+g4c:[
+{k:"g4c1",n:"托月山",c:-150,d:"蛮荒权力核心，托月山大祖与周密驻地，十四王座议事地，内有残破远古飞升台"},
+{k:"g4c2",n:"英灵殿",c:-50,d:"供奉妖族战死英灵的特殊空间"},
+{k:"g4c3",n:"曳落河",c:-50,d:"绯妃领地，蛮荒核心水脉区域"},
+{k:"g4c4",n:"月魄",c:-100,d:"蛮荒月亮本体，荷花庵主炼化掌控，月道神通源头"}
+],
+g4d:[
+{k:"g4d1",n:"白玉京",c:200,d:"青冥权力中枢，五城十二楼，道老二余斗坐镇"},
+{k:"g4d2",n:"莲花洞天",c:200,d:"道祖居所，青冥顶级洞天"},
+{k:"g4d3",n:"玄都洞天",c:150,d:"大玄都观祖庭，道门顶尖剑修传承"},
+{k:"g4d4",n:"天外天防线",c:0,d:"青冥边境，抵御化外天魔主战场"}
+],
+g4e:[
+{k:"g4e1",n:"飞升城",c:200,d:"五彩天下核心城市，原剑气长城飞升部分，剑修聚居地"},
+{k:"g4e2",n:"城头遗址",c:100,d:"原半截长城城头遗存，承载万年剑修气运"},
+{k:"g4e3",n:"新天下荒野",c:0,d:"新生天下的未知之地，一切尚待开拓"}
+]
+};
+var subTexts={
+g4a1:"出生地：骊珠洞天——三教共管气运棋局，本命瓷规则，核心区术法禁绝。",
+g4a2:"出生地：书简湖——三不管地带，无王朝律法，弱肉强食。",
+g4a3:"出生地：落魄山——陈平安建宗之地，人情味最浓。",
+g4a4:"出生地：倒悬山——浩然通往长城官方枢纽，入境签山盟压半境。",
+g4a5:"出生地：藕花福地——桐叶洲空域，武运浓郁，后更名莲藕福地。",
+g4a6:"出生地：宝瓶洲·大骊——陈平安的故乡所在。",
+g4a7:"出生地：桐叶洲——日后被妖族攻陷的重灾之地。",
+g4a8:"出生地：中土神洲——浩然核心，文庙所在。",
+g4a9:"出生地：北俱芦洲——以剑修闻名，民风彪悍。",
+g4a10:"出生地：龙宫洞天——水龙宗祖业，四季如春。",
+g4a11:"出生地：扶摇洲——浩然九洲之一。",
+g4a12:"出生地：金甲洲——浩然九洲之一。",
+g4b1:"出生地：城头酒馆——太平无事牌的来处。",
+g4b2:"出生地：隐官一脉——掌管谍报暗杀。",
+g4b3:"出生地：城下战场——人妖最前线。",
+g4c1:"出生地：托月山——蛮荒权力核心，十四王座议事地。",
+g4c2:"出生地：英灵殿——供奉妖族战死英灵。",
+g4c3:"出生地：曳落河——绯妃领地。",
+g4c4:"出生地：月魄——蛮荒月亮本体。",
+g4d1:"出生地：白玉京——青冥天下权力中枢。",
+g4d2:"出生地：莲花洞天——道祖居所。",
+g4d3:"出生地：玄都洞天——大玄都观祖庭。",
+g4d4:"出生地：天外天防线——抵御化外天魔。",
+g4e1:"出生地：飞升城——五彩天下核心城市，剑修聚居地。",
+g4e2:"出生地：城头遗址——承载万年剑修气运。",
+g4e3:"出生地：新天下荒野——一切尚待开拓。"
+};
+
 function populateSubItems(worldKey){
   var items=subData[worldKey];
   var container=document.getElementById('jl4SubItems');
@@ -348,40 +416,7 @@ function populateSubItems(worldKey){
   items.forEach(function(it){
     var cls=it.c<0?'jl-it jl-neg':'jl-it';
     var costLabel=it.c<0?('+'+Math.abs(it.c)):(it.c>0?it.c:'0');
-    h+='<div class="'+cls+'" data-key="'+it.k+'" data-cost="'+it.c+'" title="'+it.d+'">'+it.v+'<span class="jl-cst">'+costLabel+'</span></div>';
-  });
-  container.innerHTML=h;
-  // 绑定子坐标点击事件
-  container.querySelectorAll('.jl-it').forEach(function(el){
-    el.addEventListener('click',function(){
-      var p=this.parentElement;
-      p.querySelectorAll('.jl-it').forEach(function(e){e.classList.remove('jl-sel')});
-      this.classList.add('jl-sel');
-      selSubKey=this.dataset.key;
-      selSubCost=parseInt(this.dataset.cost)||0;
-      var tip=document.getElementById('jl4SubTip');
-      tip.textContent=subDesc[selSubKey]||this.title||'';
-      updatePts();
-    });
-  });
-  // 清除之前的子选择
-  selSubKey=null; selSubCost=0;
-  document.getElementById('jl4SubTip').textContent='选择具体出生地后，此处显示该地点的详细说明';
-}
-
-
-function populateSubItems(worldKey){
-  var items=subData[worldKey];
-  var container=document.getElementById('jl4SubItems');
-  var subEl=document.getElementById('jl7bSub');
-  var worldNames={g4a:'浩然天下',g4b:'剑气长城',g4c:'蛮荒天下',g4d:'青冥天下',g4e:'五彩天下'};
-  if(!items){container.innerHTML='<div class="jl-event-tip">该天下暂无细化坐标</div>';subEl.textContent='选择'+worldNames[worldKey]+'中的具体出生地';return;}
-  subEl.textContent='选择'+worldNames[worldKey]+'中的具体出生地';
-  var h='';
-  items.forEach(function(it){
-    var cls=it.c<0?'jl-it jl-neg':'jl-it';
-    var costLabel=it.c<0?('+'+Math.abs(it.c)):(it.c>0?it.c:'0');
-    h+='<div class="'+cls+'" data-key="'+it.k+'" data-cost="'+it.c+'" title="'+it.d+'">'+it.v+'<span class="jl-cst">'+costLabel+'</span></div>';
+    h+='<div class="'+cls+'" data-key="'+it.k+'" data-cost="'+it.c+'" title="'+it.d+'">'+it.n+'<span class="jl-cst">'+costLabel+'</span></div>';
   });
   container.innerHTML=h;
   container.querySelectorAll('.jl-it').forEach(function(el){
@@ -389,16 +424,26 @@ function populateSubItems(worldKey){
       var p=this.parentElement;
       p.querySelectorAll('.jl-it').forEach(function(e){e.classList.remove('jl-sel')});
       this.classList.add('jl-sel');
-      selSubKey=this.dataset.key;
-      selSubCost=parseInt(this.dataset.cost)||0;
+      var key=this.dataset.key;
+      var cost=parseInt(this.dataset.cost)||0;
+      if(selected['g4sub']){if(maxPts!==Infinity)currentPts+=selected['g4sub'].cost;}
+      selected['g4sub']={key:key,cost:cost};
+      if(maxPts!==Infinity)currentPts-=cost;
       var tip=document.getElementById('jl4SubTip');
-      tip.textContent=subDesc[selSubKey]||this.title||'';
+      if(tip)tip.textContent=subTexts[key]||this.title||'';
       updatePts();
+      var btn=document.getElementById('jlPage7b').querySelector('.jl-nav-next');
+      if(btn)btn.classList.remove('jl-off');
     });
   });
-  selSubKey=null;selSubCost=0;
+  if(selected['g4sub']){if(maxPts!==Infinity)currentPts+=selected['g4sub'].cost;delete selected['g4sub'];}
   document.getElementById('jl4SubTip').textContent='选择具体出生地后，此处显示详细说明';
+  var btn=document.getElementById('jlPage7b').querySelector('.jl-nav-next');
+  if(btn)btn.classList.add('jl-off');
 }
+
+
+
 
 function updatePts(){
     var els=document.querySelectorAll('.jl-pts-dyn');
@@ -542,6 +587,7 @@ function updatePts(){
         if(key==='g1h'){var e=document.getElementById('jlG1Custom');if(e)e.style.display='none'}
         if(key==='g6f'){var e=document.getElementById('jlG6Custom');if(e)e.style.display='none'}
         delete selected[group];
+        if(group==='g4'){if(selected['g4sub']){if(maxPts!==Infinity)currentPts+=selected['g4sub'].cost;delete selected['g4sub'];}var sc=document.getElementById('jl4SubItems');if(sc)sc.innerHTML='';var se=document.getElementById('jl7bSub');if(se)se.textContent='请先返回上一步选择主天下';}
         if(maxPts!==Infinity)currentPts+=cost;
         updatePts();
         var btn=this.closest('.jl-pg').querySelector('.jl-nav-next');
@@ -566,6 +612,7 @@ function updatePts(){
       if(maxPts!==Infinity)currentPts-=cost;
       updatePts();
 
+      if(group==='g4'){populateSubItems(key);}
       if(key==='g1h'){var e=document.getElementById('jlG1Custom');if(e)e.style.display='block'}
       if(key==='g6f'){var e=document.getElementById('jlG6Custom');if(e)e.style.display='block'}
 
@@ -680,7 +727,7 @@ function updatePts(){
           var cd6=document.getElementById('jlG6CustomDesc');
           parts.push('【本命之物】'+(cn6&&cn6.value?cn6.value:'（未命名）'));
           if(cd6&&cd6.value)parts.push('描述：'+cd6.value);
-        }else if(texts[key]){
+        }else if(subTexts[key]){parts.push('【所在天下】'+subTexts[key]);}else if(texts[key]){
           parts.push('【'+names[i]+'】'+texts[key]);
         }
       }else{
