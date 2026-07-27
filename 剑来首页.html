@@ -1,0 +1,553 @@
+<style>
+/* ============================================================
+   剑来·命轨 — v6.1 JS 双页交互版
+   页面1：主界面（CSS水墨山水+粒子）
+   页面2：7维度命轨配置终端
+   切换：JS onclick 驱动
+   ============================================================ */
+
+.jl-root { all: initial; }
+.jl-root * { box-sizing: border-box; }
+
+.jl-root {
+  display: block;
+  font-family: "PingFang SC","Microsoft YaHei","Noto Serif SC",serif;
+  max-width: 680px; margin: 0 auto;
+  position: relative; overflow: hidden;
+  border-radius: 14px;
+  min-height: 520px;
+}
+
+/* ============================================================
+   页面1：主界面
+   ============================================================ */
+.jl-page1 {
+  position: relative; z-index: 1;
+  min-height: 520px;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 120% 180px at 20% 85%, rgba(40,50,60,0.7) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 140px at 75% 80%, rgba(35,45,55,0.6) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 100px at 50% 88%, rgba(30,40,48,0.5) 0%, transparent 65%),
+    linear-gradient(180deg,
+      rgba(180,170,150,0.08) 0%, transparent 15%,
+      transparent 60%,
+      rgba(180,170,150,0.06) 70%, transparent 75%,
+      transparent 85%,
+      rgba(180,170,150,0.08) 90%, transparent 100%),
+    linear-gradient(180deg, #1a1c20 0%, #1e2128 30%, #252a32 60%, #1c1f25 85%, #16181c 100%),
+    radial-gradient(1px 1px at 12% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 23% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 5%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 48% 11%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 7%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 67% 13%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 6%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 16%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 9%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 17% 22%, rgba(255,255,255,0.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 42% 19%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 24%, rgba(255,255,255,0.5) 0%, transparent 100%);
+  border: 1px solid rgba(212,168,84,0.12);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.jl-page1::before {
+  content: "";
+  position: absolute; top: 8%; right: 15%;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, rgba(240,230,200,0.25) 0%, rgba(220,200,160,0.08) 30%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(1px);
+  z-index: 0;
+}
+
+.jl-page1::after {
+  content: "";
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background:
+    linear-gradient(175deg, transparent 5%, rgba(20,22,26,0.95) 30%),
+    radial-gradient(ellipse 200% 80px at 25% 100%, rgba(25,28,34,0.9) 0%, transparent 60%),
+    radial-gradient(ellipse 180% 100px at 65% 100%, rgba(22,25,30,0.85) 0%, transparent 55%),
+    radial-gradient(ellipse 150% 60px at 50% 100%, rgba(18,20,24,0.9) 0%, transparent 50%);
+  z-index: 0; pointer-events: none;
+}
+
+.jl-hero {
+  position: relative; z-index: 2;
+  text-align: center; padding: 40px 30px 20px;
+}
+
+.jl-hero-title {
+  font-size: 42px; font-weight: 900;
+  color: #e8d5a3;
+  letter-spacing: 12px;
+  text-shadow: 0 0 40px rgba(212,168,84,0.5), 0 0 80px rgba(212,168,84,0.2), 0 2px 4px rgba(0,0,0,0.8);
+  margin-bottom: 6px;
+  animation: jl-title-glow 3s ease-in-out infinite alternate;
+}
+@keyframes jl-title-glow {
+  0% { text-shadow: 0 0 30px rgba(212,168,84,0.4), 0 0 60px rgba(212,168,84,0.15); }
+  100% { text-shadow: 0 0 50px rgba(212,168,84,0.7), 0 0 100px rgba(212,168,84,0.3); }
+}
+
+.jl-hero-sub {
+  font-size: 14px; color: #8b7535;
+  letter-spacing: 6px;
+  margin-bottom: 10px;
+}
+
+.jl-hero-divider {
+  width: 120px; height: 1px;
+  background: linear-gradient(90deg, transparent, #d4a854, transparent);
+  margin: 0 auto 16px;
+}
+
+.jl-hero-desc {
+  font-size: 12px; color: #6b6048;
+  line-height: 1.9; max-width: 400px; margin: 0 auto;
+  letter-spacing: 1px;
+}
+
+.jl-start-btn-wrap {
+  position: relative; z-index: 2;
+  text-align: center; padding: 10px 0 40px;
+}
+
+.jl-start-btn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 14px 52px;
+  font-size: 18px; font-weight: 700;
+  letter-spacing: 6px;
+  color: #1a1c20;
+  background: linear-gradient(135deg, #d4a854 0%, #f0d060 30%, #c49640 70%, #a07828 100%);
+  border: 1px solid rgba(255,220,140,0.3);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  box-shadow: 0 0 20px rgba(212,168,84,0.3), 0 0 40px rgba(212,168,84,0.1), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+  user-select: none;
+}
+.jl-start-btn:hover {
+  box-shadow: 0 0 30px rgba(212,168,84,0.5), 0 0 60px rgba(212,168,84,0.25), 0 0 100px rgba(212,168,84,0.1);
+  transform: translateY(-1px);
+}
+.jl-start-btn::after {
+  content: "";
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s;
+}
+.jl-start-btn:hover::after { left: 100%; }
+
+.jl-start-btn-icon {
+  display: inline-block; margin-left: 6px;
+  animation: jl-sword-pulse 1.5s ease-in-out infinite;
+}
+@keyframes jl-sword-pulse {
+  0%,100% { transform: translateX(0); opacity: 0.8; }
+  50% { transform: translateX(4px); opacity: 1; }
+}
+
+.jl-footer-quote {
+  position: relative; z-index: 2;
+  text-align: center; padding-bottom: 24px;
+  font-size: 11px; color: #4a4030;
+  letter-spacing: 2px; font-style: italic;
+}
+
+/* 粒子 */
+.jl-particle {
+  position: absolute; z-index: 1;
+  width: 2px; height: 2px;
+  background: rgba(212,168,84,0.4);
+  border-radius: 50%;
+  animation: jl-float-up linear infinite;
+  pointer-events: none;
+}
+.jl-particle:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+.jl-particle:nth-child(2) { left: 25%; animation-duration: 11s; animation-delay: 2s; }
+.jl-particle:nth-child(3) { left: 40%; animation-duration: 9s; animation-delay: 4s; }
+.jl-particle:nth-child(4) { left: 55%; animation-duration: 12s; animation-delay: 1s; }
+.jl-particle:nth-child(5) { left: 70%; animation-duration: 7s; animation-delay: 3s; }
+.jl-particle:nth-child(6) { left: 85%; animation-duration: 10s; animation-delay: 5s; }
+.jl-particle:nth-child(7) { left: 15%; animation-duration: 13s; animation-delay: 6s; }
+.jl-particle:nth-child(8) { left: 60%; animation-duration: 8s; animation-delay: 2.5s; }
+@keyframes jl-float-up {
+  0% { bottom: -10px; opacity: 0; transform: translateY(0) scale(1); }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.3; }
+  100% { bottom: 100%; opacity: 0; transform: translateY(-20px) scale(0.5); }
+}
+
+/* ============================================================
+   页面2：配置终端
+   ============================================================ */
+.jl-page2 {
+  display: none;
+  position: relative; z-index: 1;
+  background: linear-gradient(175deg, rgba(10,8,6,0.98) 0%, rgba(22,18,14,0.98) 40%, rgba(14,12,10,0.98) 100%);
+  border: 1px solid #3a3024; border-radius: 14px;
+  padding: 22px 24px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.8), inset 0 1px 0 rgba(212,168,84,0.06);
+}
+
+.jl-cfg-head {
+  text-align: center; padding-bottom: 16px; margin-bottom: 16px;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, transparent, #d4a854, #d4a854, transparent) 1;
+}
+.jl-cfg-title {
+  font-size: 20px; font-weight: 700; color: #e8d5a3;
+  letter-spacing: 5px; text-shadow: 0 0 20px rgba(212,168,84,0.3);
+}
+.jl-cfg-sub {
+  font-size: 11px; color: #7a6e5c; margin-top: 5px; letter-spacing: 2px;
+}
+.jl-cfg-back {
+  display: inline-block; cursor: pointer;
+  margin-top: 8px; font-size: 11px; color: #8b7535;
+  padding: 4px 14px; border: 1px solid rgba(212,168,84,0.2);
+  border-radius: 3px; transition: all 0.2s;
+  user-select: none;
+}
+.jl-cfg-back:hover {
+  background: rgba(212,168,84,0.08); border-color: rgba(212,168,84,0.4);
+  color: #d4a854;
+}
+
+.jl-cfg-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+@media (max-width: 440px) { .jl-cfg-grid { grid-template-columns: 1fr; } }
+
+.jl-cfg-panel {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(212,168,84,0.12);
+  border-radius: 6px; padding: 10px 12px;
+  transition: border-color 0.2s;
+}
+.jl-cfg-panel:hover { border-color: rgba(212,168,84,0.25); }
+.jl-cfg-phead {
+  font-size: 12px; font-weight: 700; color: #d4a854;
+  margin-bottom: 7px; display: flex; align-items: center; gap: 5px;
+}
+.jl-cfg-phead::before { content: "\25C6"; font-size: 8px; color: #b8860b; }
+
+.jl-cfg-opt {
+  list-style: none; padding: 0; margin: 0;
+  font-size: 11.5px; line-height: 1.95;
+}
+.jl-cfg-opt label {
+  display: block; cursor: pointer; padding: 2px 6px;
+  border-radius: 3px; transition: all 0.15s;
+  border: 1px solid transparent;
+  color: #9b8c72;
+}
+.jl-cfg-opt label:hover {
+  background: rgba(212,168,84,0.06);
+  border-color: rgba(212,168,84,0.2);
+}
+.jl-cfg-opt .jl-ck {
+  display: inline-block; min-width: 18px;
+  font-weight: 700; color: #e8d5a3;
+}
+.jl-cfg-opt input[type=radio] { display: none; }
+.jl-cfg-opt input[type=radio]:checked + label {
+  background: rgba(212,168,84,0.12);
+  border-color: #d4a854;
+  box-shadow: 0 0 6px rgba(212,168,84,0.2);
+  color: #e8d5a3;
+}
+.jl-cfg-opt input[type=radio]:checked + label .jl-ck { color: #ffd700; }
+
+.jl-cfg-faction {
+  margin-top: 10px; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 4px 12px; font-size: 11px;
+}
+.jl-cfg-faction label {
+  display: block; cursor: pointer; padding: 2px 6px;
+  border-radius: 3px; border: 1px solid transparent;
+  color: #9b8c72;
+}
+.jl-cfg-faction label:hover {
+  background: rgba(212,168,84,0.06);
+  border-color: rgba(212,168,84,0.2);
+}
+.jl-cfg-faction input[type=radio] { display: none; }
+.jl-cfg-faction input[type=radio]:checked + label {
+  background: rgba(212,168,84,0.12);
+  border-color: #d4a854; color: #e8d5a3;
+}
+.jl-cfg-faction .jl-ck { font-weight: 700; color: #e8d5a3; }
+.jl-cfg-faction input[type=radio]:checked + label .jl-ck { color: #ffd700; }
+
+/* 进度点 */
+.jl-cfg-progress {
+  display: flex; gap: 5px; margin: 12px 0 0; flex-wrap: wrap;
+}
+.jl-cfg-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #3a3024; transition: all 0.3s;
+  border: 1px solid rgba(212,168,84,0.1);
+}
+
+/* 输出区 */
+.jl-cfg-output {
+  margin-top: 14px; background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(212,168,84,0.25); border-radius: 6px;
+  padding: 14px 16px; font-size: 13px; line-height: 1.9;
+  color: #e0d5c0; min-height: 60px;
+  user-select: text; -webkit-user-select: text;
+}
+.jl-cfg-out-label {
+  font-size: 10px; color: #7a6e5c; letter-spacing: 2px;
+  margin-bottom: 10px; text-align: center;
+}
+.jl-cfg-out-empty {
+  color: #5a4e3c; font-style: italic; font-size: 12px;
+}
+.jl-cfg-copy-hint {
+  margin-top: 10px; font-size: 10px; color: #5a4e3c;
+  text-align: center; border-top: 1px solid rgba(212,168,84,0.08);
+  padding-top: 10px;
+}
+</style>
+
+<div class="jl-root" id="jlRoot">
+
+  <!-- ═══════════════ 页面1：主界面 ═══════════════ -->
+  <div class="jl-page1" id="jlPage1">
+    <div class="jl-particle"></div><div class="jl-particle"></div>
+    <div class="jl-particle"></div><div class="jl-particle"></div>
+    <div class="jl-particle"></div><div class="jl-particle"></div>
+    <div class="jl-particle"></div><div class="jl-particle"></div>
+
+    <div class="jl-hero">
+      <div class="jl-hero-title">剑 来</div>
+      <div class="jl-hero-sub">· 命 轨 ·</div>
+      <div class="jl-hero-divider"></div>
+      <div class="jl-hero-desc">
+        鉴引异世神魂，锚定光阴轨迹<br>
+        在这座天下，编一局属于你的大千因果
+      </div>
+    </div>
+
+    <div class="jl-start-btn-wrap">
+      <div class="jl-start-btn" id="jlStartBtn">
+        开 始 游 戏 <span class="jl-start-btn-icon">&#9876;</span>
+      </div>
+    </div>
+
+    <div class="jl-footer-quote">
+      "少年的肩膀，就该先挑起明月清风，再担起家国天下。"
+    </div>
+  </div>
+
+  <!-- ═══════════════ 页面2：配置终端 ═══════════════ -->
+  <div class="jl-page2" id="jlPage2">
+    <div class="jl-cfg-head">
+      <div class="jl-cfg-title">&#9876; 命 轨 衍 化 终 端 &#9876;</div>
+      <div class="jl-cfg-sub">鉴引异世神魂 · 锚定光阴轨迹 · 编织大千因果</div>
+      <div class="jl-cfg-back" id="jlBackBtn">&#9664; 返回主界面</div>
+    </div>
+
+    <div class="jl-cfg-grid">
+      <div class="jl-cfg-panel">
+        <div class="jl-cfg-phead">壹 · 出身跟脚</div>
+        <ul class="jl-cfg-opt">
+          <li><input type="radio" name="g1" id="g1a" class="jl-radio"><label for="g1a"><span class="jl-ck">A</span> 泥瓶巷孤儿（骊珠洞天底层）</label></li>
+          <li><input type="radio" name="g1" id="g1b" class="jl-radio"><label for="g1b"><span class="jl-ck">B</span> 宗门嫡传（某洲仙家正统）</label></li>
+          <li><input type="radio" name="g1" id="g1c" class="jl-radio"><label for="g1c"><span class="jl-ck">C</span> 王朝贵胄（大骊/宝瓶洲权贵）</label></li>
+          <li><input type="radio" name="g1" id="g1d" class="jl-radio"><label for="g1d"><span class="jl-ck">D</span> 蛮荒妖裔（托月山血脉）</label></li>
+          <li><input type="radio" name="g1" id="g1e" class="jl-radio"><label for="g1e"><span class="jl-ck">E</span> 远古遗族（神道余烬/十豪之后）</label></li>
+          <li><input type="radio" name="g1" id="g1f" class="jl-radio"><label for="g1f"><span class="jl-ck">F</span> 山野散人（无根无系的自由身）</label></li>
+        </ul>
+      </div>
+      <div class="jl-cfg-panel">
+        <div class="jl-cfg-phead">贰 · 修行道统</div>
+        <ul class="jl-cfg-opt">
+          <li><input type="radio" name="g2" id="g2a" class="jl-radio"><label for="g2a"><span class="jl-ck">A</span> 剑修（温养本命飞剑，杀力第一）</label></li>
+          <li><input type="radio" name="g2" id="g2b" class="jl-radio"><label for="g2b"><span class="jl-ck">B</span> 纯粹武夫（不借灵气，肉身成圣）</label></li>
+          <li><input type="radio" name="g2" id="g2c" class="jl-radio"><label for="g2c"><span class="jl-ck">C</span> 练气士（正统十五境大道）</label></li>
+          <li><input type="radio" name="g2" id="g2d" class="jl-radio"><label for="g2d"><span class="jl-ck">D</span> 兵家修士（战场杀伐/军阵之法）</label></li>
+          <li><input type="radio" name="g2" id="g2e" class="jl-radio"><label for="g2e"><span class="jl-ck">E</span> 山泽野修（不择手段，野路子）</label></li>
+          <li><input type="radio" name="g2" id="g2f" class="jl-radio"><label for="g2f"><span class="jl-ck">F</span> 三教门生（儒/道/释正统传承）</label></li>
+        </ul>
+      </div>
+      <div class="jl-cfg-panel">
+        <div class="jl-cfg-phead">叁 · 初始境界</div>
+        <ul class="jl-cfg-opt">
+          <li><input type="radio" name="g3" id="g3a" class="jl-radio"><label for="g3a"><span class="jl-ck">A</span> 蝼蚁（下五境/炼体三境）</label></li>
+          <li><input type="radio" name="g3" id="g3b" class="jl-radio"><label for="g3b"><span class="jl-ck">B</span> 初窥门径（中五境/炼气三境）</label></li>
+          <li><input type="radio" name="g3" id="g3c" class="jl-radio"><label for="g3c"><span class="jl-ck">C</span> 小宗师（金丹/元婴/武胆）</label></li>
+          <li><input type="radio" name="g3" id="g3d" class="jl-radio"><label for="g3d"><span class="jl-ck">D</span> 一方豪强（玉璞/仙人/止境）</label></li>
+          <li><input type="radio" name="g3" id="g3e" class="jl-radio"><label for="g3e"><span class="jl-ck">E</span> 山巅大能（飞升/武神之下）</label></li>
+          <li><input type="radio" name="g3" id="g3f" class="jl-radio"><label for="g3f"><span class="jl-ck">F</span> 凡人之躯（无修为，故事起点）</label></li>
+        </ul>
+      </div>
+      <div class="jl-cfg-panel">
+        <div class="jl-cfg-phead">肆 · 所在天下</div>
+        <ul class="jl-cfg-opt">
+          <li><input type="radio" name="g4" id="g4a" class="jl-radio"><label for="g4a"><span class="jl-ck">A</span> 浩然天下（人族腹地，儒家治世）</label></li>
+          <li><input type="radio" name="g4" id="g4b" class="jl-radio"><label for="g4b"><span class="jl-ck">B</span> 剑气长城（浩然与蛮荒的边界）</label></li>
+          <li><input type="radio" name="g4" id="g4c" class="jl-radio"><label for="g4c"><span class="jl-ck">C</span> 蛮荒天下（妖族领地，弱肉强食）</label></li>
+          <li><input type="radio" name="g4" id="g4d" class="jl-radio"><label for="g4d"><span class="jl-ck">D</span> 青冥天下（道门白玉京统辖）</label></li>
+          <li><input type="radio" name="g4" id="g4e" class="jl-radio"><label for="g4e"><span class="jl-ck">E</span> 五彩天下（飞升城，剑修新土）</label></li>
+        </ul>
+      </div>
+      <div class="jl-cfg-panel">
+        <div class="jl-cfg-phead">伍 · 时间节点</div>
+        <ul class="jl-cfg-opt">
+          <li><input type="radio" name="g5" id="g5a" class="jl-radio"><label for="g5a"><span class="jl-ck">A</span> 剑来14年（骊珠洞天坠落前夕）</label></li>
+          <li><input type="radio" name="g5" id="g5b" class="jl-radio"><label for="g5b"><span class="jl-ck">B</span> 剑来21年（陈平安镇守长城）</label></li>
+          <li><input type="radio" name="g5" id="g5c" class="jl-radio"><label for="g5c"><span class="jl-ck">C</span> 剑来27年（妖族全面入侵）</label></li>
+          <li><input type="radio" name="g5" id="g5d" class="jl-radio"><label for="g5d"><span class="jl-ck">D</span> 剑来39年（浩然天下反攻）</label></li>
+          <li><input type="radio" name="g5" id="g5e" class="jl-radio"><label for="g5e"><span class="jl-ck">E</span> 终局（登天之战/秩序重构）</label></li>
+          <li><input type="radio" name="g5" id="g5f" class="jl-radio"><label for="g5f"><span class="jl-ck">F</span> 远古（神道尚存，破天之前）</label></li>
+        </ul>
+      </div>
+      <div class="jl-cfg-panel">
+        <div class="jl-cfg-phead">陆 · 本命之物</div>
+        <ul class="jl-cfg-opt">
+          <li><input type="radio" name="g6" id="g6a" class="jl-radio"><label for="g6a"><span class="jl-ck">A</span> 本命飞剑（自选剑名与神通）</label></li>
+          <li><input type="radio" name="g6" id="g6b" class="jl-radio"><label for="g6b"><span class="jl-ck">B</span> 仙兵遗宝（四大仙剑/古宝）</label></li>
+          <li><input type="radio" name="g6" id="g6c" class="jl-radio"><label for="g6c"><span class="jl-ck">C</span> 本命瓷（绑定气运，可被操控）</label></li>
+          <li><input type="radio" name="g6" id="g6d" class="jl-radio"><label for="g6d"><span class="jl-ck">D</span> 凡铁（无特殊之物，白手起家）</label></li>
+          <li><input type="radio" name="g6" id="g6e" class="jl-radio"><label for="g6e"><span class="jl-ck">E</span> 远古神物（神道碎片/至高遗物）</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="jl-cfg-panel" style="margin-top:10px;">
+      <div class="jl-cfg-phead">柒 · 阵营归属</div>
+      <div class="jl-cfg-faction">
+        <div><input type="radio" name="g7" id="g7a" class="jl-radio"><label for="g7a"><span class="jl-ck">A</span> 落魄山</label></div>
+        <div><input type="radio" name="g7" id="g7b" class="jl-radio"><label for="g7b"><span class="jl-ck">B</span> 文圣一脉</label></div>
+        <div><input type="radio" name="g7" id="g7c" class="jl-radio"><label for="g7c"><span class="jl-ck">C</span> 剑气长城/隐官</label></div>
+        <div><input type="radio" name="g7" id="g7d" class="jl-radio"><label for="g7d"><span class="jl-ck">D</span> 大骊王朝/山下</label></div>
+        <div><input type="radio" name="g7" id="g7e" class="jl-radio"><label for="g7e"><span class="jl-ck">E</span> 蛮荒王座</label></div>
+        <div><input type="radio" name="g7" id="g7f" class="jl-radio"><label for="g7f"><span class="jl-ck">F</span> 孤魂野鬼（无阵营）</label></div>
+      </div>
+    </div>
+
+    <!-- 进度指示 -->
+    <div class="jl-cfg-progress">
+      <div class="jl-cfg-dot" id="jd1"></div><div class="jl-cfg-dot" id="jd2"></div>
+      <div class="jl-cfg-dot" id="jd3"></div><div class="jl-cfg-dot" id="jd4"></div>
+      <div class="jl-cfg-dot" id="jd5"></div><div class="jl-cfg-dot" id="jd6"></div>
+      <div class="jl-cfg-dot" id="jd7"></div>
+    </div>
+
+    <!-- 输出区 -->
+    <div class="jl-cfg-output">
+      <div class="jl-cfg-out-label">&#9670; 生成的角色背景提示 &#9670;</div>
+      <div id="jlOutText">
+        <span id="jlOutEmpty">点击上方各维度选项，此处自动生成完整背景描述...</span>
+      </div>
+    </div>
+
+    <div class="jl-cfg-copy-hint">
+      &#9650; 选中上方文本 &rarr; Ctrl+C 复制 &rarr; 粘贴到输入框，可追加自由描述后发送
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  // === 页面切换事件 ===
+  var startBtn = document.getElementById('jlStartBtn');
+  if(startBtn){ startBtn.addEventListener('click',function(){
+    var p1=document.getElementById('jlPage1'); if(p1)p1.style.display='none';
+    var p2=document.getElementById('jlPage2'); if(p2)p2.style.display='block';
+  });}
+  var backBtn = document.getElementById('jlBackBtn');
+  if(backBtn){ backBtn.addEventListener('click',function(){
+    var p2=document.getElementById('jlPage2'); if(p2)p2.style.display='none';
+    var p1=document.getElementById('jlPage1'); if(p1)p1.style.display='flex';
+  });}
+  // === radio 事件绑定 ===
+  var allRadios = document.querySelectorAll('.jl-radio');
+  for(var ri=0; ri<allRadios.length; ri++){
+    allRadios[ri].addEventListener('change', function(){ window.jlUpdate && window.jlUpdate(); });
+  }
+
+  var texts = {
+    g1a:"你出身泥瓶巷，是骊珠洞天底层孤儿，自幼孤苦伶仃，在泥瓶巷的陋巷中摸爬滚打长大。",
+    g1b:"你出身宗门嫡传，自幼在仙家正统中修炼成长，根骨天赋皆为上佳，被宗门寄予厚望。",
+    g1c:"你出身王朝贵胄，是大骊/宝瓶洲权贵之后，自幼锦衣玉食，却也深谙朝堂与山上的权力博弈。",
+    g1d:"你出身蛮荒妖裔，血脉源自托月山，体内流淌着远古大妖的传承，在弱肉强食的法则中生存至今。",
+    g1e:"你出身远古遗族，是神道余烬或十豪之后，血脉中沉睡着早已被遗忘的上古力量，却也因此背负着沉重的宿命。",
+    g1f:"你出身山野散人，无根无系的自由身，没有宗门庇护，没有家族依靠，一个人在这座天下闯荡至今。",
+    g2a:"你的修行道统为剑修——在窍穴中温养本命飞剑，杀力天下第一，同境无敌，可越境杀敌。",
+    g2b:"你的修行道统为纯粹武夫——不借灵气，纯修气血筋骨，以肉身成圣，近战之中克制一切练气士。",
+    g2c:"你的修行道统为练气士——走正统十五境大道，炼气化神，步步登天，是天下修士中最为正统的一脉。",
+    g2d:"你的修行道统为兵家修士——擅长战场杀伐与军阵之法，在千军万马中取敌将首级如探囊取物。",
+    g2e:"你的修行道统为山泽野修——不择手段，野路子出身，没有师承没有门派，一切靠自己争、自己抢。",
+    g2f:"你的修行道统为三教门生——儒/道/释正统传承，有完整的师门体系和深厚的底蕴支撑。",
+    g3a:"你当前的境界尚属蝼蚁——下五境/炼体三境，在这座天下勉强自保，但未来可期，根基未定。",
+    g3b:"你当前的境界已初窥门径——中五境/炼气三境，已能御风而行、施展术法，在世俗中已算得上高手。",
+    g3c:"你当前的境界已达小宗师——金丹/元婴/武胆，已是一方势力中不可忽视的存在，行走天下无人敢小觑。",
+    g3d:"你当前的境界已是一方豪强——玉璞/仙人/止境，在山上山下皆有名号，寻常修士见你需低头行礼。",
+    g3e:"你当前的境界已是山巅大能——飞升/武神之下，放眼整座天下，能与你匹敌者不过寥寥数人。",
+    g3f:"你当前是凡人之躯——无修为，故事才刚刚开始，但正是这样的起点，才蕴藏着无限的可能。",
+    g4a:"你身处浩然天下——人族腹地，儒家治世，九洲各有圣人镇守，礼乐秩序之下暗流涌动。",
+    g4b:"你身处剑气长城——浩然与蛮荒的边界，万年来人族与妖族在此对峙，城墙上的每一块砖都浸透了剑修的血。",
+    g4c:"你身处蛮荒天下——妖族领地，弱肉强食是唯一的法则，托月山与英灵殿的阴影笼罩着这片大地。",
+    g4d:"你身处青冥天下——道门圣地，白玉京五城十二楼统辖三十六洞天七十二福地，以抵御化外天魔为责。",
+    g4e:"你身处五彩天下——剑气长城半截飞升后形成的新天下，剑修绝对主导，飞升城为核心，宁姚为当世第一人。",
+    g5a:"此时是剑来14年——骊珠洞天坠落前夕，三教棋局尚未揭晓，陈平安仍在泥瓶巷中。",
+    g5b:"此时是剑来21年——陈平安已镇守剑气长城，人族与妖族的对峙进入最紧张的阶段，大战一触即发。",
+    g5c:"此时是剑来27年——妖族全面入侵，天下烽烟四起，生灵涂炭，每一个人都被卷入了这场浩劫。",
+    g5d:"此时是剑来39年——浩然天下开始反攻，人族在各条战线上收复失地，胜利的曙光已现但代价惨重。",
+    g5e:"此时是终局——登天之战已至，世间秩序即将重构，旧神与新圣的博弈将决定这方天地的最终命运。",
+    g5f:"此时是远古——神道尚存，破天之前，至高神与十豪并立的时代，天地规则尚未完全固化，一切皆有可能。",
+    g6a:"你的本命之物为自炼飞剑——在窍穴中温养多年，剑名与神通皆由你自定，寄托着你的大道与性命。",
+    g6b:"你的本命之物为仙兵遗宝——或许是四大仙剑之一，或许是失传已久的古宝，威力巨大但因果牵连甚广。",
+    g6c:"你的本命之物为本命瓷——绑定气运与寿元，是你的护身符，也是你的枷锁，一旦被他人掌控，生死便不由己。",
+    g6d:"你的本命之物为凡铁——无特殊之物，白手起家，没有捷径可走，但正因如此，每一步都走得踏实。",
+    g6e:"你的本命之物为远古神物——神道碎片或至高遗物，蕴含着远超这个时代的威能，但也引来了无数觊觎的目光。",
+    g7a:"你的阵营归属为落魄山——陈平安创立的势力，虽非最强，但人情味最浓，这里有一群愿意为彼此赴死的同伴。",
+    g7b:"你的阵营归属为文圣一脉——荀渊门下，左右、崔瀺、齐静春皆为你的师兄，传承着「事功」学说与读书人的脊梁。",
+    g7c:"你的阵营归属为剑气长城/隐官——站在人族与妖族的最前线，剑修在此淬炼杀力，用剑说话，用命守城。",
+    g7d:"你的阵营归属为大骊王朝/山下——在世俗王朝的权力场中行走，庙堂之高与江湖之远，你皆有所涉。",
+    g7e:"你的阵营归属为蛮荒王座——站在妖族一方，与人族为敌，你的立场决定了你的敌人和你的盟友。",
+    g7f:"你的阵营归属为孤魂野鬼——无阵营，不站队，一个人在这座天下独自前行，是敌是友全凭本心。"
+  };
+
+  var groups = ['g1','g2','g3','g4','g5','g6','g7'];
+  var colors = ['#d4a854','#c9a040','#e0c060','#b89030','#d4a854','#c49a3a','#d4a854'];
+
+  window.jlUpdate = function(){
+    var out = document.getElementById('jlOutText');
+    var empty = document.getElementById('jlOutEmpty');
+    var parts = [];
+    var anyChecked = false;
+    for(var i=0; i<groups.length; i++){
+      var radios = document.getElementsByName(groups[i]);
+      for(var j=0; j<radios.length; j++){
+        if(radios[j].checked){
+          anyChecked = true;
+          var key = radios[j].id;
+          if(texts[key]) parts.push(texts[key]);
+          var dot = document.getElementById('jd'+(i+1));
+          if(dot){ dot.style.background = colors[i]; dot.style.boxShadow = '0 0 8px '+colors[i]; dot.style.borderColor = colors[i]; }
+          break;
+        }
+      }
+    }
+    if(anyChecked && empty){ empty.style.display = 'none'; }
+    else if(empty){ empty.style.display = 'block'; }
+    if(parts.length > 0){
+      out.innerHTML = (empty && empty.style.display==='none' ? '' : '') + parts.join('');
+    }
+  };
+})();
+</script>
