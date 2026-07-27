@@ -306,7 +306,7 @@
 
   var pages=['Page1','Page2','Page3','Page4','Page5','Page6','Page7','Page7b','Page8','Page9','Page10','Page11','Page12'];
   function showPage(id){
-  if(id==='Page8'&&selG4==='g4e'){
+  if(id==='Page8'&&selected['g4']&&selected['g4'].key==='g4e'){
     var timeItems=document.getElementById('jlPage8').querySelectorAll('.jl-items .jl-it');
     timeItems.forEach(function(el){
       var k=el.dataset.key;
@@ -316,7 +316,7 @@
     var tip=document.getElementById('jlEventTip');
     if(tip)tip.textContent='五彩天下建于剑来27年（陈清都殉道·长城飞升），仅可选择27年及之后的时间节点。';
   }
-  if(id==='Page8'&&selG4!=='g4e'){
+  if(id==='Page8'&&(!selected['g4']||selected['g4'].key!=='g4e')){
     var timeItems=document.getElementById('jlPage8').querySelectorAll('.jl-items .jl-it');
     timeItems.forEach(function(el){el.style.display='';});
     var tip=document.getElementById('jlEventTip');
