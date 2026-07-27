@@ -1,17 +1,21 @@
-<style>
-.jl-root{all:initial}.jl-root *{box-sizing:border-box}
+<style>.jl-root{all:initial}.jl-root *{box-sizing:border-box}
 .jl-root{display:block;font-family:"PingFang SC","Microsoft YaHei","Noto Serif SC",serif;max-width:680px;margin:0 auto;position:relative;overflow:hidden;border-radius:14px;min-height:560px}
 .jl-pg1{position:relative;z-index:1;min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
 .jl-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s}
 .jl-bg.jl-on{opacity:1}
 .jl-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.55) 0%,rgba(10,8,6,.35) 30%,rgba(10,8,6,.5) 70%,rgba(10,8,6,.75) 100%)}
-.jl-hero{position:relative;z-index:2;text-align:center;padding:40px 30px 20px}
-.jl-hero-title{font-size:48px;font-weight:900;color:#e8d5a3;letter-spacing:14px;text-shadow:0 0 40px rgba(212,168,84,.5),0 0 80px rgba(212,168,84,.2),0 2px 4px rgba(0,0,0,.8);margin-bottom:6px;animation:jl-tg 3s ease-in-out infinite alternate}
+.jl-ink{position:absolute;z-index:2;pointer-events:none;opacity:.6}
+.jl-hero{position:relative;z-index:3;text-align:center;padding:40px 30px 20px}
+.jl-hero-title{font-size:52px;font-weight:900;color:#e8d5a3;letter-spacing:16px;text-shadow:0 0 40px rgba(212,168,84,.5),0 0 80px rgba(212,168,84,.2),0 2px 4px rgba(0,0,0,.8);margin-bottom:6px;animation:jl-tg 3s ease-in-out infinite alternate}
 @keyframes jl-tg{0%{text-shadow:0 0 30px rgba(212,168,84,.4),0 0 60px rgba(212,168,84,.15)}100%{text-shadow:0 0 50px rgba(212,168,84,.7),0 0 100px rgba(212,168,84,.3)}}
-.jl-hero-sub{font-size:14px;color:#8b7535;letter-spacing:6px;margin-bottom:10px}
-.jl-hero-div{width:120px;height:1px;background:linear-gradient(90deg,transparent,#d4a854,transparent);margin:0 auto 16px}
+.jl-hero-sub{font-size:14px;color:#8b7535;letter-spacing:8px;margin-bottom:10px}
+.jl-hero-div{width:140px;height:1px;background:linear-gradient(90deg,transparent,#d4a854,transparent);margin:0 auto 16px;position:relative}
+.jl-hero-div::before,.jl-hero-div::after{content:"◆";position:absolute;top:-7px;font-size:8px;color:#d4a854}
+.jl-hero-div::before{left:-12px}.jl-hero-div::after{right:-12px}
 .jl-hero-desc{font-size:12px;color:#6b6048;line-height:1.9;max-width:400px;margin:0 auto;letter-spacing:1px}
-.jl-pg{display:none;position:relative;z-index:1;min-height:560px;padding:24px 18px;background:linear-gradient(175deg,#0a0806 0%,#16120e 40%,#0e0c0a 100%);overflow-y:auto}
+.jl-seal{position:absolute;z-index:3;right:26px;top:26px;width:46px;height:46px;border:2px solid rgba(180,60,50,.75);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#c0392b;font-size:20px;font-weight:900;transform:rotate(6deg);background:rgba(20,10,8,.35);text-shadow:0 0 8px rgba(192,57,43,.5);animation:jl-seal 4s ease-in-out infinite;font-family:"Noto Serif SC",serif}
+@keyframes jl-seal{0%,100%{transform:rotate(6deg)}50%{transform:rotate(4deg) scale(1.03)}}
+.jl-pg{display:none;position:relative;z-index:1;min-height:560px;padding:24px 18px;background:linear-gradient(175deg,#0a0806 0%,#16120e 40%,#0e0c0a 100%);overflow-y:auto;max-height:80vh}
 .jl-pg-head{text-align:center;padding-bottom:14px;margin-bottom:14px;border-bottom:2px solid;border-image:linear-gradient(to right,transparent,#d4a854,#d4a854,transparent) 1}
 .jl-pg-title{font-size:20px;font-weight:700;color:#e8d5a3;letter-spacing:5px;text-shadow:0 0 20px rgba(212,168,84,.3)}
 .jl-pg-sub{font-size:11px;color:#7a6e5c;margin-top:5px;letter-spacing:2px}
@@ -21,8 +25,8 @@
 .jl-pts-num.jl-neg{color:#e74c3c}
 .jl-items{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
 .jl-it{cursor:pointer;padding:8px 14px;font-size:12px;border-radius:5px;border:1px solid rgba(212,168,84,.12);color:#9b8c72;background:rgba(255,255,255,.02);transition:all .2s;user-select:none;position:relative}
-.jl-it:hover{border-color:rgba(212,168,84,.3)}
-.jl-it.jl-sel{border-color:#d4a854;color:#e8d5a3;background:rgba(212,168,84,.1);box-shadow:0 0 8px rgba(212,168,84,.15)}
+.jl-it:hover{border-color:rgba(212,168,84,.4);transform:translateY(-1px)}
+.jl-it.jl-sel{border-color:#d4a854;color:#e8d5a3;background:rgba(212,168,84,.1);box-shadow:0 0 12px rgba(212,168,84,.2)}
 .jl-it.jl-neg.jl-sel{border-color:#e74c3c;color:#e74c3c;background:rgba(231,76,60,.08);box-shadow:0 0 8px rgba(231,76,60,.15)}
 .jl-it .jl-cst{font-size:10px;opacity:.6;margin-left:3px}
 .jl-it.jl-free{border-style:dashed;border-color:rgba(100,180,255,.3)}
@@ -37,16 +41,15 @@
 .jl-pdot{width:7px;height:7px;border-radius:50%;background:#3a3024;transition:all .3s}
 .jl-pdot.jl-done{background:#d4a854;box-shadow:0 0 5px rgba(212,168,84,.4)}
 .jl-pdot.jl-now{background:#ffd700;box-shadow:0 0 8px rgba(255,215,0,.5)}
-.jl-out{background:rgba(0,0,0,.35);border:1px solid rgba(212,168,84,.2);border-radius:6px;padding:14px 16px;font-size:12px;line-height:1.9;color:#e0d5c0;min-height:60px;max-height:180px;overflow-y:auto;user-select:text;-webkit-user-select:text;margin-top:10px}
-.jl-out-empty{color:#5a4e3c;font-style:italic}
+.jl-out{background:rgba(0,0,0,.35);border:1px solid rgba(212,168,84,.2);border-radius:6px;padding:14px 16px;font-size:12px;line-height:1.9;color:#e0d5c0;min-height:60px;max-height:220px;overflow-y:auto;user-select:text;-webkit-user-select:text;margin-top:10px;white-space:pre-wrap}
 .jl-start-btn{display:inline-block;cursor:pointer;padding:14px 52px;font-size:18px;font-weight:700;letter-spacing:6px;color:#1a1c20;background:linear-gradient(135deg,#d4a854 0%,#f0d060 30%,#c49640 70%,#a07828 100%);border:1px solid rgba(255,220,140,.3);border-radius:4px;text-shadow:0 1px 0 rgba(255,255,255,.2);box-shadow:0 0 20px rgba(212,168,84,.3),0 0 40px rgba(212,168,84,.1),inset 0 1px 0 rgba(255,255,255,.15);transition:all .3s;position:relative;overflow:hidden;user-select:none}
-.jl-start-btn:hover{box-shadow:0 0 30px rgba(212,168,84,.5),0 0 60px rgba(212,168,84,.25),0 0 100px rgba(212,168,84,.1);transform:translateY(-1px)}
+.jl-start-btn:hover{box-shadow:0 0 30px rgba(212,168,84,.5),0 0 60px rgba(212,168,84,.25);transform:translateY(-1px)}
 .jl-start-btn::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .6s}
 .jl-start-btn:hover::after{left:100%}
 .jl-sicon{display:inline-block;margin-left:6px;animation:jl-sp 1.5s ease-in-out infinite}
 @keyframes jl-sp{0%,100%{transform:translateX(0);opacity:.8}50%{transform:translateX(4px);opacity:1}}
-.jl-quote{position:relative;z-index:2;text-align:center;padding:24px 0;font-size:11px;color:#4a4030;letter-spacing:2px;font-style:italic}
-.jl-sbtn-wrap{position:relative;z-index:2;text-align:center;padding:10px 0 30px}
+.jl-quote{position:relative;z-index:3;text-align:center;padding:24px 0;font-size:11px;color:#4a4030;letter-spacing:2px;font-style:italic}
+.jl-sbtn-wrap{position:relative;z-index:3;text-align:center;padding:10px 0 30px}
 .jl-diff-card{cursor:pointer;padding:16px 18px;background:rgba(255,255,255,.02);border:1px solid rgba(212,168,84,.12);border-radius:8px;transition:all .3s;position:relative;overflow:hidden;margin-bottom:10px}
 .jl-diff-card:hover{border-color:rgba(212,168,84,.35);background:rgba(212,168,84,.04)}
 .jl-diff-card.jl-sel{border-color:#d4a854;background:rgba(212,168,84,.08);box-shadow:0 0 20px rgba(212,168,84,.15)}
@@ -59,19 +62,27 @@
 .jl-cust-input{width:100%;padding:10px 12px;font-size:12px;background:rgba(0,0,0,.3);border:1px solid rgba(212,168,84,.2);border-radius:5px;color:#e0d5c0;font-family:inherit;margin:8px 0;resize:vertical}
 .jl-cust-input::placeholder{color:#5a4e3c}
 .jl-cust-input:focus{outline:none;border-color:#d4a854;box-shadow:0 0 8px rgba(212,168,84,.15)}
-.jl-event-tip{font-size:10px;color:#7a6e5c;margin-top:4px;line-height:1.5;padding:6px 10px;background:rgba(212,168,84,.04);border-radius:4px;border-left:2px solid rgba(212,168,84,.2)}
+.jl-event-tip{font-size:10px;color:#9b8c72;margin-top:6px;line-height:1.6;padding:8px 12px;background:rgba(212,168,84,.05);border-radius:4px;border-left:2px solid #d4a854}
 .jl-summary{font-size:11px;line-height:1.8;color:#c4b998}
 .jl-summary b{color:#e8d5a3}
 .jl-summary .jl-miss{color:#5a4e3c}
-</style>
-
+.jl-sex{display:flex;gap:12px;justify-content:center;margin:14px 0}
+.jl-sex-opt{cursor:pointer;flex:1;max-width:140px;text-align:center;padding:18px 10px;border:1px solid rgba(212,168,84,.15);border-radius:8px;background:rgba(255,255,255,.02);transition:all .25s;user-select:none}
+.jl-sex-opt:hover{border-color:rgba(212,168,84,.4);transform:translateY(-2px)}
+.jl-sex-opt.jl-sel{border-color:#d4a854;background:rgba(212,168,84,.08);box-shadow:0 0 16px rgba(212,168,84,.15)}
+.jl-sex-ico{font-size:26px;margin-bottom:6px;color:#d4a854}
+.jl-sex-name{font-size:13px;color:#e8d5a3;letter-spacing:3px}
+.jl-field{margin:10px auto;max-width:420px}
+.jl-field-lbl{font-size:11px;color:#8b7535;letter-spacing:2px;margin-bottom:4px;padding-left:2px}</style>
 <div class="jl-root" id="jlRoot">
 
 <div class="jl-pg1" id="jlPage1">
-  <div class="jl-bg jl-on" style="background-image:url('https://gcore.jsdelivr.net/gh/ddsadasfdxc/jo/bg1.jpg')" id="jlBg1"></div>
-  <div class="jl-bg" style="background-image:url('https://gcore.jsdelivr.net/gh/ddsadasfdxc/jo/bg2.jpg')" id="jlBg2"></div>
-  <div class="jl-bg" style="background-image:url('https://gcore.jsdelivr.net/gh/ddsadasfdxc/jo/bg3.jpg')" id="jlBg3"></div>
-  <div class="jl-bg" style="background-image:url('https://gcore.jsdelivr.net/gh/ddsadasfdxc/jo/bg4.jpg')" id="jlBg4"></div>
+  <div class="jl-bg jl-on" style="background-image:url('https://gcore.jsdelivr.net/gh/ddsadasfdxc/jo/bg1.jpg')"></div>
+  <div class="jl-bg" style="background-image:url('https://gcore.jsdelivr.net/gh/ddsadasfdxc/jo/bg2.jpg')"></div>
+  <div class="jl-bg" style="background-image:url('https://gcore.jsdelivr.net/gh/ddsadasfdxc/jo/bg3.jpg')"></div>
+  <div class="jl-bg" style="background-image:url('https://gcore.jsdelivr.net/gh/ddsadasfdxc/jo/bg4.jpg')"></div>
+  <svg class="jl-ink" style="left:0;bottom:0;width:100%;height:220px" viewBox="0 0 680 220" preserveAspectRatio="none"><path d="M0,180 Q120,120 220,150 T420,130 T680,160 L680,220 L0,220 Z" fill="rgba(30,26,20,.6)"/><path d="M0,200 Q160,150 300,175 T560,165 T680,185 L680,220 L0,220 Z" fill="rgba(20,17,13,.8)"/><circle cx="560" cy="50" r="26" fill="rgba(220,190,120,.12)"/></svg>
+  <div class="jl-seal">命</div>
   <div class="jl-hero">
     <div class="jl-hero-title">剑 来</div>
     <div class="jl-hero-sub">· 命 轨 ·</div>
@@ -83,8 +94,21 @@
 </div>
 
 <div class="jl-pg" id="jlPage2">
-<div class="jl-pg-head"><div class="jl-pg-title">⚔ 天 命 难 度 ⚔</div><div class="jl-pg-sub">选择你的命轨起点 · 难度越高，初始点数越少</div></div>
-<div class="jl-prog"><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
+<div class="jl-pg-head"><div class="jl-pg-title">壹 · 姓 名 性 别</div><div class="jl-pg-sub">你为这缕神魂，安一个名姓</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
+<div class="jl-field"><div class="jl-field-lbl">名讳</div><input class="jl-cust-input" id="jlName" placeholder="请输入角色姓名，例如：陈清让、苏折柳..." style="text-align:center;letter-spacing:2px"></div>
+<div class="jl-field-lbl" style="text-align:center;margin-top:8px">性别</div>
+<div class="jl-sex">
+  <div class="jl-sex-opt" data-sex="男"><div class="jl-sex-ico">⚔</div><div class="jl-sex-name">男</div></div>
+  <div class="jl-sex-opt" data-sex="女"><div class="jl-sex-ico">❀</div><div class="jl-sex-name">女</div></div>
+  <div class="jl-sex-opt" data-sex="其他"><div class="jl-sex-ico">☯</div><div class="jl-sex-name">其他</div></div>
+</div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回首页</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
+</div>
+
+<div class="jl-pg" id="jlPage3">
+<div class="jl-pg-head"><div class="jl-pg-title">贰 · 天 命 难 度</div><div class="jl-pg-sub">选择你的命轨起点 · 难度越高，初始点数越少</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
 <div style="max-width:480px;margin:0 auto">
   <div class="jl-diff-card" data-pts="inf" data-name="天命之子"><div class="jl-dname">天 命 之 子</div><div class="jl-ddesc">无限点数 · 所有天赋任选 · 开局即巅峰</div><div class="jl-dpts">∞</div></div>
   <div class="jl-diff-card" data-pts="2000" data-name="天骄之路"><div class="jl-dname">天 骄 之 路</div><div class="jl-ddesc">2000点数 · 天赋充裕 · 顺风顺水</div><div class="jl-dpts">2000</div></div>
@@ -92,13 +116,13 @@
   <div class="jl-diff-card" data-pts="1000" data-name="荆棘之途"><div class="jl-dname">荆 棘 之 途</div><div class="jl-ddesc">1000点数 · 捉襟见肘 · 逆境求生</div><div class="jl-dpts">1000</div></div>
   <div class="jl-diff-card" data-pts="500" data-name="蝼蚁登天"><div class="jl-dname">蝼 蚁 登 天</div><div class="jl-ddesc">500点数 · 极致挑战 · 白手起家</div><div class="jl-dpts">500</div></div>
 </div>
-<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回</div><div class="jl-nbtn jl-go jl-off jl-nav-next" data-next="Page3">下一步 ▶</div></div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
 </div>
 
-<div class="jl-pg" id="jlPage3">
-<div class="jl-pg-head"><div class="jl-pg-title">壹 · 出 身 跟 脚</div><div class="jl-pg-sub">你的根基决定了命运的起点</div></div>
-<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
-<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num" id="jlPts">—</span></div>
+<div class="jl-pg" id="jlPage4">
+<div class="jl-pg-head"><div class="jl-pg-title">叁 · 出 身 跟 脚</div><div class="jl-pg-sub">你的根基决定了命运的起点</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
+<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num jl-pts-dyn">—</span></div>
 <div class="jl-items">
   <div class="jl-it" data-key="g1a" data-cost="300">泥瓶巷孤儿<span class="jl-cst">300</span></div>
   <div class="jl-it" data-key="g1b" data-cost="500">宗门嫡传<span class="jl-cst">500</span></div>
@@ -112,13 +136,13 @@
 <div id="jlG1Custom" style="display:none">
   <textarea class="jl-cust-input" id="jlG1CustomName" placeholder="请输入魂穿的目标角色，例如：陈平安、宁姚、齐静春..."></textarea>
 </div>
-<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回难度</div><div class="jl-nbtn jl-go jl-off jl-nav-next" data-next="Page4">下一步 ▶</div></div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回难度</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
 </div>
 
-<div class="jl-pg" id="jlPage4">
-<div class="jl-pg-head"><div class="jl-pg-title">贰 · 修 行 道 统</div><div class="jl-pg-sub">你的大道之路，决定你的战斗方式</div></div>
-<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
-<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num" id="jlPts">—</span></div>
+<div class="jl-pg" id="jlPage5">
+<div class="jl-pg-head"><div class="jl-pg-title">肆 · 修 行 道 统</div><div class="jl-pg-sub">你的大道之路，决定你的战斗方式</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
+<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num jl-pts-dyn">—</span></div>
 <div class="jl-items">
   <div class="jl-it" data-key="g2a" data-cost="500">剑修（杀力第一）<span class="jl-cst">500</span></div>
   <div class="jl-it" data-key="g2b" data-cost="400">纯粹武夫（肉身成圣）<span class="jl-cst">400</span></div>
@@ -127,50 +151,51 @@
   <div class="jl-it jl-neg" data-key="g2e" data-cost="-100">山泽野修（不择手段）<span class="jl-cst">+100</span></div>
   <div class="jl-it" data-key="g2f" data-cost="200">三教门生（儒道释）<span class="jl-cst">200</span></div>
 </div>
-<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回出身</div><div class="jl-nbtn jl-go jl-off jl-nav-next" data-next="Page5">下一步 ▶</div></div>
-</div>
-
-<div class="jl-pg" id="jlPage5">
-<div class="jl-pg-head"><div class="jl-pg-title">叁 · 初 始 境 界</div><div class="jl-pg-sub">你在修行路上走了多远？</div></div>
-<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
-<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num" id="jlPts">—</span></div>
-<div class="jl-items">
-  <div class="jl-it jl-neg" data-key="g3a" data-cost="-200">铜皮境<span class="jl-cst">+200</span></div>
-  <div class="jl-it jl-neg" data-key="g3b" data-cost="-150">草根境<span class="jl-cst">+150</span></div>
-  <div class="jl-it jl-neg" data-key="g3c" data-cost="-100">柳筋境<span class="jl-cst">+100</span></div>
-  <div class="jl-it jl-neg" data-key="g3d" data-cost="-50">骨气境<span class="jl-cst">+50</span></div>
-  <div class="jl-it" data-key="g3e" data-cost="0">铸炉境<span class="jl-cst">0</span></div>
-  <div class="jl-it" data-key="g3f" data-cost="50">洞府境<span class="jl-cst">50</span></div>
-  <div class="jl-it" data-key="g3g" data-cost="150">观海境<span class="jl-cst">150</span></div>
-  <div class="jl-it" data-key="g3h" data-cost="300">龙门境<span class="jl-cst">300</span></div>
-  <div class="jl-it" data-key="g3i" data-cost="500">金丹境·剑师<span class="jl-cst">500</span></div>
-  <div class="jl-it" data-key="g3j" data-cost="800">元婴境·剑仙<span class="jl-cst">800</span></div>
-  <div class="jl-it" data-key="g3k" data-cost="1200">玉璞境·大剑仙<span class="jl-cst">1200</span></div>
-  <div class="jl-it" data-key="g3l" data-cost="1800">仙人境<span class="jl-cst">1800</span></div>
-  <div class="jl-it" data-key="g3m" data-cost="2500">飞升境<span class="jl-cst">2500</span></div>
-  <div class="jl-it" data-key="g3n" data-cost="4000">十四境·合道<span class="jl-cst">4000</span></div>
-  <div class="jl-it" data-key="g3o" data-cost="8000">十五境·道极<span class="jl-cst">8000</span></div>
-  <div class="jl-it jl-neg" data-key="g3w1" data-cost="-200">泥胚境·武夫<span class="jl-cst">+200</span></div>
-  <div class="jl-it jl-neg" data-key="g3w2" data-cost="-100">木胎境·武夫<span class="jl-cst">+100</span></div>
-  <div class="jl-it" data-key="g3w3" data-cost="0">水银境·武夫<span class="jl-cst">0</span></div>
-  <div class="jl-it" data-key="g3w4" data-cost="100">英魂境·武夫<span class="jl-cst">100</span></div>
-  <div class="jl-it" data-key="g3w5" data-cost="200">雄魄境·武夫<span class="jl-cst">200</span></div>
-  <div class="jl-it" data-key="g3w6" data-cost="350">武胆境·武夫<span class="jl-cst">350</span></div>
-  <div class="jl-it" data-key="g3w7" data-cost="500">金身境·武夫<span class="jl-cst">500</span></div>
-  <div class="jl-it" data-key="g3w8" data-cost="700">羽化境·武夫<span class="jl-cst">700</span></div>
-  <div class="jl-it" data-key="g3w9" data-cost="1000">山巅境·武夫<span class="jl-cst">1000</span></div>
-  <div class="jl-it" data-key="g3w10" data-cost="1500">止境·气盛·武夫<span class="jl-cst">1500</span></div>
-  <div class="jl-it" data-key="g3w11" data-cost="2200">止境·归真·武夫<span class="jl-cst">2200</span></div>
-  <div class="jl-it" data-key="g3w12" data-cost="3000">止境·神到·武夫<span class="jl-cst">3000</span></div>
-  <div class="jl-it" data-key="g3w13" data-cost="5000">武神境·武夫<span class="jl-cst">5000</span></div>
-</div>
-<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回道统</div><div class="jl-nbtn jl-go jl-off jl-nav-next" data-next="Page6">下一步 ▶</div></div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回出身</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
 </div>
 
 <div class="jl-pg" id="jlPage6">
-<div class="jl-pg-head"><div class="jl-pg-title">肆 · 所 在 天 下</div><div class="jl-pg-sub">你脚下的土地，决定了你的世界格局</div></div>
-<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
-<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num" id="jlPts">—</span></div>
+<div class="jl-pg-head"><div class="jl-pg-title">伍 · 初 始 境 界</div><div class="jl-pg-sub">你在修行路上走了多远？</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
+<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num jl-pts-dyn">—</span></div>
+<div class="jl-items">
+  <div class="jl-it jl-neg" data-key="g3a" data-cost="-200" title="下五境·锤炼肌肤表皮，皮肤坚韧如铜">铜皮境<span class="jl-cst">+200</span></div>
+  <div class="jl-it jl-neg" data-key="g3b" data-cost="-150" title="下五境·滋养血肉，气血恢复大幅提升">草根境<span class="jl-cst">+150</span></div>
+  <div class="jl-it jl-neg" data-key="g3c" data-cost="-100" title="下五境·强化筋脉，爆发力跃升">柳筋境<span class="jl-cst">+100</span></div>
+  <div class="jl-it jl-neg" data-key="g3d" data-cost="-50" title="下五境·凝练骨骼，儒家有天然优势">骨气境<span class="jl-cst">+50</span></div>
+  <div class="jl-it" data-key="g3e" data-cost="0" title="下五境·淬炼第一缕可外放的真气">铸炉境<span class="jl-cst">0</span></div>
+  <div class="jl-it" data-key="g3f" data-cost="50" title="中五境·开辟气府，寿元两百年">洞府境<span class="jl-cst">50</span></div>
+  <div class="jl-it" data-key="g3g" data-cost="150" title="中五境·灵气如沧海，神识扩张">观海境<span class="jl-cst">150</span></div>
+  <div class="jl-it" data-key="g3h" data-cost="300" title="中五境·灵气冲关，突破后寿元五百年">龙门境<span class="jl-cst">300</span></div>
+  <div class="jl-it" data-key="g3i" data-cost="500" title="中五境·凝聚金丹，剑修称「剑师」">金丹境·剑师<span class="jl-cst">500</span></div>
+  <div class="jl-it" data-key="g3j" data-cost="800" title="中五境·元婴续命，剑修称「剑仙」">元婴境·剑仙<span class="jl-cst">800</span></div>
+  <div class="jl-it" data-key="g3k" data-cost="1200" title="上五境·返璞归真，剑修称「大剑仙」">玉璞境·大剑仙<span class="jl-cst">1200</span></div>
+  <div class="jl-it" data-key="g3l" data-cost="1800" title="上五境·修成仙体，开辟小天地">仙人境<span class="jl-cst">1800</span></div>
+  <div class="jl-it" data-key="g3m" data-cost="2500" title="上五境·人间顶点，可穿越天幕">飞升境<span class="jl-cst">2500</span></div>
+  <div class="jl-it" data-key="g3n" data-cost="4000" title="传说境·合道天时/地利/人和">十四境·合道<span class="jl-cst">4000</span></div>
+  <div class="jl-it" data-key="g3o" data-cost="8000" title="传说境·仅三教祖师抵达">十五境·道极<span class="jl-cst">8000</span></div>
+  <div class="jl-it jl-neg" data-key="g3w1" data-cost="-200" title="武夫炼体一境·打磨肉身根基">泥胚境·武夫<span class="jl-cst">+200</span></div>
+  <div class="jl-it jl-neg" data-key="g3w2" data-cost="-100" title="武夫炼体二境·纹理致密如符文">木胎境·武夫<span class="jl-cst">+100</span></div>
+  <div class="jl-it" data-key="g3w3" data-cost="0" title="武夫炼体三境·血液粘稠如水银">水银境·武夫<span class="jl-cst">0</span></div>
+  <div class="jl-it" data-key="g3w4" data-cost="100" title="武夫炼气四境·诞生武道魂魄">英魂境·武夫<span class="jl-cst">100</span></div>
+  <div class="jl-it" data-key="g3w5" data-cost="200" title="武夫炼气五境·魂魄肉身绑定">雄魄境·武夫<span class="jl-cst">200</span></div>
+  <div class="jl-it" data-key="g3w6" data-cost="350" title="武夫炼气六境·拳意开始成型">武胆境·武夫<span class="jl-cst">350</span></div>
+  <div class="jl-it" data-key="g3w7" data-cost="500" title="武夫炼神七境·金刚不坏（小宗师）">金身境·武夫<span class="jl-cst">500</span></div>
+  <div class="jl-it" data-key="g3w8" data-cost="700" title="武夫炼神八境·御风飞行（远游境）">羽化境·武夫<span class="jl-cst">700</span></div>
+  <div class="jl-it" data-key="g3w9" data-cost="1000" title="武夫炼神九境·凡俗顶点">山巅境·武夫<span class="jl-cst">1000</span></div>
+  <div class="jl-it" data-key="g3w10" data-cost="1500" title="武夫止境·战力对应玉璞境">止境·气盛·武夫<span class="jl-cst">1500</span></div>
+  <div class="jl-it" data-key="g3w11" data-cost="2200" title="武夫止境·战力对应仙人境">止境·归真·武夫<span class="jl-cst">2200</span></div>
+  <div class="jl-it" data-key="g3w12" data-cost="3000" title="武夫止境·战力对应飞升境">止境·神到·武夫<span class="jl-cst">3000</span></div>
+  <div class="jl-it" data-key="g3w13" data-cost="5000" title="武夫传说·战力对应十四境">武神境·武夫<span class="jl-cst">5000</span></div>
+</div>
+<div class="jl-event-tip" id="jlRealmTip">选择境界后，此处显示该境界的特征说明...</div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回道统</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
+</div>
+
+<div class="jl-pg" id="jlPage7">
+<div class="jl-pg-head"><div class="jl-pg-title">陆 · 所 在 天 下</div><div class="jl-pg-sub">你脚下的土地，决定了你的世界格局</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
+<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num jl-pts-dyn">—</span></div>
 <div class="jl-items">
   <div class="jl-it" data-key="g4a" data-cost="0">浩然天下（人族腹地）<span class="jl-cst">0</span></div>
   <div class="jl-it" data-key="g4b" data-cost="100">剑气长城（人妖边界）<span class="jl-cst">100</span></div>
@@ -178,24 +203,41 @@
   <div class="jl-it" data-key="g4d" data-cost="150">青冥天下（道门治下）<span class="jl-cst">150</span></div>
   <div class="jl-it" data-key="g4e" data-cost="200">五彩天下（飞升城）<span class="jl-cst">200</span></div>
 </div>
-<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回境界</div><div class="jl-nbtn jl-go jl-off jl-nav-next" data-next="Page7">下一步 ▶</div></div>
-</div>
-
-<div class="jl-pg" id="jlPage7">
-<div class="jl-pg-head"><div class="jl-pg-title">伍 · 时 间 节 点</div><div class="jl-pg-sub">你的故事从何时开始？</div></div>
-<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
-<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num" id="jlPts">—</span></div>
-<div class="jl-items">
-<div class="jl-it jl-neg" data-key="g5a" data-cost="-300">远古神道<span class="jl-cst">+300</span></div><div class="jl-it jl-neg" data-key="g5b" data-cost="-200">破天之战<span class="jl-cst">+200</span></div><div class="jl-it jl-neg" data-key="g5c" data-cost="-100">上古秩序<span class="jl-cst">+100</span></div><div class="jl-it" data-key="g5d" data-cost="0">中古固化<span class="jl-cst">0</span></div><div class="jl-it" data-key="g5e" data-cost="50">近古布局<span class="jl-cst">50</span></div><div class="jl-it" data-key="g5f" data-cost="100">剑来元年<span class="jl-cst">100</span></div><div class="jl-it" data-key="g5g" data-cost="150">剑来14年<span class="jl-cst">150</span></div><div class="jl-it" data-key="g5h" data-cost="200">剑来15年<span class="jl-cst">200</span></div><div class="jl-it" data-key="g5i" data-cost="250">剑来16年<span class="jl-cst">250</span></div><div class="jl-it" data-key="g5j" data-cost="300">书简湖·17-19年<span class="jl-cst">300</span></div><div class="jl-it" data-key="g5k" data-cost="350">剑来20年<span class="jl-cst">350</span></div><div class="jl-it" data-key="g5l" data-cost="400">长城·21-24年<span class="jl-cst">400</span></div><div class="jl-it" data-key="g5m" data-cost="450">长城·25-26年<span class="jl-cst">450</span></div><div class="jl-it" data-key="g5n" data-cost="500">剑来27年<span class="jl-cst">500</span></div><div class="jl-it" data-key="g5o" data-cost="400">浩然·28-37年<span class="jl-cst">400</span></div><div class="jl-it" data-key="g5p" data-cost="350">剑来38年<span class="jl-cst">350</span></div><div class="jl-it" data-key="g5q" data-cost="300">剑来39年<span class="jl-cst">300</span></div><div class="jl-it" data-key="g5r" data-cost="250">终局之战<span class="jl-cst">250</span></div>
-</div>
-<div class="jl-event-tip" id="jlEventTip">选择时间节点后，此处显示该时期的特殊事件...</div>
-<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回天下</div><div class="jl-nbtn jl-go jl-off jl-nav-next" data-next="Page8">下一步 ▶</div></div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回境界</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
 </div>
 
 <div class="jl-pg" id="jlPage8">
-<div class="jl-pg-head"><div class="jl-pg-title">陆 · 本 命 之 物</div><div class="jl-pg-sub">与你性命交修的神兵或遗物</div></div>
-<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
-<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num" id="jlPts">—</span></div>
+<div class="jl-pg-head"><div class="jl-pg-title">柒 · 时 间 节 点</div><div class="jl-pg-sub">你的故事从何时开始？</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
+<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num jl-pts-dyn">—</span></div>
+<div class="jl-items">
+  <div class="jl-it jl-neg" data-key="g5a" data-cost="-300">远古神道<span class="jl-cst">+300</span></div>
+  <div class="jl-it jl-neg" data-key="g5b" data-cost="-200">破天之战<span class="jl-cst">+200</span></div>
+  <div class="jl-it jl-neg" data-key="g5c" data-cost="-100">上古秩序<span class="jl-cst">+100</span></div>
+  <div class="jl-it" data-key="g5d" data-cost="0">中古固化<span class="jl-cst">0</span></div>
+  <div class="jl-it" data-key="g5e" data-cost="50">近古布局<span class="jl-cst">50</span></div>
+  <div class="jl-it" data-key="g5f" data-cost="100">剑来元年<span class="jl-cst">100</span></div>
+  <div class="jl-it" data-key="g5g" data-cost="150">剑来14年<span class="jl-cst">150</span></div>
+  <div class="jl-it" data-key="g5h" data-cost="200">剑来15年<span class="jl-cst">200</span></div>
+  <div class="jl-it" data-key="g5i" data-cost="250">剑来16年<span class="jl-cst">250</span></div>
+  <div class="jl-it" data-key="g5j" data-cost="300">书简湖17-19<span class="jl-cst">300</span></div>
+  <div class="jl-it" data-key="g5k" data-cost="350">剑来20年<span class="jl-cst">350</span></div>
+  <div class="jl-it" data-key="g5l" data-cost="400">长城21-24<span class="jl-cst">400</span></div>
+  <div class="jl-it" data-key="g5m" data-cost="450">长城25-26<span class="jl-cst">450</span></div>
+  <div class="jl-it" data-key="g5n" data-cost="500">剑来27年<span class="jl-cst">500</span></div>
+  <div class="jl-it" data-key="g5o" data-cost="400">浩然28-37<span class="jl-cst">400</span></div>
+  <div class="jl-it" data-key="g5p" data-cost="350">剑来38年<span class="jl-cst">350</span></div>
+  <div class="jl-it" data-key="g5q" data-cost="300">剑来39年<span class="jl-cst">300</span></div>
+  <div class="jl-it" data-key="g5r" data-cost="250">终局之战<span class="jl-cst">250</span></div>
+</div>
+<div class="jl-event-tip" id="jlEventTip">选择时间节点后，此处显示该时期的特殊事件...</div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回天下</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
+</div>
+
+<div class="jl-pg" id="jlPage9">
+<div class="jl-pg-head"><div class="jl-pg-title">捌 · 本 命 之 物</div><div class="jl-pg-sub">与你性命交修的神兵或遗物</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
+<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num jl-pts-dyn">—</span></div>
 <div class="jl-items">
   <div class="jl-it" data-key="g6a" data-cost="600">本命飞剑（自定剑名）<span class="jl-cst">600</span></div>
   <div class="jl-it" data-key="g6b" data-cost="800">仙兵遗宝（四大仙剑/古宝）<span class="jl-cst">800</span></div>
@@ -206,15 +248,15 @@
 </div>
 <div id="jlG6Custom" style="display:none">
   <textarea class="jl-cust-input" id="jlG6CustomName" placeholder="自定义本命之物名称，例如：青萍剑、山河印..."></textarea>
-  <textarea class="jl-cust-input" id="jlG6CustomDesc" placeholder="自定义描述，例如：此剑乃上古剑仙遗留，剑身铭刻山河图，一剑出则万象俱寂..." style="min-height:60px"></textarea>
+  <textarea class="jl-cust-input" id="jlG6CustomDesc" placeholder="自定义描述..." style="min-height:60px"></textarea>
 </div>
-<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回时间</div><div class="jl-nbtn jl-go jl-off jl-nav-next" data-next="Page9">下一步 ▶</div></div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回时间</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
 </div>
 
-<div class="jl-pg" id="jlPage9">
-<div class="jl-pg-head"><div class="jl-pg-title">柒 · 阵 营 归 属</div><div class="jl-pg-sub">你的立场决定你的盟友与敌人</div></div>
-<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
-<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num" id="jlPts">—</span></div>
+<div class="jl-pg" id="jlPage10">
+<div class="jl-pg-head"><div class="jl-pg-title">玖 · 阵 营 归 属</div><div class="jl-pg-sub">你的立场决定你的盟友与敌人</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
+<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num jl-pts-dyn">—</span></div>
 <div class="jl-items">
   <div class="jl-it" data-key="g7a" data-cost="200">落魄山<span class="jl-cst">200</span></div>
   <div class="jl-it" data-key="g7b" data-cost="250">文圣一脉<span class="jl-cst">250</span></div>
@@ -223,54 +265,82 @@
   <div class="jl-it jl-neg" data-key="g7e" data-cost="-200">蛮荒王座<span class="jl-cst">+200</span></div>
   <div class="jl-it" data-key="g7f" data-cost="0">孤魂野鬼（无阵营）<span class="jl-cst">0</span></div>
 </div>
-<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回本命</div><div class="jl-nbtn jl-go jl-off jl-nav-next" data-next="Page10">下一步 ▶</div></div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回本命</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
 </div>
 
-<div class="jl-pg" id="jlPage10">
+<div class="jl-pg" id="jlPage11">
+<div class="jl-pg-head"><div class="jl-pg-title">拾 · 开 场 自 述</div><div class="jl-pg-sub">为你的故事写下第一段笔墨（可选）</div></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div></div>
+<div class="jl-field"><div class="jl-field-lbl">自定义开场白</div><textarea class="jl-cust-input" id="jlOpening" placeholder="描述你希望故事如何开场：身处何地、遭遇何事、与何人相遇...&#10;&#10;留空则由 AI 根据你的命轨配置自动开局。" style="min-height:120px"></textarea></div>
+<div class="jl-event-tip">这段文字会作为角色自述附加在提示词末尾，AI 将据此定制开场叙事。</div>
+<div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回阵营</div><div class="jl-nbtn jl-go jl-nav-next">下一步 ▶</div></div>
+</div>
+
+<div class="jl-pg" id="jlPage12">
 <div class="jl-pg-head"><div class="jl-pg-title">⚔ 命 轨 已 定 · 大 道 将 启 ⚔</div><div class="jl-pg-sub">复核你的选择，确认无误后点击开始游戏</div></div>
-<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div></div>
-<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num" id="jlPts">—</span></div>
+<div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div></div>
+<div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num jl-pts-dyn">—</span></div>
 <div class="jl-out" id="jlSummary"></div>
 <div class="jl-nav" style="margin-top:10px;padding-top:10px">
-  <div class="jl-nbtn jl-nav-back">◀ 返回阵营</div>
+  <div class="jl-nbtn jl-nav-back">◀ 返回开场</div>
   <div class="jl-nbtn jl-go" id="jlFinalBtn">⚔ 开 始 游 戏</div>
 </div>
-<div style="text-align:center;margin-top:8px;font-size:10px;color:#5a4e3c">▲ 点击自动复制提示词，粘贴发送即可开始</div>
+<div style="text-align:center;margin-top:8px;font-size:10px;color:#5a4e3c">▲ 点击后提示词自动填入输入框，按发送即可开始</div>
 </div>
 
 </div>
 <script>
 (function(){
-  var bgs=[document.getElementById('jlBg1'),document.getElementById('jlBg2'),document.getElementById('jlBg3'),document.getElementById('jlBg4')];
+  var bgs=document.querySelectorAll('.jl-bg');
   var bgIdx=0;
-  setInterval(function(){bgs[bgIdx].classList.remove('jl-on');bgIdx=(bgIdx+1)%4;bgs[bgIdx].classList.add('jl-on')},5000);
+  setInterval(function(){bgs[bgIdx].classList.remove('jl-on');bgIdx=(bgIdx+1)%bgs.length;bgs[bgIdx].classList.add('jl-on')},5000);
 
-  var pages=['Page1','Page2','Page3','Page4','Page5','Page6','Page7','Page8','Page9','Page10'];
+  var pages=['Page1','Page2','Page3','Page4','Page5','Page6','Page7','Page8','Page9','Page10','Page11','Page12'];
   function showPage(id){
     for(var i=0;i<pages.length;i++){
       var el=document.getElementById('jl'+pages[i]);
       if(!el)continue;
       el.style.display=pages[i]===id?(pages[i]==='Page1'?'flex':'block'):'none';
     }
+    if(id==='Page12')updateSummary();
   }
 
   var selectedDiff=null;
   var maxPts=0,currentPts=0;
   var selected={};
+  var userName='',userSex='';
 
   function updatePts(){
-    var el=document.getElementById('jlPts');
-    if(!el)return;
-    if(maxPts===Infinity){el.textContent='∞';el.classList.remove('jl-neg');return}
-    el.textContent=currentPts;
-    if(currentPts<0)el.classList.add('jl-neg');else el.classList.remove('jl-neg');
+    var els=document.querySelectorAll('.jl-pts-dyn');
+    for(var i=0;i<els.length;i++){
+      if(maxPts===Infinity){els[i].textContent='∞';els[i].classList.remove('jl-neg');continue}
+      els[i].textContent=currentPts;
+      if(currentPts<0)els[i].classList.add('jl-neg');else els[i].classList.remove('jl-neg');
+    }
   }
 
   function canAfford(cost){if(maxPts===Infinity)return true;return currentPts-cost>=0||cost<0}
 
   document.getElementById('jlStartBtn').addEventListener('click',function(){showPage('Page2')});
 
-  // 难度选择
+  // 姓名性别
+  var nameInput=document.getElementById('jlName');
+  var sexOpts=document.querySelectorAll('.jl-sex-opt');
+  function checkPage2(){
+    var btn=document.querySelector('#jlPage2 .jl-nav-next');
+    if(btn&&(nameInput.value.trim()&&userSex))btn.classList.remove('jl-off');
+  }
+  nameInput.addEventListener('input',function(){userName=this.value.trim();checkPage2()});
+  for(var si=0;si<sexOpts.length;si++){
+    sexOpts[si].addEventListener('click',function(){
+      for(var j=0;j<sexOpts.length;j++)sexOpts[j].classList.remove('jl-sel');
+      this.classList.add('jl-sel');
+      userSex=this.getAttribute('data-sex');
+      checkPage2();
+    });
+  }
+
+  // 难度
   var diffCards=document.querySelectorAll('.jl-diff-card');
   for(var i=0;i<diffCards.length;i++){
     diffCards[i].addEventListener('click',function(){
@@ -282,41 +352,94 @@
     });
   }
 
-  // 导航：返回
+  // 返回
   var backBtns=document.querySelectorAll('.jl-nav-back');
   for(var i=0;i<backBtns.length;i++){
     backBtns[i].addEventListener('click',function(){
       var pg=this.closest('.jl-pg');
-      if(!pg)return;
+      if(!pg){showPage('Page1');return}
       var id=pg.id.replace('jl','');
       var idx=pages.indexOf(id);
       if(idx>0)showPage(pages[idx-1]);
     });
   }
 
-  // 导航：下一步
+  // 下一步
   var nextBtns=document.querySelectorAll('.jl-nav-next');
   for(var i=0;i<nextBtns.length;i++){
     nextBtns[i].addEventListener('click',function(){
       if(this.classList.contains('jl-off'))return;
-      var next=this.getAttribute('data-next');
-      if(next==='Page3'&&selectedDiff){
+      var pg=this.closest('.jl-pg');
+      var id=pg.id.replace('jl','');
+      var idx=pages.indexOf(id);
+      if(id==='Page3'&&selectedDiff){
         if(selectedDiff.pts==='inf'){maxPts=Infinity}else{maxPts=parseInt(selectedDiff.pts);currentPts=maxPts}
-        selected={};clearAllItems();updatePts();updateSummary();
+        selected={};clearAllItems();updatePts();
       }
-      if(next)showPage(next);
+      if(idx>=0&&idx<pages.length-1)showPage(pages[idx+1]);
     });
   }
 
   function clearAllItems(){
     var items=document.querySelectorAll('.jl-it');
     for(var i=0;i<items.length;i++)items[i].classList.remove('jl-sel');
-    // hide custom inputs
     var c1=document.getElementById('jlG1Custom');if(c1)c1.style.display='none';
     var c6=document.getElementById('jlG6Custom');if(c6)c6.style.display='none';
   }
 
   // 天赋选择
+  var realmHelp={
+      g3a:"下五境·锤炼肌肤表皮，皮肤坚韧如铜",
+      g3b:"下五境·滋养血肉，气血恢复大幅提升",
+      g3c:"下五境·强化筋脉，爆发力跃升",
+      g3d:"下五境·凝练骨骼，儒家有天然优势",
+      g3e:"下五境·淬炼第一缕可外放的真气",
+      g3f:"中五境·开辟气府，寿元两百年",
+      g3g:"中五境·灵气如沧海，神识扩张",
+      g3h:"中五境·灵气冲关，突破后寿元五百年",
+      g3i:"中五境·凝聚金丹，剑修称「剑师」",
+      g3j:"中五境·元婴续命，剑修称「剑仙」",
+      g3k:"上五境·返璞归真，剑修称「大剑仙」",
+      g3l:"上五境·修成仙体，开辟小天地",
+      g3m:"上五境·人间顶点，可穿越天幕",
+      g3n:"传说境·合道天时/地利/人和",
+      g3o:"传说境·仅三教祖师抵达",
+      g3w1:"武夫炼体一境·打磨肉身根基",
+      g3w2:"武夫炼体二境·纹理致密如符文",
+      g3w3:"武夫炼体三境·血液粘稠如水银",
+      g3w4:"武夫炼气四境·诞生武道魂魄",
+      g3w5:"武夫炼气五境·魂魄肉身绑定",
+      g3w6:"武夫炼气六境·拳意开始成型",
+      g3w7:"武夫炼神七境·金刚不坏（小宗师）",
+      g3w8:"武夫炼神八境·御风飞行（远游境）",
+      g3w9:"武夫炼神九境·凡俗顶点",
+      g3w10:"武夫止境·战力对应玉璞境",
+      g3w11:"武夫止境·战力对应仙人境",
+      g3w12:"武夫止境·战力对应飞升境",
+      g3w13:"武夫传说·战力对应十四境"
+    };
+
+  var events={
+      g5a:"【远古神道纪元】天庭共主执掌'一'，五至高神统治天地。火神水神之争撞断天柱，神道术法泄露人间。持剑者授人族剑修法门，十豪崛起。",
+      g5b:"【破天纪元】人妖联军攻破天庭，持剑者倒戈斩披甲者。神道终结。三教祖师联手建剑气长城，白泽退守蛮荒。",
+      g5c:"【上古秩序纪元】三教分治确立，四座天下以天幕分隔。三教祖师证道十五境。陈清都合道剑气长城。",
+      g5d:"【中古固化纪元】妖族最大规模入侵。贾生化名周密投蛮荒位列第二王座。末代真龙陨落，骊珠洞天形成。",
+      g5e:"【近古布局纪元】文圣落败一脉分崩。崔瀺入大骊启动挽天倾。齐静春贬至骊珠洞天。阿良闯下斗笠剑仙名号。",
+      g5f:"【剑来元年】陈平安出生泥瓶巷。剑来5年本命瓷碎，父母离世，入龙窑做学徒。",
+      g5g:"【骊珠洞天·命运开启】宁姚闯入小镇。齐静春代师收徒，扛天劫护六千凡人身死道消。陈平安买下落魄山。",
+      g5h:"【剑来15年】阿良护送陈平安至大隋。崔瀺分离崔东山。陈平安首入剑气长城送剑，定十年之约。",
+      g5i:"【剑来16年】陈平安入藕花福地，收裴钱为徒，带出朱敛、隋右边。炼化水字本命印。",
+      g5j:"【书简湖】陈平安任账房直面顾璨杀业，三年了结因果。武夫破六境，破金身境。",
+      g5k:"【隐官上任】陈平安出任末代隐官。接受缝衣人刻大妖真名，结识化外天魔天然。",
+      g5l:"【镇守岁月】整合隐官势力，与宁姚开小酒馆。炼化火神佐官心脏，五行本命物圆满。",
+      g5m:"【战云密布】与宁姚确定道侣。宁姚破元婴获仙剑天真。陈平安武夫第九境山巅境。",
+      g5n:"【天崩】托月山大祖苏醒，周密率十四王座强攻。陈清都殉道，长城飞升。陈平安合道独守。",
+      g5o:"【十年独守】妖族突破防线，三洲沦陷。宁姚五彩天下成战力第一人。",
+      g5p:"【挽天倾】崔瀺山水颠倒大阵重创妖族，以身死道消换陈平安离开长城。",
+      g5q:"【反攻】浩然全面反攻，陈平安破境十四境。旧秩序崩塌，新秩序重建。",
+      g5r:"【终局】登天之战已至，周密终极布局揭晓。天下格局面临最终重构。"
+    };
+
   var talItems=document.querySelectorAll('.jl-it');
   for(var ti=0;ti<talItems.length;ti++){
     talItems[ti].addEventListener('click',function(){
@@ -326,24 +449,22 @@
 
       if(this.classList.contains('jl-sel')){
         this.classList.remove('jl-sel');
-        if(group==='g1'&&(key==='g1h')){document.getElementById('jlG1Custom').style.display='none'}
-        if(group==='g6'&&(key==='g6f')){document.getElementById('jlG6Custom').style.display='none'}
+        if(key==='g1h'){var e=document.getElementById('jlG1Custom');if(e)e.style.display='none'}
+        if(key==='g6f'){var e=document.getElementById('jlG6Custom');if(e)e.style.display='none'}
         delete selected[group];
         if(maxPts!==Infinity)currentPts+=cost;
         updatePts();
-        updateSummary();
         var btn=this.closest('.jl-pg').querySelector('.jl-nav-next');
         if(btn)btn.classList.add('jl-off');
         return;
       }
 
-      // 取消同组旧选
       if(selected[group]){
         var oldKey=selected[group].key;
         var oldEl=document.querySelector('[data-key="'+oldKey+'"]');
         if(oldEl)oldEl.classList.remove('jl-sel');
-        if(oldKey==='g1h')document.getElementById('jlG1Custom').style.display='none';
-        if(oldKey==='g6f')document.getElementById('jlG6Custom').style.display='none';
+        if(oldKey==='g1h'){var e=document.getElementById('jlG1Custom');if(e)e.style.display='none'}
+        if(oldKey==='g6f'){var e=document.getElementById('jlG6Custom');if(e)e.style.display='none'}
         if(maxPts!==Infinity)currentPts+=selected[group].cost;
         delete selected[group];
       }
@@ -354,62 +475,17 @@
       selected[group]={key:key,cost:cost};
       if(maxPts!==Infinity)currentPts-=cost;
       updatePts();
-      updateSummary();
 
-      // 自定义输入
-      if(key==='g1h')document.getElementById('jlG1Custom').style.display='block';
-      if(key==='g6f')document.getElementById('jlG6Custom').style.display='block';
+      if(key==='g1h'){var e=document.getElementById('jlG1Custom');if(e)e.style.display='block'}
+      if(key==='g6f'){var e=document.getElementById('jlG6Custom');if(e)e.style.display='block'}
 
-      // 事件提示
       if(group==='g5'){
-        var realmHelp={          g3a:"下五境·锤炼肌肤表皮，大成后皮肤坚韧如铜",
-          g3b:"下五境·滋养血肉肌理，气血恢复能力大幅提升",
-          g3c:"下五境·强化筋脉韧性，爆发力与柔韧性跃升",
-          g3d:"下五境·凝练骨骼质地，承载灵气上限提升",
-          g3e:"下五境·以体魄为炉，淬炼出第一缕可外放的真气",
-          g3f:"中五境·体内开辟气府，可储存灵气温养器物，寿元两百年",
-          g3g:"中五境·气府扩容，灵气如沧海充盈，神识大幅扩张",
-          g3h:"中五境·灵气逆流冲关，突破后寿元五百年，失败则跌落",
-          g3i:"中五境·气海凝聚金丹为大道根基，剑修称「剑师」",
-          g3j:"中五境·金丹孕育元婴，肉身损毁可遁走续命，剑修称「剑仙」",
-          g3k:"上五境·返璞归真，可调动天地法则，剑修称「大剑仙」",
-          g3l:"上五境·修成仙体，掌握完整仙家神通，可开辟独立小天地",
-          g3m:"上五境·人间常规顶点，被天道视为天地大盗，可穿越天幕",
-          g3n:"传说境·合道天时/地利/人和方可证道，战力对应武神境",
-          g3o:"传说境·修行理论终点，可散道化育天下，仅三教祖师抵达",
-          g3w1:"武夫炼体一境·打磨肉身，稳固桩功与气血根基",
-          g3w2:"武夫炼体二境·筋骨肌理深度改造，肌肤纹理致密如符文",
-          g3w3:"武夫炼体三境·血液粘稠如水银，巅峰时需渡心劫",
-          g3w4:"武夫炼气四境·气血滋养神魂，诞生武道魂魄雏形",
-          g3w5:"武夫炼气五境·魂魄与肉身深度绑定，不惧神魂攻击",
-          g3w6:"武夫炼气六境·体内生成武胆，临战不退，拳意开始成型",
-          g3w7:"武夫炼神七境·肉身金刚不坏（小宗师），可硬抗练气士神通",
-          g3w8:"武夫炼神八境·可御风飞行（远游境），拳意呼应天地山河",
-          g3w9:"武夫炼神九境·凡俗武夫顶点，一国顶尖战力",
-          g3w10:"武夫止境·气血磅礴可压制天地灵气，战力对应玉璞境",
-          g3w11:"武夫止境·武道本源返璞归真，战力对应仙人境",
-          g3w12:"武夫止境·神魂与肉身完全合一，战力对应飞升境",
-          g3w13:"武夫传说·最高境界战力对应十四境，人间仅少数触及门槛"};
-        var events={          g5a:"【远古神道纪元】天庭共主执掌'一'，五至高神统治天地。人族与妖族为神族附庸，以香火供奉存续。火神水神之争撞断天柱，神道术法泄露人间。持剑者授人族剑修法门，十豪崛起，联军筹备登天伐神。",
-          g5b:"【破天纪元】人妖联军攻破天庭，持剑者倒戈斩披甲者。天庭共主散道，神道终结。第一次河畔议事划分天下版图。三教祖师联手建剑气长城，剑修世代驻守。白泽交出妖族真名，退守蛮荒。",
-          g5c:"【上古秩序纪元】三教分治确立，四座天下以天幕分隔。至圣先师、道祖、佛祖证道十五境。陈清都问剑托月山，龙君观照战死，托月山大祖重伤。陈清都合道剑气长城，开启万年镇守。白玉京五城十二楼建成。",
-          g5d:"【中古固化纪元】妖族最大规模入侵，剑气长城决战，十三境修士陨落数十位。大儒贾生进《太平十二策》被否，化名周密投蛮荒，位列第二王座。末代真龙陨落，骊珠洞天形成。九洲格局定型，大骊立国。",
-          g5e:"【近古布局纪元】三教祖师道化危机显现。文圣三教辩论胜出，事功学说成显学。三四之争文圣落败，一脉分崩。崔瀺入大骊任国师，启动挽天倾布局。齐静春贬至骊珠洞天。阿良游走边境，闯下斗笠剑仙名号。",
-          g5f:"【剑来元年】陈平安出生于骊珠洞天泥瓶巷，本命瓷由窑场烧制。剑来5年父亲打碎本命瓷，父母相继离世，陈平安成为孤儿，入龙窑做拉坯学徒。",
-          g5g:"【骊珠洞天·命运开启】骊珠洞天开启，修士涌入寻宝。宁姚闯入小镇负伤，躲入泥瓶巷陈平安家中。蔡金简写断长生桥，陈平安以凡人之躯反杀。齐静春代师收徒，传文脉玉簪。齐静春力扛天劫护六千凡人，身死道消。陈平安买下落魄山，护李宝瓶一行赴山崖书院。",
-          g5h:"【游历·剑来15年】阿良护送陈平安一行至大隋边境。崔瀺分离少年身崔东山，反被破道心。陈平安首入剑气长城为宁姚送剑，定十年之约。收服陈灵均、暖树，崔诚喂拳打磨武夫根基。",
-          g5i:"【游历·剑来16年】陈平安入藕花福地寻修复长生桥之法。收裴钱为徒，带出朱敛、隋右边、卢白象、魏羡。炼化水字本命印，练气士第二境，武夫第三境。",
-          g5j:"【游历·书简湖】陈平安任书简湖账房，直面顾璨杀业，耗时三年了结因果。武夫破第六境。游历北俱芦洲，狮子峰破武夫第七境金身境。炼化金色文胆，闯下'陈好人'名号。",
-          g5k:"【剑气长城·隐官上任】陈平安入剑气长城，通过隐官考验，出任末代隐官。于牢狱接受缝衣人脊柱刻大妖真名。结识化外天魔'天然'，收长命为落魄山供奉。",
-          g5l:"【剑气长城·镇守岁月】陈平安整合隐官势力，修补长城防线，将妖族入侵延后三年。与宁姚开小酒馆，留下'太平无事牌'。炼化火神佐官心脏，五行本命物圆满，洞府境。宁姚刻意压境夯实剑心。",
-          g5m:"【剑气长城·战云密布】陈平安与宁姚确定道侣关系。宁姚生死之际破元婴境，陈清都赠仙剑'天真'。蛮荒战事升级，多位王座大妖现身。陈清都布局长城飞升，筛选剑修种子。陈平安武夫第九境山巅境。",
-          g5n:"【剑气长城·天崩】托月山大祖苏醒，周密率十四王座强攻。陈清都以身殉道，半截长城飞升为五彩天下。宁姚率剑修种子迁往飞升城。陈平安合道剩余长城，不死不灭，独自留守。金丹碎丹反复淬炼，武夫触及止境。",
-          g5o:"【浩然战乱·十年独守】陈平安独守长城十年，金丹元婴反复淬炼。妖族突破防线，桐叶洲、扶摇洲、金甲洲沦陷。崔瀺布山水大阵御敌。宁姚五彩天下破玉璞、仙人境，成战力第一人。",
-          g5p:"【浩然战乱·挽天倾】崔瀺山水颠倒大阵重创妖族主力，以身死道消换陈平安离开长城。陈平安造化窟沉睡养伤，崔瀺残魂替其行走浩然。",
-          g5q:"【浩然战乱·反攻】浩然天下全面反攻，人族在各战线收复失地。陈平安破境入十四境，胜利曙光初现但代价惨重。旧秩序崩塌，新秩序在废墟中重建。",
-          g5r:"【终局】登天之战已至，旧神与新圣博弈决定天地命运。十四境与十五境界限即将打破。周密终极布局揭晓，三教祖师道化加速。天下格局面临最终重构。"};
         var tip=document.getElementById('jlEventTip');
         if(tip&&events[key])tip.textContent=events[key];
+      }
+      if(group==='g3'){
+        var tip=document.getElementById('jlRealmTip');
+        if(tip&&realmHelp[key])tip.textContent=realmHelp[key];
       }
 
       var btn=this.closest('.jl-pg').querySelector('.jl-nav-next');
@@ -419,123 +495,89 @@
 
   // 文本
   var texts={
-    g1a:"你出身泥瓶巷，是骊珠洞天底层孤儿，自幼孤苦伶仃，在陋巷中摸爬滚打长大。",
-    g1b:"你出身宗门嫡传，自幼在仙家正统中修炼成长，根骨天赋皆为上佳，被宗门寄予厚望。",
-    g1c:"你出身王朝贵胄，是大骊/宝瓶洲权贵之后，自幼锦衣玉食，却也深谙朝堂与山上的权力博弈。",
-    g1d:"你出身蛮荒妖裔，血脉源自托月山，体内流淌着远古大妖的传承，在弱肉强食的法则中生存至今。",
-    g1e:"你出身远古遗族，是神道余烬或十豪之后，血脉中沉睡着早已被遗忘的上古力量，却也因此背负着沉重的宿命。",
-    g1f:"你出身山野散人，无根无系的自由身，没有宗门庇护，没有家族依靠，一个人在这座天下闯荡至今。",
-    g1g:"你是一位穿越者——来自现代世界的灵魂，带着不属于这个世界的记忆与知识降临剑来天下。你熟知这个世界的走向与因果，却不知自己的到来会如何改变这一切。",
-    g2a:"你的修行道统为剑修——在窍穴中温养本命飞剑，杀力天下第一，同境无敌，可越境杀敌。",
-    g2b:"你的修行道统为纯粹武夫——不借灵气，纯修气血筋骨，以肉身成圣，近战之中克制一切练气士。",
-    g2c:"你的修行道统为练气士——走正统十五境大道，炼气化神，步步登天，是天下修士中最为正统的一脉。",
-    g2d:"你的修行道统为兵家修士——擅长战场杀伐与军阵之法，在千军万马中取敌将首级如探囊取物。",
-    g2e:"你的修行道统为山泽野修——不择手段，野路子出身，没有师承没有门派，一切靠自己争、自己抢。",
-    g2f:"你的修行道统为三教门生——儒/道/释正统传承，有完整的师门体系和深厚的底蕴支撑。",
-    g3a:"你当前是铜皮境。",
-    g3b:"你当前是草根境。",
-    g3c:"你当前是柳筋境。",
-    g3d:"你当前是骨气境。",
-    g3e:"你当前是铸炉境。",
-    g3f:"你当前是洞府境。",
-    g3g:"你当前是观海境。",
-    g3h:"你当前是龙门境。",
-    g3i:"你当前是金丹境·剑师。",
-    g3j:"你当前是元婴境·剑仙。",
-    g3k:"你当前是玉璞境·大剑仙。",
-    g3l:"你当前是仙人境。",
-    g3m:"你当前是飞升境。",
-    g3n:"你当前是十四境·合道。",
-    g3o:"你当前是十五境·道极。",
-    g3w1:"你当前是泥胚境·武夫。",
-    g3w2:"你当前是木胎境·武夫。",
-    g3w3:"你当前是水银境·武夫。",
-    g3w4:"你当前是英魂境·武夫。",
-    g3w5:"你当前是雄魄境·武夫。",
-    g3w6:"你当前是武胆境·武夫。",
-    g3w7:"你当前是金身境·武夫。",
-    g3w8:"你当前是羽化境·武夫。",
-    g3w9:"你当前是山巅境·武夫。",
-    g3w10:"你当前是止境·气盛·武夫。",
-    g3w11:"你当前是止境·归真·武夫。",
-    g3w12:"你当前是止境·神到·武夫。",
-    g3w13:"你当前是武神境·武夫。",
-    g4a:"你身处浩然天下——人族腹地，儒家治世，九洲各有圣人镇守，礼乐秩序之下暗流涌动。",
-    g4b:"你身处剑气长城——浩然与蛮荒的边界，万年来人族与妖族在此对峙，城墙上的每一块砖都浸透了剑修的血。",
-    g4c:"你身处蛮荒天下——妖族领地，弱肉强食是唯一的法则，托月山与英灵殿的阴影笼罩着这片大地。",
-    g4d:"你身处青冥天下——道门圣地，白玉京五城十二楼统辖三十六洞天七十二福地，以抵御化外天魔为责。",
-    g4e:"你身处五彩天下——剑气长城半截飞升后形成的新天下，剑修绝对主导，飞升城为核心，宁姚为当世第一人。",
-    g5a:"此时是远古神道纪元——天庭共主执掌大道，五至高神统治天地，十豪联军正筹备登天伐神。",
-    g5b:"此时是破天之战——人妖联军攻破天庭，神道终结，三教祖师联手建起剑气长城。",
-    g5c:"此时是上古秩序纪元——三教分治确立，四座天下以天幕分隔，陈清都合道剑气长城。",
-    g5d:"此时是中古固化纪元——妖族最大规模入侵落幕，末代真龙陨落，骊珠洞天形成，大骊立国。",
-    g5e:"此时是近古布局纪元——文圣落败一脉分崩，崔瀺入大骊启动挽天倾，齐静春贬至骊珠洞天。",
-    g5f:"此时是剑来元年——陈平安出生于骊珠洞天泥瓶巷，本命瓷由窑场烧制。",
-    g5g:"此时是剑来14年——骊珠洞天开启，宁姚闯入小镇，齐静春力扛天劫护六千凡人，身死道消。",
-    g5h:"此时是剑来15年——阿良护送陈平安一行至大隋边境，陈平安首入剑气长城送剑。",
-    g5i:"此时是剑来16年——陈平安入藕花福地，收裴钱为徒，炼化水字本命印。",
-    g5j:"此时是书简湖问心——陈平安任书简湖账房，直面顾璨杀业，耗时三年了结因果。",
-    g5k:"此时是剑来20年——陈平安入剑气长城，通过隐官考验，出任末代隐官。",
-    g5l:"此时是长城21-24年——陈平安整合隐官势力，与宁姚开小酒馆，五行本命物圆满。",
-    g5m:"此时是长城25-26年——陈平安与宁姚确定道侣关系，宁姚破元婴境，陈清都赠仙剑天真。",
-    g5n:"此时是剑来27年——托月山大祖苏醒，陈清都殉道，半截长城飞升五彩天下，陈平安合道独守。",
-    g5o:"此时是浩然28-37年——陈平安独守长城十年，妖族突破防线连陷三洲，宁姚成战力第一人。",
-    g5p:"此时是剑来38年——崔瀺山水颠倒大阵重创妖族主力，以身死道消换陈平安离开长城。",
-    g5q:"此时是剑来39年——浩然天下全面反攻，陈平安破境入十四境。",
-    g5r:"此时是终局之战——登天之战已至，旧神与新圣博弈决定天地最终命运。",
-    g6a:"你的本命之物为自炼飞剑——在窍穴中温养多年，剑名与神通皆由你自定，寄托着你的大道与性命。",
-    g6b:"你的本命之物为仙兵遗宝——或许是四大仙剑之一，或许是失传已久的古宝，威力巨大但因果牵连甚广。",
-    g6c:"你的本命之物为本命瓷——绑定气运与寿元，是你的护身符，也是你的枷锁。",
-    g6d:"你的本命之物为凡铁——无特殊之物，白手起家，每一步都走得踏实。",
-    g6e:"你的本命之物为远古神物——神道碎片或至高遗物，蕴含远超时代的威能，也引来无数觊觎。",
-    g6f:"你的本命之物为自定义之物——由你亲自命名与描述，独一无二。",
-    g7a:"你的阵营归属为落魄山——陈平安创立的势力，人情味最浓，有一群愿意为彼此赴死的同伴。",
-    g7b:"你的阵营归属为文圣一脉——荀渊门下，传承「事功」学说与读书人的脊梁。",
-    g7c:"你的阵营归属为剑气长城/隐官——站在人族与妖族的最前线，用剑说话，用命守城。",
-    g7d:"你的阵营归属为大骊王朝/山下——在世俗王朝的权力场中行走，庙堂与江湖皆有所涉。",
-    g7e:"你的阵营归属为蛮荒王座——站在妖族一方，与人族为敌。",
-    g7f:"你的阵营归属为孤魂野鬼——无阵营不站队，是敌是友全凭本心。"
+    g1a:"你出身泥瓶巷，是骊珠洞天底层孤儿，在陋巷中摸爬滚打长大。",
+    g1b:"你出身宗门嫡传，根骨天赋皆为上佳，被宗门寄予厚望。",
+    g1c:"你出身王朝贵胄，深谙朝堂与山上的权力博弈。",
+    g1d:"你出身蛮荒妖裔，血脉源自托月山，在弱肉强食中生存至今。",
+    g1e:"你出身远古遗族，血脉中沉睡着上古力量，背负沉重宿命。",
+    g1f:"你出身山野散人，无根无系，一个人在这座天下闯荡至今。",
+    g1g:"你是一位穿越者——来自现代世界的灵魂，带着不属于这个世界的记忆降临剑来天下。",
+    g2a:"你的道统为剑修——温养本命飞剑，杀力天下第一，可越境杀敌。",
+    g2b:"你的道统为纯粹武夫——不借灵气，以肉身成圣。",
+    g2c:"你的道统为练气士——走正统十五境大道，步步登天。",
+    g2d:"你的道统为兵家修士——擅长战场杀伐与军阵之法。",
+    g2e:"你的道统为山泽野修——不择手段，一切靠自己争。",
+    g2f:"你的道统为三教门生——儒道释正统传承，有完整师门支撑。",
+    g4a:"你身处浩然天下——人族腹地，儒家治世，礼乐之下暗流涌动。",
+    g4b:"你身处剑气长城——人妖边界，每一块城砖都浸透剑修的血。",
+    g4c:"你身处蛮荒天下——妖族领地，弱肉强食是唯一法则。",
+    g4d:"你身处青冥天下——道门圣地，白玉京统辖，抵御化外天魔。",
+    g4e:"你身处五彩天下——长城飞升后的新天下，宁姚为当世第一人。",
+    g5a:"此时是远古神道纪元——天庭共主执掌大道，十豪联军筹备登天伐神。",
+    g5b:"此时是破天之战——联军攻破天庭，神道终结，剑气长城始建。",
+    g5c:"此时是上古秩序纪元——三教分治，陈清都合道剑气长城。",
+    g5d:"此时是中古固化纪元——末代真龙陨落，骊珠洞天形成，大骊立国。",
+    g5e:"此时是近古布局纪元——崔瀺启动挽天倾，齐静春贬至骊珠洞天。",
+    g5f:"此时是剑来元年——陈平安出生泥瓶巷，本命瓷由窑场烧制。",
+    g5g:"此时是剑来14年——骊珠洞天开启，齐静春扛天劫殉道。",
+    g5h:"此时是剑来15年——阿良护送陈平安，首入剑气长城送剑。",
+    g5i:"此时是剑来16年——陈平安入藕花福地，收裴钱为徒。",
+    g5j:"此时是书简湖问心——陈平安任账房，三年了结顾璨因果。",
+    g5k:"此时是剑来20年——陈平安出任末代隐官。",
+    g5l:"此时是长城21-24年——陈平安整合隐官势力，与宁姚开小酒馆。",
+    g5m:"此时是长城25-26年——与宁姚确定道侣，获仙剑天真。",
+    g5n:"此时是剑来27年——陈清都殉道，长城飞升，陈平安合道独守。",
+    g5o:"此时是浩然28-37年——独守长城十年，妖族连陷三洲。",
+    g5p:"此时是剑来38年——崔瀺山水大阵重创妖族，身死道消。",
+    g5q:"此时是剑来39年——浩然全面反攻，陈平安破境十四境。",
+    g5r:"此时是终局之战——登天之战已至，天下格局最终重构。",
+    g6a:"你的本命之物为自炼飞剑——剑名神通由你自定，寄托大道性命。",
+    g6b:"你的本命之物为仙兵遗宝——威力巨大但因果牵连甚广。",
+    g6c:"你的本命之物为本命瓷——绑定气运寿元，是护身符也是枷锁。",
+    g6d:"你的本命之物为凡铁——白手起家，每步都走得踏实。",
+    g6e:"你的本命之物为远古神物——远超时代的威能，引来无数觊觎。",
+    g6f:"你的本命之物为自定义之物——由你亲自命名与描述。",
+    g7a:"你的阵营为落魄山——人情味最浓，有愿为彼此赴死的同伴。",
+    g7b:"你的阵营为文圣一脉——传承事功学说与读书人的脊梁。",
+    g7c:"你的阵营为剑气长城/隐官——站在人妖最前线。",
+    g7d:"你的阵营为大骊王朝/山下——庙堂与江湖皆有所涉。",
+    g7e:"你的阵营为蛮荒王座——站在妖族一方，与人族为敌。",
+    g7f:"你的阵营为孤魂野鬼——无阵营不站队，是敌是友全凭本心。",
+    g3a:"你当前是铜皮境——下五境·锤炼肌肤表皮，皮肤坚韧如铜。",
+    g3b:"你当前是草根境——下五境·滋养血肉，气血恢复大幅提升。",
+    g3c:"你当前是柳筋境——下五境·强化筋脉，爆发力跃升。",
+    g3d:"你当前是骨气境——下五境·凝练骨骼，儒家有天然优势。",
+    g3e:"你当前是铸炉境——下五境·淬炼第一缕可外放的真气。",
+    g3f:"你当前是洞府境——中五境·开辟气府，寿元两百年。",
+    g3g:"你当前是观海境——中五境·灵气如沧海，神识扩张。",
+    g3h:"你当前是龙门境——中五境·灵气冲关，突破后寿元五百年。",
+    g3i:"你当前是金丹境·剑师——中五境·凝聚金丹，剑修称「剑师」。",
+    g3j:"你当前是元婴境·剑仙——中五境·元婴续命，剑修称「剑仙」。",
+    g3k:"你当前是玉璞境·大剑仙——上五境·返璞归真，剑修称「大剑仙」。",
+    g3l:"你当前是仙人境——上五境·修成仙体，开辟小天地。",
+    g3m:"你当前是飞升境——上五境·人间顶点，可穿越天幕。",
+    g3n:"你当前是十四境·合道——传说境·合道天时/地利/人和。",
+    g3o:"你当前是十五境·道极——传说境·仅三教祖师抵达。",
+    g3w1:"你当前是泥胚境·武夫——武夫炼体一境·打磨肉身根基。",
+    g3w2:"你当前是木胎境·武夫——武夫炼体二境·纹理致密如符文。",
+    g3w3:"你当前是水银境·武夫——武夫炼体三境·血液粘稠如水银。",
+    g3w4:"你当前是英魂境·武夫——武夫炼气四境·诞生武道魂魄。",
+    g3w5:"你当前是雄魄境·武夫——武夫炼气五境·魂魄肉身绑定。",
+    g3w6:"你当前是武胆境·武夫——武夫炼气六境·拳意开始成型。",
+    g3w7:"你当前是金身境·武夫——武夫炼神七境·金刚不坏（小宗师）。",
+    g3w8:"你当前是羽化境·武夫——武夫炼神八境·御风飞行（远游境）。",
+    g3w9:"你当前是山巅境·武夫——武夫炼神九境·凡俗顶点。",
+    g3w10:"你当前是止境·气盛·武夫——武夫止境·战力对应玉璞境。",
+    g3w11:"你当前是止境·归真·武夫——武夫止境·战力对应仙人境。",
+    g3w12:"你当前是止境·神到·武夫——武夫止境·战力对应飞升境。",
+    g3w13:"你当前是武神境·武夫——武夫传说·战力对应十四境。"
   };
 
-    function updateSummary(){
-    var out=document.getElementById('jlSummary');
-    if(!out)return;
+  function buildText(){
     var groups=['g1','g2','g3','g4','g5','g6','g7'];
+    var names=['出身跟脚','修行道统','初始境界','所在天下','时间节点','本命之物','阵营归属'];
     var parts=[];
-    // 难度
-    if(selectedDiff){
-      parts.push('<b>【难度】</b>'+selectedDiff.name+(selectedDiff.pts==='inf'?'（无限点数）':'（'+selectedDiff.pts+'点数）'));
-    }
-    for(var i=0;i<groups.length;i++){
-      if(selected[groups[i]]){
-        var key=selected[groups[i]].key;
-        if(key==='g1h'){
-          var cn=document.getElementById('jlG1CustomName');
-          parts.push('<b>【出身跟脚】</b>魂穿原著角色：'+(cn&&cn.value?cn.value:'（未指定）'));
-        }else if(key==='g6f'){
-          var cn6=document.getElementById('jlG6CustomName');
-          var cd6=document.getElementById('jlG6CustomDesc');
-          parts.push('<b>【本命之物】</b>'+(cn6&&cn6.value?cn6.value:'（未命名）'));
-          if(cd6&&cd6.value)parts.push('  '+cd6.value);
-        }else if(texts[key]){
-          parts.push(texts[key]);
-        }
-      }else{
-        parts.push('<span class="jl-miss">【'+['出身跟脚','修行道统','初始境界','所在天下','时间节点','本命之物','阵营归属'][i]+'】未选择</span>');
-      }
-    }
-    out.innerHTML=parts.join('<br>');
-    // 触发 final 更新
-    var finalOut=document.getElementById('jlOutText');
-    if(finalOut){
-      finalOut.textContent=parts.join('\n');
-    }
-  }
-
-  // 开始游戏
-  document.getElementById('jlFinalBtn').addEventListener('click',function(){
-    var groups=['g1','g2','g3','g4','g5','g6','g7'];
-    var parts=[];
+    parts.push('【姓名】'+(userName||'（未命名）')+' · '+userSex);
     if(selectedDiff)parts.push('【难度】'+selectedDiff.name+(selectedDiff.pts==='inf'?'（无限点数）':'（'+selectedDiff.pts+'点数）'));
     for(var i=0;i<groups.length;i++){
       if(selected[groups[i]]){
@@ -549,25 +591,76 @@
           parts.push('【本命之物】'+(cn6&&cn6.value?cn6.value:'（未命名）'));
           if(cd6&&cd6.value)parts.push('描述：'+cd6.value);
         }else if(texts[key]){
-          parts.push(texts[key]);
+          parts.push('【'+names[i]+'】'+texts[key]);
         }
       }else{
-        parts.push('【'+['出身跟脚','修行道统','初始境界','所在天下','时间节点','本命之物','阵营归属'][i]+'】未选择');
+        parts.push('【'+names[i]+'】未选择');
       }
     }
-    var text=parts.join('\n');
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(function(){alert('提示词已复制！请粘贴到输入框发送。')}).catch(function(){fallbackCopy(text)});
-    }else{fallbackCopy(text)}
+    var op=document.getElementById('jlOpening');
+    if(op&&op.value.trim())parts.push('【角色自述】'+op.value.trim());
+    return parts.join('\n');
+  }
+
+  function updateSummary(){
+    var out=document.getElementById('jlSummary');
+    if(!out)return;
+    out.textContent=buildText();
+  }
+
+  // 自动填入酒馆输入框
+  function getTavernRoot(){
+    if(window.parent&&window.parent!==window&&window.parent.jQuery){
+      return {$:window.parent.jQuery,doc:window.parent.document};
+    }
+    return {$:window.jQuery,doc:document};
+  }
+  function fillTavernInput(text){
+    try{
+      var root=getTavernRoot();
+      var $ta=root.$('#send_textarea',root.doc);
+      if($ta&&$ta.length){
+        $ta.val(text);
+        $ta.trigger('input');
+        return true;
+      }
+      if(typeof triggerSlash==='function'){
+        triggerSlash('/setinput '+text);
+        return true;
+      }
+      if(window.parent&&window.parent.triggerSlash){
+        window.parent.triggerSlash('/setinput '+text);
+        return true;
+      }
+    }catch(e){}
+    return false;
+  }
+
+  document.getElementById('jlFinalBtn').addEventListener('click',function(){
+    var text=buildText();
+    var ok=fillTavernInput(text);
+    if(!ok){
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){
+          alert('已复制到剪贴板，请粘贴到输入框发送。');
+        }).catch(function(){
+          fallbackCopy(text);
+        });
+      }else{
+        fallbackCopy(text);
+      }
+    }else{
+      var btn=document.getElementById('jlFinalBtn');
+      btn.textContent='✓ 已填入输入框 · 请按发送';
+    }
   });
 
   function fallbackCopy(text){
-    var ta=document.createElement('textarea');ta.value=text;
-    ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);
-    ta.select();
-    try{document.execCommand('copy');alert('提示词已复制！请粘贴到输入框发送。')}catch(e){alert('请手动复制：\n\n'+text)}
+    var ta=document.createElement('textarea');
+    ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');alert('已复制，请粘贴到输入框发送。')}catch(e){alert('请手动复制：\n\n'+text)}
     document.body.removeChild(ta);
   }
-
 })();
 </script>
