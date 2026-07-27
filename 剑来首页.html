@@ -1,90 +1,49 @@
 <style>
-/* ============================================================
-   剑来·命轨 — v6.1 JS 双页交互版
-   页面1：主界面（CSS水墨山水+粒子）
-   页面2：7维度命轨配置终端
-   切换：JS onclick 驱动
-   ============================================================ */
+/* ═══════════════════════════════════════════════
+   剑来·命轨 v2.0 — 三页流程版
+   页面1：主界面（壁纸轮播）
+   页面2：难度选择（水墨风）
+   页面3：天赋配置（点数制）
+   ═══════════════════════════════════════════════ */
 
 .jl-root { all: initial; }
 .jl-root * { box-sizing: border-box; }
-
 .jl-root {
   display: block;
   font-family: "PingFang SC","Microsoft YaHei","Noto Serif SC",serif;
   max-width: 680px; margin: 0 auto;
   position: relative; overflow: hidden;
   border-radius: 14px;
-  min-height: 520px;
+  min-height: 560px;
 }
 
-/* ============================================================
-   页面1：主界面
-   ============================================================ */
+/* ═══ 页面1：主界面 ═══ */
 .jl-page1 {
   position: relative; z-index: 1;
-  min-height: 520px;
+  min-height: 560px;
   display: flex; flex-direction: column; align-items: center;
   justify-content: center;
-  background:
-    radial-gradient(ellipse 120% 180px at 20% 85%, rgba(40,50,60,0.7) 0%, transparent 70%),
-    radial-gradient(ellipse 100% 140px at 75% 80%, rgba(35,45,55,0.6) 0%, transparent 70%),
-    radial-gradient(ellipse 80% 100px at 50% 88%, rgba(30,40,48,0.5) 0%, transparent 65%),
-    linear-gradient(180deg,
-      rgba(180,170,150,0.08) 0%, transparent 15%,
-      transparent 60%,
-      rgba(180,170,150,0.06) 70%, transparent 75%,
-      transparent 85%,
-      rgba(180,170,150,0.08) 90%, transparent 100%),
-    linear-gradient(180deg, #1a1c20 0%, #1e2128 30%, #252a32 60%, #1c1f25 85%, #16181c 100%),
-    radial-gradient(1px 1px at 12% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 23% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 35% 5%, rgba(255,255,255,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 48% 11%, rgba(255,255,255,0.45) 0%, transparent 100%),
-    radial-gradient(1px 1px at 55% 7%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 67% 13%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 78% 6%, rgba(255,255,255,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 85% 16%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 92% 9%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 17% 22%, rgba(255,255,255,0.55) 0%, transparent 100%),
-    radial-gradient(1px 1px at 42% 19%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 70% 24%, rgba(255,255,255,0.5) 0%, transparent 100%);
-  border: 1px solid rgba(212,168,84,0.12);
-  border-radius: 14px;
   overflow: hidden;
 }
 
-.jl-page1::before {
-  content: "";
-  position: absolute; top: 8%; right: 15%;
-  width: 80px; height: 80px;
-  background: radial-gradient(circle, rgba(240,230,200,0.25) 0%, rgba(220,200,160,0.08) 30%, transparent 65%);
-  border-radius: 50%;
-  filter: blur(1px);
-  z-index: 0;
+/* 壁纸轮播 */
+.jl-bg-slide {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0; transition: opacity 1.5s ease-in-out;
+}
+.jl-bg-slide.jl-active { opacity: 1; }
+.jl-bg-slide::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(10,8,6,0.55) 0%, rgba(10,8,6,0.35) 30%,
+    rgba(10,8,6,0.5) 70%, rgba(10,8,6,0.75) 100%);
 }
 
-.jl-page1::after {
-  content: "";
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 40%;
-  background:
-    linear-gradient(175deg, transparent 5%, rgba(20,22,26,0.95) 30%),
-    radial-gradient(ellipse 200% 80px at 25% 100%, rgba(25,28,34,0.9) 0%, transparent 60%),
-    radial-gradient(ellipse 180% 100px at 65% 100%, rgba(22,25,30,0.85) 0%, transparent 55%),
-    radial-gradient(ellipse 150% 60px at 50% 100%, rgba(18,20,24,0.9) 0%, transparent 50%);
-  z-index: 0; pointer-events: none;
-}
-
-.jl-hero {
-  position: relative; z-index: 2;
-  text-align: center; padding: 40px 30px 20px;
-}
-
+.jl-hero { position: relative; z-index: 2; text-align: center; padding: 40px 30px 20px; }
 .jl-hero-title {
-  font-size: 42px; font-weight: 900;
-  color: #e8d5a3;
-  letter-spacing: 12px;
+  font-size: 48px; font-weight: 900; color: #e8d5a3;
+  letter-spacing: 14px;
   text-shadow: 0 0 40px rgba(212,168,84,0.5), 0 0 80px rgba(212,168,84,0.2), 0 2px 4px rgba(0,0,0,0.8);
   margin-bottom: 6px;
   animation: jl-title-glow 3s ease-in-out infinite alternate;
@@ -93,63 +52,37 @@
   0% { text-shadow: 0 0 30px rgba(212,168,84,0.4), 0 0 60px rgba(212,168,84,0.15); }
   100% { text-shadow: 0 0 50px rgba(212,168,84,0.7), 0 0 100px rgba(212,168,84,0.3); }
 }
-
-.jl-hero-sub {
-  font-size: 14px; color: #8b7535;
-  letter-spacing: 6px;
-  margin-bottom: 10px;
-}
-
+.jl-hero-sub { font-size: 14px; color: #8b7535; letter-spacing: 6px; margin-bottom: 10px; }
 .jl-hero-divider {
   width: 120px; height: 1px;
   background: linear-gradient(90deg, transparent, #d4a854, transparent);
   margin: 0 auto 16px;
 }
+.jl-hero-desc { font-size: 12px; color: #6b6048; line-height: 1.9; max-width: 400px; margin: 0 auto; letter-spacing: 1px; }
 
-.jl-hero-desc {
-  font-size: 12px; color: #6b6048;
-  line-height: 1.9; max-width: 400px; margin: 0 auto;
-  letter-spacing: 1px;
-}
-
-.jl-start-btn-wrap {
-  position: relative; z-index: 2;
-  text-align: center; padding: 10px 0 40px;
-}
-
+.jl-start-btn-wrap { position: relative; z-index: 2; text-align: center; padding: 10px 0 40px; }
 .jl-start-btn {
-  display: inline-block;
-  cursor: pointer;
-  padding: 14px 52px;
-  font-size: 18px; font-weight: 700;
-  letter-spacing: 6px;
-  color: #1a1c20;
+  display: inline-block; cursor: pointer;
+  padding: 14px 52px; font-size: 18px; font-weight: 700;
+  letter-spacing: 6px; color: #1a1c20;
   background: linear-gradient(135deg, #d4a854 0%, #f0d060 30%, #c49640 70%, #a07828 100%);
-  border: 1px solid rgba(255,220,140,0.3);
-  border-radius: 4px;
+  border: 1px solid rgba(255,220,140,0.3); border-radius: 4px;
   text-shadow: 0 1px 0 rgba(255,255,255,0.2);
   box-shadow: 0 0 20px rgba(212,168,84,0.3), 0 0 40px rgba(212,168,84,0.1), inset 0 1px 0 rgba(255,255,255,0.15);
-  transition: all 0.3s;
-  position: relative; overflow: hidden;
-  user-select: none;
+  transition: all 0.3s; position: relative; overflow: hidden; user-select: none;
 }
 .jl-start-btn:hover {
   box-shadow: 0 0 30px rgba(212,168,84,0.5), 0 0 60px rgba(212,168,84,0.25), 0 0 100px rgba(212,168,84,0.1);
   transform: translateY(-1px);
 }
 .jl-start-btn::after {
-  content: "";
-  position: absolute; top: 0; left: -100%;
+  content: ""; position: absolute; top: 0; left: -100%;
   width: 100%; height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
   transition: left 0.6s;
 }
 .jl-start-btn:hover::after { left: 100%; }
-
-.jl-start-btn-icon {
-  display: inline-block; margin-left: 6px;
-  animation: jl-sword-pulse 1.5s ease-in-out infinite;
-}
+.jl-start-btn-icon { display: inline-block; margin-left: 6px; animation: jl-sword-pulse 1.5s ease-in-out infinite; }
 @keyframes jl-sword-pulse {
   0%,100% { transform: translateX(0); opacity: 0.8; }
   50% { transform: translateX(4px); opacity: 1; }
@@ -162,172 +95,195 @@
   letter-spacing: 2px; font-style: italic;
 }
 
-/* 粒子 */
-.jl-particle {
-  position: absolute; z-index: 1;
-  width: 2px; height: 2px;
-  background: rgba(212,168,84,0.4);
-  border-radius: 50%;
-  animation: jl-float-up linear infinite;
-  pointer-events: none;
-}
-.jl-particle:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
-.jl-particle:nth-child(2) { left: 25%; animation-duration: 11s; animation-delay: 2s; }
-.jl-particle:nth-child(3) { left: 40%; animation-duration: 9s; animation-delay: 4s; }
-.jl-particle:nth-child(4) { left: 55%; animation-duration: 12s; animation-delay: 1s; }
-.jl-particle:nth-child(5) { left: 70%; animation-duration: 7s; animation-delay: 3s; }
-.jl-particle:nth-child(6) { left: 85%; animation-duration: 10s; animation-delay: 5s; }
-.jl-particle:nth-child(7) { left: 15%; animation-duration: 13s; animation-delay: 6s; }
-.jl-particle:nth-child(8) { left: 60%; animation-duration: 8s; animation-delay: 2.5s; }
-@keyframes jl-float-up {
-  0% { bottom: -10px; opacity: 0; transform: translateY(0) scale(1); }
-  10% { opacity: 0.8; }
-  90% { opacity: 0.3; }
-  100% { bottom: 100%; opacity: 0; transform: translateY(-20px) scale(0.5); }
-}
-
-/* ============================================================
-   页面2：配置终端
-   ============================================================ */
+/* ═══ 页面2：难度选择 ═══ */
 .jl-page2 {
-  display: none;
-  position: relative; z-index: 1;
-  background: linear-gradient(175deg, rgba(10,8,6,0.98) 0%, rgba(22,18,14,0.98) 40%, rgba(14,12,10,0.98) 100%);
-  border: 1px solid #3a3024; border-radius: 14px;
-  padding: 22px 24px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.8), inset 0 1px 0 rgba(212,168,84,0.06);
+  display: none; position: relative; z-index: 1;
+  min-height: 560px; padding: 30px 20px;
+  background: linear-gradient(175deg, #0a0806 0%, #16120e 40%, #0e0c0a 100%);
 }
 
-.jl-cfg-head {
+.jl-diff-head {
+  text-align: center; padding-bottom: 20px; margin-bottom: 20px;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, transparent, #d4a854, #d4a854, transparent) 1;
+}
+.jl-diff-title {
+  font-size: 22px; font-weight: 700; color: #e8d5a3;
+  letter-spacing: 6px; text-shadow: 0 0 20px rgba(212,168,84,0.3);
+}
+.jl-diff-sub { font-size: 11px; color: #7a6e5c; margin-top: 6px; letter-spacing: 2px; }
+
+.jl-diff-grid {
+  display: flex; flex-direction: column; gap: 12px;
+  max-width: 480px; margin: 0 auto;
+}
+
+.jl-diff-card {
+  cursor: pointer; padding: 18px 20px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(212,168,84,0.12);
+  border-radius: 8px;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.jl-diff-card:hover { border-color: rgba(212,168,84,0.35); background: rgba(212,168,84,0.04); }
+.jl-diff-card.jl-selected {
+  border-color: #d4a854;
+  background: rgba(212,168,84,0.08);
+  box-shadow: 0 0 20px rgba(212,168,84,0.15);
+}
+
+.jl-diff-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: #d4a854;
+  transform: scaleY(0); transition: transform 0.3s;
+}
+.jl-diff-card.jl-selected::before { transform: scaleY(1); }
+
+.jl-diff-name {
+  font-size: 16px; font-weight: 700; color: #e8d5a3;
+  letter-spacing: 3px; margin-bottom: 4px;
+}
+.jl-diff-desc { font-size: 11px; color: #7a6e5c; line-height: 1.6; }
+.jl-diff-pts {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  font-size: 24px; font-weight: 900; color: #d4a854;
+  opacity: 0.3; transition: opacity 0.3s;
+}
+.jl-diff-card.jl-selected .jl-diff-pts { opacity: 1; }
+
+.jl-diff-nav {
+  display: flex; justify-content: center; gap: 16px;
+  margin-top: 24px; padding-top: 16px;
+  border-top: 1px solid rgba(212,168,84,0.08);
+}
+.jl-nav-btn {
+  cursor: pointer; padding: 10px 28px;
+  font-size: 13px; letter-spacing: 3px;
+  border: 1px solid rgba(212,168,84,0.2); border-radius: 4px;
+  color: #8b7535; background: transparent;
+  transition: all 0.2s; user-select: none;
+}
+.jl-nav-btn:hover { border-color: #d4a854; color: #d4a854; background: rgba(212,168,84,0.06); }
+.jl-nav-btn.jl-primary {
+  background: linear-gradient(135deg, #d4a854 0%, #c49640 100%);
+  color: #1a1c20; font-weight: 700; border-color: transparent;
+}
+.jl-nav-btn.jl-primary:hover { box-shadow: 0 0 20px rgba(212,168,84,0.3); }
+.jl-nav-btn.jl-disabled { opacity: 0.3; pointer-events: none; }
+
+/* ═══ 页面3：天赋配置 ═══ */
+.jl-page3 {
+  display: none; position: relative; z-index: 1;
+  min-height: 560px; padding: 24px 20px;
+  background: linear-gradient(175deg, #0a0806 0%, #16120e 40%, #0e0c0a 100%);
+}
+
+.jl-tal-head {
   text-align: center; padding-bottom: 16px; margin-bottom: 16px;
   border-bottom: 2px solid;
   border-image: linear-gradient(to right, transparent, #d4a854, #d4a854, transparent) 1;
 }
-.jl-cfg-title {
+.jl-tal-title {
   font-size: 20px; font-weight: 700; color: #e8d5a3;
   letter-spacing: 5px; text-shadow: 0 0 20px rgba(212,168,84,0.3);
 }
-.jl-cfg-sub {
-  font-size: 11px; color: #7a6e5c; margin-top: 5px; letter-spacing: 2px;
+.jl-tal-pts-bar {
+  display: flex; justify-content: center; gap: 8px;
+  margin-top: 12px; align-items: center;
 }
-.jl-cfg-back {
-  display: inline-block; cursor: pointer;
-  margin-top: 8px; font-size: 11px; color: #8b7535;
-  padding: 4px 14px; border: 1px solid rgba(212,168,84,0.2);
-  border-radius: 3px; transition: all 0.2s;
-  user-select: none;
+.jl-tal-pts-label { font-size: 12px; color: #7a6e5c; }
+.jl-tal-pts-num {
+  font-size: 28px; font-weight: 900; color: #d4a854;
+  text-shadow: 0 0 15px rgba(212,168,84,0.3);
 }
-.jl-cfg-back:hover {
-  background: rgba(212,168,84,0.08); border-color: rgba(212,168,84,0.4);
-  color: #d4a854;
-}
+.jl-tal-pts-num.jl-negative { color: #e74c3c; }
 
-.jl-cfg-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+.jl-tal-section { margin-bottom: 14px; }
+.jl-tal-sec-title {
+  font-size: 13px; font-weight: 700; color: #d4a854;
+  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
 }
-@media (max-width: 440px) { .jl-cfg-grid { grid-template-columns: 1fr; } }
+.jl-tal-sec-title::before { content: "◆"; font-size: 9px; color: #b8860b; }
 
-.jl-cfg-panel {
-  background: rgba(255,255,255,0.02);
+.jl-tal-items { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.jl-tal-item {
+  cursor: pointer; padding: 6px 12px;
+  font-size: 11.5px; border-radius: 4px;
   border: 1px solid rgba(212,168,84,0.12);
-  border-radius: 6px; padding: 10px 12px;
-  transition: border-color 0.2s;
+  color: #9b8c72; background: rgba(255,255,255,0.02);
+  transition: all 0.2s; user-select: none;
 }
-.jl-cfg-panel:hover { border-color: rgba(212,168,84,0.25); }
-.jl-cfg-phead {
-  font-size: 12px; font-weight: 700; color: #d4a854;
-  margin-bottom: 7px; display: flex; align-items: center; gap: 5px;
-}
-.jl-cfg-phead::before { content: "\25C6"; font-size: 8px; color: #b8860b; }
-
-.jl-cfg-opt {
-  list-style: none; padding: 0; margin: 0;
-  font-size: 11.5px; line-height: 1.95;
-}
-.jl-cfg-opt label {
-  display: block; cursor: pointer; padding: 2px 6px;
-  border-radius: 3px; transition: all 0.15s;
-  border: 1px solid transparent;
-  color: #9b8c72;
-}
-.jl-cfg-opt label:hover {
-  background: rgba(212,168,84,0.06);
-  border-color: rgba(212,168,84,0.2);
-}
-.jl-cfg-opt .jl-ck {
-  display: inline-block; min-width: 18px;
-  font-weight: 700; color: #e8d5a3;
-}
-.jl-cfg-opt input[type=radio] { display: none; }
-.jl-cfg-opt input[type=radio]:checked + label {
-  background: rgba(212,168,84,0.12);
-  border-color: #d4a854;
-  box-shadow: 0 0 6px rgba(212,168,84,0.2);
-  color: #e8d5a3;
-}
-.jl-cfg-opt input[type=radio]:checked + label .jl-ck { color: #ffd700; }
-
-.jl-cfg-faction {
-  margin-top: 10px; display: grid;
-  grid-template-columns: 1fr 1fr; gap: 4px 12px; font-size: 11px;
-}
-.jl-cfg-faction label {
-  display: block; cursor: pointer; padding: 2px 6px;
-  border-radius: 3px; border: 1px solid transparent;
-  color: #9b8c72;
-}
-.jl-cfg-faction label:hover {
-  background: rgba(212,168,84,0.06);
-  border-color: rgba(212,168,84,0.2);
-}
-.jl-cfg-faction input[type=radio] { display: none; }
-.jl-cfg-faction input[type=radio]:checked + label {
-  background: rgba(212,168,84,0.12);
+.jl-tal-item:hover { border-color: rgba(212,168,84,0.3); }
+.jl-tal-item.jl-selected {
   border-color: #d4a854; color: #e8d5a3;
+  background: rgba(212,168,84,0.1);
+  box-shadow: 0 0 8px rgba(212,168,84,0.15);
 }
-.jl-cfg-faction .jl-ck { font-weight: 700; color: #e8d5a3; }
-.jl-cfg-faction input[type=radio]:checked + label .jl-ck { color: #ffd700; }
-
-/* 进度点 */
-.jl-cfg-progress {
-  display: flex; gap: 5px; margin: 12px 0 0; flex-wrap: wrap;
+.jl-tal-item.jl-negative.jl-selected {
+  border-color: #e74c3c; color: #e74c3c;
+  background: rgba(231,76,60,0.08);
+  box-shadow: 0 0 8px rgba(231,76,60,0.15);
 }
-.jl-cfg-dot {
-  width: 12px; height: 12px; border-radius: 50%;
-  background: #3a3024; transition: all 0.3s;
-  border: 1px solid rgba(212,168,84,0.1);
-}
+.jl-tal-item .jl-cost { font-size: 10px; opacity: 0.6; margin-left: 3px; }
 
 /* 输出区 */
-.jl-cfg-output {
-  margin-top: 14px; background: rgba(0,0,0,0.35);
-  border: 1px solid rgba(212,168,84,0.25); border-radius: 6px;
-  padding: 14px 16px; font-size: 13px; line-height: 1.9;
-  color: #e0d5c0; min-height: 60px;
-  user-select: text; -webkit-user-select: text;
+.jl-output-sec {
+  margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid rgba(212,168,84,0.08);
 }
-.jl-cfg-out-label {
-  font-size: 10px; color: #7a6e5c; letter-spacing: 2px;
-  margin-bottom: 10px; text-align: center;
+.jl-output-box {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(212,168,84,0.2); border-radius: 6px;
+  padding: 14px 16px; font-size: 12.5px; line-height: 1.9;
+  color: #e0d5c0; min-height: 80px; max-height: 200px;
+  overflow-y: auto; user-select: text; -webkit-user-select: text;
 }
-.jl-cfg-out-empty {
-  color: #5a4e3c; font-style: italic; font-size: 12px;
+.jl-output-empty { color: #5a4e3c; font-style: italic; font-size: 11px; }
+
+.jl-start-final-wrap {
+  text-align: center; margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid rgba(212,168,84,0.08);
 }
-.jl-cfg-copy-hint {
-  margin-top: 10px; font-size: 10px; color: #5a4e3c;
-  text-align: center; border-top: 1px solid rgba(212,168,84,0.08);
-  padding-top: 10px;
+.jl-start-final {
+  display: inline-block; cursor: pointer;
+  padding: 14px 52px; font-size: 16px; font-weight: 700;
+  letter-spacing: 5px; color: #1a1c20;
+  background: linear-gradient(135deg, #d4a854 0%, #f0d060 30%, #c49640 70%, #a07828 100%);
+  border: 1px solid rgba(255,220,140,0.3); border-radius: 4px;
+  box-shadow: 0 0 20px rgba(212,168,84,0.3);
+  transition: all 0.3s; user-select: none;
 }
+.jl-start-final:hover {
+  box-shadow: 0 0 30px rgba(212,168,84,0.5), 0 0 60px rgba(212,168,84,0.25);
+  transform: translateY(-1px);
+}
+.jl-copy-hint {
+  margin-top: 8px; font-size: 10px; color: #5a4e3c;
+}
+
+/* 进度指示 */
+.jl-progress {
+  display: flex; justify-content: center; gap: 8px;
+  padding: 12px 0;
+}
+.jl-prog-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #3a3024; transition: all 0.3s;
+}
+.jl-prog-dot.jl-done { background: #d4a854; box-shadow: 0 0 6px rgba(212,168,84,0.4); }
+.jl-prog-dot.jl-current { background: #ffd700; box-shadow: 0 0 10px rgba(255,215,0,0.5); }
 </style>
 
 <div class="jl-root" id="jlRoot">
 
-  <!-- ═══════════════ 页面1：主界面 ═══════════════ -->
+  <!-- ═══ 页面1：主界面 ═══ -->
   <div class="jl-page1" id="jlPage1">
-    <div class="jl-particle"></div><div class="jl-particle"></div>
-    <div class="jl-particle"></div><div class="jl-particle"></div>
-    <div class="jl-particle"></div><div class="jl-particle"></div>
-    <div class="jl-particle"></div><div class="jl-particle"></div>
+    <div class="jl-bg-slide jl-active" style="background-image:url('https://testingcf.jsdelivr.net/gh/ddsadasfdxc/jo/bg1.jpg')" id="jlBg1"></div>
+    <div class="jl-bg-slide" style="background-image:url('https://testingcf.jsdelivr.net/gh/ddsadasfdxc/jo/bg2.jpg')" id="jlBg2"></div>
+    <div class="jl-bg-slide" style="background-image:url('https://testingcf.jsdelivr.net/gh/ddsadasfdxc/jo/bg3.jpg')" id="jlBg3"></div>
+    <div class="jl-bg-slide" style="background-image:url('https://testingcf.jsdelivr.net/gh/ddsadasfdxc/jo/bg4.jpg')" id="jlBg4"></div>
 
     <div class="jl-hero">
       <div class="jl-hero-title">剑 来</div>
@@ -341,7 +297,7 @@
 
     <div class="jl-start-btn-wrap">
       <div class="jl-start-btn" id="jlStartBtn">
-        开 始 游 戏 <span class="jl-start-btn-icon">&#9876;</span>
+        开 始 游 戏 <span class="jl-start-btn-icon">⚔</span>
       </div>
     </div>
 
@@ -350,111 +306,173 @@
     </div>
   </div>
 
-  <!-- ═══════════════ 页面2：配置终端 ═══════════════ -->
+  <!-- ═══ 页面2：难度选择 ═══ -->
   <div class="jl-page2" id="jlPage2">
-    <div class="jl-cfg-head">
-      <div class="jl-cfg-title">&#9876; 命 轨 衍 化 终 端 &#9876;</div>
-      <div class="jl-cfg-sub">鉴引异世神魂 · 锚定光阴轨迹 · 编织大千因果</div>
-      <div class="jl-cfg-back" id="jlBackBtn">&#9664; 返回主界面</div>
+    <div class="jl-diff-head">
+      <div class="jl-diff-title">⚔ 天 命 难 度 ⚔</div>
+      <div class="jl-diff-sub">选择你的命轨起点 · 难度越高，初始点数越少</div>
     </div>
 
-    <div class="jl-cfg-grid">
-      <div class="jl-cfg-panel">
-        <div class="jl-cfg-phead">壹 · 出身跟脚</div>
-        <ul class="jl-cfg-opt">
-          <li><input type="radio" name="g1" id="g1a" class="jl-radio"><label for="g1a"><span class="jl-ck">A</span> 泥瓶巷孤儿（骊珠洞天底层）</label></li>
-          <li><input type="radio" name="g1" id="g1b" class="jl-radio"><label for="g1b"><span class="jl-ck">B</span> 宗门嫡传（某洲仙家正统）</label></li>
-          <li><input type="radio" name="g1" id="g1c" class="jl-radio"><label for="g1c"><span class="jl-ck">C</span> 王朝贵胄（大骊/宝瓶洲权贵）</label></li>
-          <li><input type="radio" name="g1" id="g1d" class="jl-radio"><label for="g1d"><span class="jl-ck">D</span> 蛮荒妖裔（托月山血脉）</label></li>
-          <li><input type="radio" name="g1" id="g1e" class="jl-radio"><label for="g1e"><span class="jl-ck">E</span> 远古遗族（神道余烬/十豪之后）</label></li>
-          <li><input type="radio" name="g1" id="g1f" class="jl-radio"><label for="g1f"><span class="jl-ck">F</span> 山野散人（无根无系的自由身）</label></li>
-        </ul>
+    <div class="jl-progress">
+      <div class="jl-prog-dot jl-current"></div>
+      <div class="jl-prog-dot"></div>
+      <div class="jl-prog-dot"></div>
+    </div>
+
+    <div class="jl-diff-grid">
+      <div class="jl-diff-card" data-pts="inf" data-name="天命之子">
+        <div class="jl-diff-name">天 命 之 子</div>
+        <div class="jl-diff-desc">无限点数 · 所有天赋任选 · 开局即巅峰</div>
+        <div class="jl-diff-pts">∞</div>
       </div>
-      <div class="jl-cfg-panel">
-        <div class="jl-cfg-phead">贰 · 修行道统</div>
-        <ul class="jl-cfg-opt">
-          <li><input type="radio" name="g2" id="g2a" class="jl-radio"><label for="g2a"><span class="jl-ck">A</span> 剑修（温养本命飞剑，杀力第一）</label></li>
-          <li><input type="radio" name="g2" id="g2b" class="jl-radio"><label for="g2b"><span class="jl-ck">B</span> 纯粹武夫（不借灵气，肉身成圣）</label></li>
-          <li><input type="radio" name="g2" id="g2c" class="jl-radio"><label for="g2c"><span class="jl-ck">C</span> 练气士（正统十五境大道）</label></li>
-          <li><input type="radio" name="g2" id="g2d" class="jl-radio"><label for="g2d"><span class="jl-ck">D</span> 兵家修士（战场杀伐/军阵之法）</label></li>
-          <li><input type="radio" name="g2" id="g2e" class="jl-radio"><label for="g2e"><span class="jl-ck">E</span> 山泽野修（不择手段，野路子）</label></li>
-          <li><input type="radio" name="g2" id="g2f" class="jl-radio"><label for="g2f"><span class="jl-ck">F</span> 三教门生（儒/道/释正统传承）</label></li>
-        </ul>
+      <div class="jl-diff-card" data-pts="2000" data-name="天骄之路">
+        <div class="jl-diff-name">天 骄 之 路</div>
+        <div class="jl-diff-desc">2000点数 · 天赋充裕 · 顺风顺水</div>
+        <div class="jl-diff-pts">2000</div>
       </div>
-      <div class="jl-cfg-panel">
-        <div class="jl-cfg-phead">叁 · 初始境界</div>
-        <ul class="jl-cfg-opt">
-          <li><input type="radio" name="g3" id="g3a" class="jl-radio"><label for="g3a"><span class="jl-ck">A</span> 蝼蚁（下五境/炼体三境）</label></li>
-          <li><input type="radio" name="g3" id="g3b" class="jl-radio"><label for="g3b"><span class="jl-ck">B</span> 初窥门径（中五境/炼气三境）</label></li>
-          <li><input type="radio" name="g3" id="g3c" class="jl-radio"><label for="g3c"><span class="jl-ck">C</span> 小宗师（金丹/元婴/武胆）</label></li>
-          <li><input type="radio" name="g3" id="g3d" class="jl-radio"><label for="g3d"><span class="jl-ck">D</span> 一方豪强（玉璞/仙人/止境）</label></li>
-          <li><input type="radio" name="g3" id="g3e" class="jl-radio"><label for="g3e"><span class="jl-ck">E</span> 山巅大能（飞升/武神之下）</label></li>
-          <li><input type="radio" name="g3" id="g3f" class="jl-radio"><label for="g3f"><span class="jl-ck">F</span> 凡人之躯（无修为，故事起点）</label></li>
-        </ul>
+      <div class="jl-diff-card" data-pts="1500" data-name="凡人逆袭">
+        <div class="jl-diff-name">凡 人 逆 袭</div>
+        <div class="jl-diff-desc">1500点数 · 需要取舍 · 步步为营</div>
+        <div class="jl-diff-pts">1500</div>
       </div>
-      <div class="jl-cfg-panel">
-        <div class="jl-cfg-phead">肆 · 所在天下</div>
-        <ul class="jl-cfg-opt">
-          <li><input type="radio" name="g4" id="g4a" class="jl-radio"><label for="g4a"><span class="jl-ck">A</span> 浩然天下（人族腹地，儒家治世）</label></li>
-          <li><input type="radio" name="g4" id="g4b" class="jl-radio"><label for="g4b"><span class="jl-ck">B</span> 剑气长城（浩然与蛮荒的边界）</label></li>
-          <li><input type="radio" name="g4" id="g4c" class="jl-radio"><label for="g4c"><span class="jl-ck">C</span> 蛮荒天下（妖族领地，弱肉强食）</label></li>
-          <li><input type="radio" name="g4" id="g4d" class="jl-radio"><label for="g4d"><span class="jl-ck">D</span> 青冥天下（道门白玉京统辖）</label></li>
-          <li><input type="radio" name="g4" id="g4e" class="jl-radio"><label for="g4e"><span class="jl-ck">E</span> 五彩天下（飞升城，剑修新土）</label></li>
-        </ul>
+      <div class="jl-diff-card" data-pts="1000" data-name="荆棘之途">
+        <div class="jl-diff-name">荆 棘 之 途</div>
+        <div class="jl-diff-desc">1000点数 · 捉襟见肘 · 逆境求生</div>
+        <div class="jl-diff-pts">1000</div>
       </div>
-      <div class="jl-cfg-panel">
-        <div class="jl-cfg-phead">伍 · 时间节点</div>
-        <ul class="jl-cfg-opt">
-          <li><input type="radio" name="g5" id="g5a" class="jl-radio"><label for="g5a"><span class="jl-ck">A</span> 剑来14年（骊珠洞天坠落前夕）</label></li>
-          <li><input type="radio" name="g5" id="g5b" class="jl-radio"><label for="g5b"><span class="jl-ck">B</span> 剑来21年（陈平安镇守长城）</label></li>
-          <li><input type="radio" name="g5" id="g5c" class="jl-radio"><label for="g5c"><span class="jl-ck">C</span> 剑来27年（妖族全面入侵）</label></li>
-          <li><input type="radio" name="g5" id="g5d" class="jl-radio"><label for="g5d"><span class="jl-ck">D</span> 剑来39年（浩然天下反攻）</label></li>
-          <li><input type="radio" name="g5" id="g5e" class="jl-radio"><label for="g5e"><span class="jl-ck">E</span> 终局（登天之战/秩序重构）</label></li>
-          <li><input type="radio" name="g5" id="g5f" class="jl-radio"><label for="g5f"><span class="jl-ck">F</span> 远古（神道尚存，破天之前）</label></li>
-        </ul>
-      </div>
-      <div class="jl-cfg-panel">
-        <div class="jl-cfg-phead">陆 · 本命之物</div>
-        <ul class="jl-cfg-opt">
-          <li><input type="radio" name="g6" id="g6a" class="jl-radio"><label for="g6a"><span class="jl-ck">A</span> 本命飞剑（自选剑名与神通）</label></li>
-          <li><input type="radio" name="g6" id="g6b" class="jl-radio"><label for="g6b"><span class="jl-ck">B</span> 仙兵遗宝（四大仙剑/古宝）</label></li>
-          <li><input type="radio" name="g6" id="g6c" class="jl-radio"><label for="g6c"><span class="jl-ck">C</span> 本命瓷（绑定气运，可被操控）</label></li>
-          <li><input type="radio" name="g6" id="g6d" class="jl-radio"><label for="g6d"><span class="jl-ck">D</span> 凡铁（无特殊之物，白手起家）</label></li>
-          <li><input type="radio" name="g6" id="g6e" class="jl-radio"><label for="g6e"><span class="jl-ck">E</span> 远古神物（神道碎片/至高遗物）</label></li>
-        </ul>
+      <div class="jl-diff-card" data-pts="500" data-name="蝼蚁登天">
+        <div class="jl-diff-name">蝼 蚁 登 天</div>
+        <div class="jl-diff-desc">500点数 · 极致挑战 · 白手起家</div>
+        <div class="jl-diff-pts">500</div>
       </div>
     </div>
 
-    <div class="jl-cfg-panel" style="margin-top:10px;">
-      <div class="jl-cfg-phead">柒 · 阵营归属</div>
-      <div class="jl-cfg-faction">
-        <div><input type="radio" name="g7" id="g7a" class="jl-radio"><label for="g7a"><span class="jl-ck">A</span> 落魄山</label></div>
-        <div><input type="radio" name="g7" id="g7b" class="jl-radio"><label for="g7b"><span class="jl-ck">B</span> 文圣一脉</label></div>
-        <div><input type="radio" name="g7" id="g7c" class="jl-radio"><label for="g7c"><span class="jl-ck">C</span> 剑气长城/隐官</label></div>
-        <div><input type="radio" name="g7" id="g7d" class="jl-radio"><label for="g7d"><span class="jl-ck">D</span> 大骊王朝/山下</label></div>
-        <div><input type="radio" name="g7" id="g7e" class="jl-radio"><label for="g7e"><span class="jl-ck">E</span> 蛮荒王座</label></div>
-        <div><input type="radio" name="g7" id="g7f" class="jl-radio"><label for="g7f"><span class="jl-ck">F</span> 孤魂野鬼（无阵营）</label></div>
+    <div class="jl-diff-nav">
+      <div class="jl-nav-btn" id="jlDiffBack">◀ 返回</div>
+      <div class="jl-nav-btn jl-primary jl-disabled" id="jlDiffNext">下一步 ▶</div>
+    </div>
+  </div>
+
+  <!-- ═══ 页面3：天赋配置 ═══ -->
+  <div class="jl-page3" id="jlPage3">
+    <div class="jl-tal-head">
+      <div class="jl-tal-title">⚔ 命 轨 天 赋 ⚔</div>
+      <div class="jl-tal-pts-bar">
+        <span class="jl-tal-pts-label">剩余点数</span>
+        <span class="jl-tal-pts-num" id="jlPtsNum">—</span>
       </div>
     </div>
 
-    <!-- 进度指示 -->
-    <div class="jl-cfg-progress">
-      <div class="jl-cfg-dot" id="jd1"></div><div class="jl-cfg-dot" id="jd2"></div>
-      <div class="jl-cfg-dot" id="jd3"></div><div class="jl-cfg-dot" id="jd4"></div>
-      <div class="jl-cfg-dot" id="jd5"></div><div class="jl-cfg-dot" id="jd6"></div>
-      <div class="jl-cfg-dot" id="jd7"></div>
+    <div class="jl-progress">
+      <div class="jl-prog-dot jl-done"></div>
+      <div class="jl-prog-dot jl-current"></div>
+      <div class="jl-prog-dot"></div>
+    </div>
+
+    <!-- 出身跟脚 -->
+    <div class="jl-tal-section">
+      <div class="jl-tal-sec-title">壹 · 出身跟脚</div>
+      <div class="jl-tal-items" id="jlG1">
+        <div class="jl-tal-item" data-cost="300" data-key="g1a">泥瓶巷孤儿<span class="jl-cost">300</span></div>
+        <div class="jl-tal-item" data-cost="500" data-key="g1b">宗门嫡传<span class="jl-cost">500</span></div>
+        <div class="jl-tal-item" data-cost="400" data-key="g1c">王朝贵胄<span class="jl-cost">400</span></div>
+        <div class="jl-tal-item jl-negative" data-cost="-200" data-key="g1d">蛮荒妖裔<span class="jl-cost">+200</span></div>
+        <div class="jl-tal-item" data-cost="600" data-key="g1e">远古遗族<span class="jl-cost">600</span></div>
+        <div class="jl-tal-item" data-cost="0" data-key="g1f">山野散人<span class="jl-cost">0</span></div>
+      </div>
+    </div>
+
+    <!-- 修行道统 -->
+    <div class="jl-tal-section">
+      <div class="jl-tal-sec-title">贰 · 修行道统</div>
+      <div class="jl-tal-items" id="jlG2">
+        <div class="jl-tal-item" data-cost="500" data-key="g2a">剑修<span class="jl-cost">500</span></div>
+        <div class="jl-tal-item" data-cost="400" data-key="g2b">纯粹武夫<span class="jl-cost">400</span></div>
+        <div class="jl-tal-item" data-cost="300" data-key="g2c">练气士<span class="jl-cost">300</span></div>
+        <div class="jl-tal-item" data-cost="350" data-key="g2d">兵家修士<span class="jl-cost">350</span></div>
+        <div class="jl-tal-item jl-negative" data-cost="-100" data-key="g2e">山泽野修<span class="jl-cost">+100</span></div>
+        <div class="jl-tal-item" data-cost="200" data-key="g2f">三教门生<span class="jl-cost">200</span></div>
+      </div>
+    </div>
+
+    <!-- 初始境界 -->
+    <div class="jl-tal-section">
+      <div class="jl-tal-sec-title">叁 · 初始境界</div>
+      <div class="jl-tal-items" id="jlG3">
+        <div class="jl-tal-item" data-cost="0" data-key="g3a">蝼蚁（下五境）<span class="jl-cost">0</span></div>
+        <div class="jl-tal-item" data-cost="200" data-key="g3b">初窥门径（中五境）<span class="jl-cost">200</span></div>
+        <div class="jl-tal-item" data-cost="500" data-key="g3c">小宗师（金丹/元婴）<span class="jl-cost">500</span></div>
+        <div class="jl-tal-item" data-cost="1000" data-key="g3d">一方豪强（玉璞/仙人）<span class="jl-cost">1000</span></div>
+        <div class="jl-tal-item" data-cost="2000" data-key="g3e">山巅大能（飞升）<span class="jl-cost">2000</span></div>
+        <div class="jl-tal-item jl-negative" data-cost="-300" data-key="g3f">凡人之躯<span class="jl-cost">+300</span></div>
+      </div>
+    </div>
+
+    <!-- 所在天下 -->
+    <div class="jl-tal-section">
+      <div class="jl-tal-sec-title">肆 · 所在天下</div>
+      <div class="jl-tal-items" id="jlG4">
+        <div class="jl-tal-item" data-cost="0" data-key="g4a">浩然天下<span class="jl-cost">0</span></div>
+        <div class="jl-tal-item" data-cost="100" data-key="g4b">剑气长城<span class="jl-cost">100</span></div>
+        <div class="jl-tal-item jl-negative" data-cost="-150" data-key="g4c">蛮荒天下<span class="jl-cost">+150</span></div>
+        <div class="jl-tal-item" data-cost="150" data-key="g4d">青冥天下<span class="jl-cost">150</span></div>
+        <div class="jl-tal-item" data-cost="200" data-key="g4e">五彩天下<span class="jl-cost">200</span></div>
+      </div>
+    </div>
+
+    <!-- 时间节点 -->
+    <div class="jl-tal-section">
+      <div class="jl-tal-sec-title">伍 · 时间节点</div>
+      <div class="jl-tal-items" id="jlG5">
+        <div class="jl-tal-item" data-cost="0" data-key="g5a">剑来14年<span class="jl-cost">0</span></div>
+        <div class="jl-tal-item" data-cost="50" data-key="g5b">剑来21年<span class="jl-cost">50</span></div>
+        <div class="jl-tal-item" data-cost="100" data-key="g5c">剑来27年<span class="jl-cost">100</span></div>
+        <div class="jl-tal-item" data-cost="150" data-key="g5d">剑来39年<span class="jl-cost">150</span></div>
+        <div class="jl-tal-item" data-cost="300" data-key="g5e">终局<span class="jl-cost">300</span></div>
+        <div class="jl-tal-item jl-negative" data-cost="-200" data-key="g5f">远古<span class="jl-cost">+200</span></div>
+      </div>
+    </div>
+
+    <!-- 本命之物 -->
+    <div class="jl-tal-section">
+      <div class="jl-tal-sec-title">陆 · 本命之物</div>
+      <div class="jl-tal-items" id="jlG6">
+        <div class="jl-tal-item" data-cost="600" data-key="g6a">本命飞剑<span class="jl-cost">600</span></div>
+        <div class="jl-tal-item" data-cost="800" data-key="g6b">仙兵遗宝<span class="jl-cost">800</span></div>
+        <div class="jl-tal-item" data-cost="300" data-key="g6c">本命瓷<span class="jl-cost">300</span></div>
+        <div class="jl-tal-item" data-cost="0" data-key="g6d">凡铁<span class="jl-cost">0</span></div>
+        <div class="jl-tal-item" data-cost="1000" data-key="g6e">远古神物<span class="jl-cost">1000</span></div>
+      </div>
+    </div>
+
+    <!-- 阵营归属 -->
+    <div class="jl-tal-section">
+      <div class="jl-tal-sec-title">柒 · 阵营归属</div>
+      <div class="jl-tal-items" id="jlG7">
+        <div class="jl-tal-item" data-cost="200" data-key="g7a">落魄山<span class="jl-cost">200</span></div>
+        <div class="jl-tal-item" data-cost="250" data-key="g7b">文圣一脉<span class="jl-cost">250</span></div>
+        <div class="jl-tal-item" data-cost="150" data-key="g7c">剑气长城<span class="jl-cost">150</span></div>
+        <div class="jl-tal-item" data-cost="100" data-key="g7d">大骊王朝<span class="jl-cost">100</span></div>
+        <div class="jl-tal-item jl-negative" data-cost="-200" data-key="g7e">蛮荒王座<span class="jl-cost">+200</span></div>
+        <div class="jl-tal-item" data-cost="0" data-key="g7f">孤魂野鬼<span class="jl-cost">0</span></div>
+      </div>
     </div>
 
     <!-- 输出区 -->
-    <div class="jl-cfg-output">
-      <div class="jl-cfg-out-label">&#9670; 生成的角色背景提示 &#9670;</div>
-      <div id="jlOutText">
-        <span id="jlOutEmpty">点击上方各维度选项，此处自动生成完整背景描述...</span>
+    <div class="jl-output-sec">
+      <div class="jl-tal-sec-title">生成的角色背景提示</div>
+      <div class="jl-output-box" id="jlOutText">
+        <span class="jl-output-empty">点击上方天赋选项，此处自动生成完整背景描述...</span>
       </div>
     </div>
 
-    <div class="jl-cfg-copy-hint">
-      &#9650; 选中上方文本 &rarr; Ctrl+C 复制 &rarr; 粘贴到输入框，可追加自由描述后发送
+    <div class="jl-start-final-wrap">
+      <div class="jl-start-final" id="jlFinalBtn">开 始 游 戏 ⚔</div>
+      <div class="jl-copy-hint">▲ 点击自动复制提示词，粘贴发送即可开始</div>
+    </div>
+
+    <div class="jl-diff-nav">
+      <div class="jl-nav-btn" id="jlTalBack">◀ 返回难度</div>
     </div>
   </div>
 
@@ -462,23 +480,45 @@
 
 <script>
 (function(){
-  // === 页面切换事件 ===
-  var startBtn = document.getElementById('jlStartBtn');
-  if(startBtn){ startBtn.addEventListener('click',function(){
-    var p1=document.getElementById('jlPage1'); if(p1)p1.style.display='none';
-    var p2=document.getElementById('jlPage2'); if(p2)p2.style.display='block';
-  });}
-  var backBtn = document.getElementById('jlBackBtn');
-  if(backBtn){ backBtn.addEventListener('click',function(){
-    var p2=document.getElementById('jlPage2'); if(p2)p2.style.display='none';
-    var p1=document.getElementById('jlPage1'); if(p1)p1.style.display='flex';
-  });}
-  // === radio 事件绑定 ===
-  var allRadios = document.querySelectorAll('.jl-radio');
-  for(var ri=0; ri<allRadios.length; ri++){
-    allRadios[ri].addEventListener('change', function(){ window.jlUpdate && window.jlUpdate(); });
+  // ═══ 壁纸轮播 ═══
+  var bgs = [document.getElementById('jlBg1'),document.getElementById('jlBg2'),document.getElementById('jlBg3'),document.getElementById('jlBg4')];
+  var bgIdx = 0;
+  setInterval(function(){
+    bgs[bgIdx].classList.remove('jl-active');
+    bgIdx = (bgIdx + 1) % 4;
+    bgs[bgIdx].classList.add('jl-active');
+  }, 5000);
+
+  // ═══ 页面导航 ═══
+  function showPage(n) {
+    document.getElementById('jlPage1').style.display = n===1?'flex':'none';
+    document.getElementById('jlPage2').style.display = n===2?'block':'none';
+    document.getElementById('jlPage3').style.display = n===3?'block':'none';
   }
 
+  document.getElementById('jlStartBtn').addEventListener('click', function(){ showPage(2); });
+  document.getElementById('jlDiffBack').addEventListener('click', function(){ showPage(1); });
+  document.getElementById('jlDiffNext').addEventListener('click', function(){
+    if(selectedDiff) { initTalents(); showPage(3); }
+  });
+  document.getElementById('jlTalBack').addEventListener('click', function(){ showPage(2); });
+
+  // ═══ 难度选择 ═══
+  var selectedDiff = null;
+  var diffCards = document.querySelectorAll('.jl-diff-card');
+  for(var i=0; i<diffCards.length; i++){
+    diffCards[i].addEventListener('click', function(){
+      for(var j=0; j<diffCards.length; j++) diffCards[j].classList.remove('jl-selected');
+      this.classList.add('jl-selected');
+      selectedDiff = {
+        pts: this.getAttribute('data-pts'),
+        name: this.getAttribute('data-name')
+      };
+      document.getElementById('jlDiffNext').classList.remove('jl-disabled');
+    });
+  }
+
+  // ═══ 天赋数据 ═══
   var texts = {
     g1a:"你出身泥瓶巷，是骊珠洞天底层孤儿，自幼孤苦伶仃，在泥瓶巷的陋巷中摸爬滚打长大。",
     g1b:"你出身宗门嫡传，自幼在仙家正统中修炼成长，根骨天赋皆为上佳，被宗门寄予厚望。",
@@ -522,32 +562,120 @@
     g7f:"你的阵营归属为孤魂野鬼——无阵营，不站队，一个人在这座天下独自前行，是敌是友全凭本心。"
   };
 
-  var groups = ['g1','g2','g3','g4','g5','g6','g7'];
-  var colors = ['#d4a854','#c9a040','#e0c060','#b89030','#d4a854','#c49a3a','#d4a854'];
+  // ═══ 天赋选择 ═══
+  var maxPts = 0;
+  var currentPts = 0;
+  var selectedTalents = {};
 
-  window.jlUpdate = function(){
+  function initTalents() {
+    if(selectedDiff.pts === 'inf') {
+      maxPts = Infinity;
+      document.getElementById('jlPtsNum').textContent = '∞';
+      document.getElementById('jlPtsNum').classList.remove('jl-negative');
+    } else {
+      maxPts = parseInt(selectedDiff.pts);
+      currentPts = maxPts;
+      updatePtsDisplay();
+    }
+    selectedTalents = {};
+    var items = document.querySelectorAll('.jl-tal-item');
+    for(var i=0; i<items.length; i++) items[i].classList.remove('jl-selected');
+    updateOutput();
+  }
+
+  function updatePtsDisplay() {
+    var el = document.getElementById('jlPtsNum');
+    if(maxPts === Infinity) { el.textContent = '∞'; return; }
+    el.textContent = currentPts;
+    if(currentPts < 0) el.classList.add('jl-negative');
+    else el.classList.remove('jl-negative');
+  }
+
+  function canAfford(cost) {
+    if(maxPts === Infinity) return true;
+    return (currentPts - cost) >= 0 || cost < 0;
+  }
+
+  var talItems = document.querySelectorAll('.jl-tal-item');
+  for(var ti=0; ti<talItems.length; ti++){
+    talItems[ti].addEventListener('click', function(){
+      var key = this.getAttribute('data-key');
+      var cost = parseInt(this.getAttribute('data-cost'));
+      var group = key.substring(0,2);
+
+      if(this.classList.contains('jl-selected')){
+        this.classList.remove('jl-selected');
+        delete selectedTalents[group];
+        if(maxPts !== Infinity) currentPts += cost;
+        updatePtsDisplay();
+        updateOutput();
+        return;
+      }
+
+      if(selectedTalents[group]){
+        var oldKey = selectedTalents[group].key;
+        var oldEl = document.querySelector('[data-key="'+oldKey+'"]');
+        if(oldEl) oldEl.classList.remove('jl-selected');
+        if(maxPts !== Infinity) currentPts += selectedTalents[group].cost;
+        delete selectedTalents[group];
+      }
+
+      if(!canAfford(cost)) return;
+
+      this.classList.add('jl-selected');
+      selectedTalents[group] = {key: key, cost: cost};
+      if(maxPts !== Infinity) currentPts -= cost;
+      updatePtsDisplay();
+      updateOutput();
+    });
+  }
+
+  function updateOutput() {
     var out = document.getElementById('jlOutText');
-    var empty = document.getElementById('jlOutEmpty');
     var parts = [];
-    var anyChecked = false;
+    var groups = ['g1','g2','g3','g4','g5','g6','g7'];
     for(var i=0; i<groups.length; i++){
-      var radios = document.getElementsByName(groups[i]);
-      for(var j=0; j<radios.length; j++){
-        if(radios[j].checked){
-          anyChecked = true;
-          var key = radios[j].id;
-          if(texts[key]) parts.push(texts[key]);
-          var dot = document.getElementById('jd'+(i+1));
-          if(dot){ dot.style.background = colors[i]; dot.style.boxShadow = '0 0 8px '+colors[i]; dot.style.borderColor = colors[i]; }
-          break;
-        }
+      if(selectedTalents[groups[i]]){
+        var key = selectedTalents[groups[i]].key;
+        if(texts[key]) parts.push(texts[key]);
       }
     }
-    if(anyChecked && empty){ empty.style.display = 'none'; }
-    else if(empty){ empty.style.display = 'block'; }
-    if(parts.length > 0){
-      out.innerHTML = (empty && empty.style.display==='none' ? '' : '') + parts.join('');
+    if(parts.length === 0){
+      out.innerHTML = '<span class="jl-output-empty">点击上方天赋选项，此处自动生成完整背景描述...</span>';
+    } else {
+      var diffText = selectedDiff ? '【难度】' + selectedDiff.name + (selectedDiff.pts==='inf'?'（无限点数）':'（'+selectedDiff.pts+'点数）') + '\n\n' : '';
+      out.textContent = diffText + parts.join('\n');
     }
-  };
+  }
+
+  document.getElementById('jlFinalBtn').addEventListener('click', function(){
+    var out = document.getElementById('jlOutText');
+    var text = out.textContent || out.innerText;
+    if(!text || text.indexOf('点击上方') === 0) {
+      alert('请先选择天赋配置');
+      return;
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        alert('提示词已复制！请粘贴到输入框发送。');
+      }).catch(function(){
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  });
+
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); alert('提示词已复制！请粘贴到输入框发送。'); }
+    catch(e){ alert('请手动选择文本复制：\n\n' + text); }
+    document.body.removeChild(ta);
+  }
+
 })();
 </script>
