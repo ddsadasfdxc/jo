@@ -6,82 +6,140 @@
 <title>剑来 · 命轨</title>
 <style>
 .jl-root{all:initial}.jl-root *{box-sizing:border-box}
-.jl-root{display:block;font-family:"PingFang SC","Microsoft YaHei","Noto Serif SC",serif;max-width:680px;margin:0 auto;position:relative;overflow:hidden;border-radius:14px;min-height:560px}
-.jl-pg1{position:relative;z-index:1;min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
-.jl-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s}
+.jl-root{display:block;font-family:"PingFang SC","STSong","Noto Serif SC","SimSun",serif;max-width:720px;margin:0 auto;position:relative;overflow:hidden;border-radius:16px;min-height:600px;box-shadow:0 8px 40px rgba(0,0,0,.6),0 0 80px rgba(212,168,84,.06)}
+
+/* === 水墨首页 === */
+.jl-pg1{position:relative;z-index:1;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.jl-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 2s}
 .jl-bg.jl-on{opacity:1}
-.jl-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.55),rgba(10,8,6,.35) 30%,rgba(10,8,6,.5) 70%,rgba(10,8,6,.75))}
-.jl-ink{position:absolute;z-index:2;pointer-events:none;opacity:.6}
+.jl-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,4,.65),rgba(8,6,4,.4) 25%,rgba(8,6,4,.55) 65%,rgba(8,6,4,.85))}
+.jl-ink{position:absolute;z-index:2;pointer-events:none;opacity:.5;filter:blur(.5px)}
 .jl-hero{position:relative;z-index:3;text-align:center;padding:40px 30px 20px}
-.jl-hero-title{font-size:52px;font-weight:900;color:#e8d5a3;letter-spacing:16px;text-shadow:0 0 40px rgba(212,168,84,.5),0 0 80px rgba(212,168,84,.2),0 2px 4px rgba(0,0,0,.8);margin-bottom:6px;animation:jl-tg 3s ease-in-out infinite alternate}
-@keyframes jl-tg{0%{text-shadow:0 0 30px rgba(212,168,84,.4),0 0 60px rgba(212,168,84,.15)}100%{text-shadow:0 0 50px rgba(212,168,84,.7),0 0 100px rgba(212,168,84,.3)}}
-.jl-hero-sub{font-size:14px;color:#8b7535;letter-spacing:8px;margin-bottom:10px}
-.jl-hero-div{width:140px;height:1px;background:linear-gradient(90deg,transparent,#d4a854,transparent);margin:0 auto 16px;position:relative}
-.jl-hero-div::before,.jl-hero-div::after{content:"◆";position:absolute;top:-7px;font-size:8px;color:#d4a854}
-.jl-hero-div::before{left:-12px}.jl-hero-div::after{right:-12px}
-.jl-hero-desc{font-size:12px;color:#6b6048;line-height:1.9;max-width:400px;margin:0 auto;letter-spacing:1px}
-.jl-seal{position:absolute;z-index:3;right:26px;top:26px;width:46px;height:46px;border:2px solid rgba(180,60,50,.75);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#c0392b;font-size:20px;font-weight:900;transform:rotate(6deg);background:rgba(20,10,8,.35);text-shadow:0 0 8px rgba(192,57,43,.5);animation:jl-seal 4s ease-in-out infinite;font-family:"Noto Serif SC",serif}
-@keyframes jl-seal{0%,100%{transform:rotate(6deg)}50%{transform:rotate(4deg) scale(1.03)}}
-.jl-pg{display:none;position:relative;z-index:1;min-height:560px;padding:24px 18px;background:linear-gradient(175deg,#0a0806,#16120e 40%,#0e0c0a);overflow-y:auto;max-height:80vh}
-.jl-pg-head{text-align:center;padding-bottom:14px;margin-bottom:14px;border-bottom:2px solid;border-image:linear-gradient(to right,transparent,#d4a854,#d4a854,transparent) 1}
-.jl-pg-title{font-size:20px;font-weight:700;color:#e8d5a3;letter-spacing:5px;text-shadow:0 0 20px rgba(212,168,84,.3)}
-.jl-pg-sub{font-size:11px;color:#7a6e5c;margin-top:5px;letter-spacing:2px}
-.jl-pts{display:flex;justify-content:center;gap:6px;margin-top:8px;align-items:center}
-.jl-pts-lbl{font-size:11px;color:#7a6e5c}
-.jl-pts-num{font-size:24px;font-weight:900;color:#d4a854;text-shadow:0 0 12px rgba(212,168,84,.3)}
-.jl-pts-num.jl-neg{color:#e74c3c}
-.jl-items{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
-.jl-it{cursor:pointer;padding:8px 14px;font-size:12px;border-radius:5px;border:1px solid rgba(212,168,84,.12);color:#9b8c72;background:rgba(255,255,255,.02);transition:all .2s;user-select:none;position:relative}
-.jl-it:hover{border-color:rgba(212,168,84,.4);transform:translateY(-1px)}
-.jl-it.jl-sel{border-color:#d4a854;color:#e8d5a3;background:rgba(212,168,84,.1);box-shadow:0 0 12px rgba(212,168,84,.2)}
-.jl-it.jl-neg.jl-sel{border-color:#e74c3c;color:#e74c3c;background:rgba(231,76,60,.08);box-shadow:0 0 8px rgba(231,76,60,.15)}
-.jl-it .jl-cst{font-size:10px;opacity:.6;margin-left:3px}
-.jl-it.jl-free{border-style:dashed;border-color:rgba(100,180,255,.3)}
-.jl-it.jl-free.jl-sel{border-color:#64b4ff;color:#64b4ff;background:rgba(100,180,255,.08);box-shadow:0 0 8px rgba(100,180,255,.15)}
-.jl-nav{display:flex;justify-content:center;gap:14px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(212,168,84,.08);flex-wrap:wrap}
-.jl-nbtn{cursor:pointer;padding:10px 24px;font-size:12px;letter-spacing:2px;border:1px solid rgba(212,168,84,.2);border-radius:4px;color:#8b7535;background:transparent;transition:all .2s;user-select:none}
-.jl-nbtn:hover{border-color:#d4a854;color:#d4a854;background:rgba(212,168,84,.06)}
-.jl-nbtn.jl-go{background:linear-gradient(135deg,#d4a854,#c49640);color:#1a1c20;font-weight:700;border-color:transparent}
-.jl-nbtn.jl-go:hover{box-shadow:0 0 20px rgba(212,168,84,.3)}
-.jl-nbtn.jl-off{opacity:.3;pointer-events:none}
-.jl-prog{display:flex;justify-content:center;gap:6px;padding:10px 0;flex-wrap:wrap}
-.jl-pdot{width:7px;height:7px;border-radius:50%;background:#3a3024;transition:all .3s}
-.jl-pdot.jl-done{background:#d4a854;box-shadow:0 0 5px rgba(212,168,84,.4)}
-.jl-pdot.jl-now{background:#ffd700;box-shadow:0 0 8px rgba(255,215,0,.5)}
-.jl-out{background:rgba(0,0,0,.35);border:1px solid rgba(212,168,84,.2);border-radius:6px;padding:14px 16px;font-size:12px;line-height:1.9;color:#e0d5c0;min-height:60px;max-height:220px;overflow-y:auto;user-select:text;-webkit-user-select:text;margin-top:10px;white-space:pre-wrap}
-.jl-start-btn{display:inline-block;cursor:pointer;padding:14px 52px;font-size:18px;font-weight:700;letter-spacing:6px;color:#1a1c20;background:linear-gradient(135deg,#d4a854,#f0d060 30%,#c49640 70%,#a07828);border:1px solid rgba(255,220,140,.3);border-radius:4px;text-shadow:0 1px 0 rgba(255,255,255,.2);box-shadow:0 0 20px rgba(212,168,84,.3),0 0 40px rgba(212,168,84,.1),inset 0 1px 0 rgba(255,255,255,.15);transition:all .3s;position:relative;overflow:hidden;user-select:none}
-.jl-start-btn:hover{box-shadow:0 0 30px rgba(212,168,84,.5),0 0 60px rgba(212,168,84,.25);transform:translateY(-1px)}
-.jl-start-btn::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .6s}
+.jl-hero-title{font-size:58px;font-weight:900;color:#e8d5a3;letter-spacing:18px;text-shadow:0 0 50px rgba(212,168,84,.6),0 0 100px rgba(212,168,84,.25),0 3px 6px rgba(0,0,0,.9),0 0 3px rgba(232,213,163,.4);margin-bottom:8px;animation:jl-tg 3.5s ease-in-out infinite alternate}
+@keyframes jl-tg{0%{text-shadow:0 0 35px rgba(212,168,84,.45),0 0 70px rgba(212,168,84,.15)}100%{text-shadow:0 0 60px rgba(212,168,84,.8),0 0 120px rgba(212,168,84,.35)}}
+.jl-hero-sub{font-size:15px;color:#a08440;letter-spacing:10px;margin-bottom:12px;font-weight:300}
+.jl-hero-div{width:180px;height:1px;background:linear-gradient(90deg,transparent,#c9a959,transparent);margin:0 auto 20px;position:relative}
+.jl-hero-div::before,.jl-hero-div::after{content:"◆";position:absolute;top:-8px;font-size:9px;color:#c9a959;opacity:.7}
+.jl-hero-div::before{left:-14px}.jl-hero-div::after{right:-14px}
+.jl-hero-desc{font-size:13px;color:#7a6e52;line-height:2.2;max-width:420px;margin:0 auto;letter-spacing:2px}
+.jl-seal{position:absolute;z-index:3;right:24px;top:24px;width:52px;height:52px;border:2px solid rgba(180,60,50,.7);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#c0392b;font-size:22px;font-weight:900;transform:rotate(6deg);background:rgba(20,10,8,.4);text-shadow:0 0 10px rgba(192,57,43,.6);animation:jl-seal 5s ease-in-out infinite;font-family:"Noto Serif SC",serif;box-shadow:0 0 20px rgba(192,57,43,.15)}
+@keyframes jl-seal{0%,100%{transform:rotate(6deg)}50%{transform:rotate(3deg) scale(1.04)}}
+
+/* === 页面容器 === */
+.jl-pg{display:none;position:relative;z-index:1;min-height:600px;padding:28px 20px;background:linear-gradient(170deg,#0c0a08 0%,#14110c 30%,#100e0b 60%,#0a0806 100%);overflow-y:auto;max-height:85vh}
+.jl-pg-head{text-align:center;padding-bottom:18px;margin-bottom:18px;border-bottom:2px solid;border-image:linear-gradient(to right,transparent,#c9a959,#d4b96a,#c9a959,transparent) 1;position:relative}
+.jl-pg-head::after{content:"";position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);width:60px;height:2px;background:#c9a959;opacity:.3}
+.jl-pg-title{font-size:22px;font-weight:700;color:#e8d5a3;letter-spacing:6px;text-shadow:0 0 25px rgba(212,168,84,.35)}
+.jl-pg-sub{font-size:12px;color:#8a7d64;margin-top:6px;letter-spacing:3px}
+
+/* === 点数显示 === */
+.jl-pts{display:flex;justify-content:center;gap:8px;margin-top:12px;align-items:center;padding:8px 16px;background:rgba(0,0,0,.2);border-radius:8px;border:1px solid rgba(212,168,84,.08);max-width:280px;margin-left:auto;margin-right:auto}
+.jl-pts-lbl{font-size:12px;color:#8a7d64;letter-spacing:2px}
+.jl-pts-num{font-size:28px;font-weight:900;color:#d4a854;text-shadow:0 0 15px rgba(212,168,84,.4),0 0 30px rgba(212,168,84,.15)}
+.jl-pts-num.jl-neg{color:#e74c3c;text-shadow:0 0 15px rgba(231,76,60,.3)}
+
+/* === 选项按钮 === */
+.jl-items{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.jl-it{cursor:pointer;padding:10px 16px;font-size:12px;border-radius:6px;border:1px solid rgba(201,169,89,.15);color:#a89878;background:rgba(255,255,255,.02);transition:all .25s cubic-bezier(.4,0,.2,1);user-select:none;position:relative;letter-spacing:1px}
+.jl-it:hover{border-color:rgba(201,169,89,.45);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.3),0 0 8px rgba(201,169,89,.1)}
+.jl-it.jl-sel{border-color:#c9a959;color:#e8d5a3;background:rgba(201,169,89,.12);box-shadow:0 0 16px rgba(201,169,89,.2),inset 0 1px 0 rgba(255,255,255,.05)}
+.jl-it.jl-sel::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(#c9a959,#8a6a2a);border-radius:3px 0 0 3px}
+.jl-it.jl-neg.jl-sel{border-color:#c0392b;color:#e74c3c;background:rgba(192,57,43,.1);box-shadow:0 0 10px rgba(192,57,43,.15)}
+.jl-it .jl-cst{font-size:10px;opacity:.55;margin-left:4px;font-weight:300}
+.jl-it.jl-free{border-style:dashed;border-color:rgba(100,180,255,.35)}
+.jl-it.jl-free.jl-sel{border-color:#64b4ff;color:#64b4ff;background:rgba(100,180,255,.1);box-shadow:0 0 10px rgba(100,180,255,.15)}
+
+/* === 导航按钮 === */
+.jl-nav{display:flex;justify-content:center;gap:16px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(201,169,89,.1);flex-wrap:wrap}
+.jl-nbtn{cursor:pointer;padding:12px 28px;font-size:13px;letter-spacing:3px;border:1px solid rgba(201,169,89,.25);border-radius:6px;color:#9a8a68;background:transparent;transition:all .3s;user-select:none;position:relative;overflow:hidden}
+.jl-nbtn::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(201,169,89,.1),transparent);transition:left .5s}
+.jl-nbtn:hover{border-color:#c9a959;color:#c9a959;background:rgba(201,169,89,.06)}
+.jl-nbtn:hover::before{left:100%}
+.jl-nbtn.jl-go{background:linear-gradient(135deg,#c9a959,#b8954a);color:#1a1c20;font-weight:700;border-color:transparent;box-shadow:0 0 15px rgba(201,169,89,.2)}
+.jl-nbtn.jl-go:hover{box-shadow:0 0 25px rgba(201,169,89,.4);transform:translateY(-1px)}
+.jl-nbtn.jl-off{opacity:.25;pointer-events:none;transform:none!important}
+
+/* === 进度点 === */
+.jl-prog{display:flex;justify-content:center;gap:7px;padding:12px 0;flex-wrap:wrap}
+.jl-pdot{width:8px;height:8px;border-radius:50%;background:#2a2418;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative}
+.jl-pdot.jl-done{background:#c9a959;box-shadow:0 0 6px rgba(201,169,89,.4)}
+.jl-pdot.jl-now{background:#ffd700;box-shadow:0 0 10px rgba(255,215,0,.6);transform:scale(1.2)}
+
+/* === 输出区域 === */
+.jl-out{background:rgba(0,0,0,.4);border:1px solid rgba(201,169,89,.25);border-radius:8px;padding:16px 18px;font-size:13px;line-height:2;color:#d8ccb0;min-height:70px;max-height:250px;overflow-y:auto;user-select:text;-webkit-user-select:text;margin-top:12px;white-space:pre-wrap;font-family:"PingFang SC","STSong",serif;letter-spacing:.5px}
+
+/* === 开始按钮 === */
+.jl-start-btn{display:inline-block;cursor:pointer;padding:16px 60px;font-size:20px;font-weight:700;letter-spacing:8px;color:#1a1c20;background:linear-gradient(135deg,#c9a959,#e8cf6a 30%,#b8954a 70%,#9a7a30);border:1px solid rgba(255,220,140,.35);border-radius:6px;text-shadow:0 1px 0 rgba(255,255,255,.25);box-shadow:0 0 25px rgba(201,169,89,.35),0 0 50px rgba(201,169,89,.12),inset 0 1px 0 rgba(255,255,255,.2);transition:all .35s;position:relative;overflow:hidden;user-select:none}
+.jl-start-btn:hover{box-shadow:0 0 40px rgba(201,169,89,.55),0 0 80px rgba(201,169,89,.28);transform:translateY(-2px)}
+.jl-start-btn::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transition:left .7s}
 .jl-start-btn:hover::after{left:100%}
-.jl-sicon{display:inline-block;margin-left:6px;animation:jl-sp 1.5s ease-in-out infinite}
-@keyframes jl-sp{0%,100%{transform:translateX(0);opacity:.8}50%{transform:translateX(4px);opacity:1}}
-.jl-quote{position:relative;z-index:3;text-align:center;padding:24px 0;font-size:11px;color:#4a4030;letter-spacing:2px;font-style:italic}
-.jl-sbtn-wrap{position:relative;z-index:3;text-align:center;padding:10px 0 30px}
-.jl-diff-card{cursor:pointer;padding:16px 18px;background:rgba(255,255,255,.02);border:1px solid rgba(212,168,84,.12);border-radius:8px;transition:all .3s;position:relative;overflow:hidden;margin-bottom:10px}
-.jl-diff-card:hover{border-color:rgba(212,168,84,.35);background:rgba(212,168,84,.04)}
-.jl-diff-card.jl-sel{border-color:#d4a854;background:rgba(212,168,84,.08);box-shadow:0 0 20px rgba(212,168,84,.15)}
-.jl-diff-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#d4a854;transform:scaleY(0);transition:transform .3s}
+.jl-sicon{display:inline-block;margin-left:8px;animation:jl-sp 2s ease-in-out infinite}
+@keyframes jl-sp{0%,100%{transform:translateX(0);opacity:.8}50%{transform:translateX(5px);opacity:1}}
+.jl-quote{position:relative;z-index:3;text-align:center;padding:28px 0;font-size:12px;color:#5a4e38;letter-spacing:3px;font-style:italic;line-height:2}
+.jl-sbtn-wrap{position:relative;z-index:3;text-align:center;padding:14px 0 36px}
+
+/* === 难度卡片 === */
+.jl-diff-card{cursor:pointer;padding:18px 20px;background:rgba(255,255,255,.02);border:1px solid rgba(201,169,89,.15);border-radius:10px;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;margin-bottom:12px}
+.jl-diff-card:hover{border-color:rgba(201,169,89,.4);background:rgba(201,169,89,.05);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.jl-diff-card.jl-sel{border-color:#c9a959;background:rgba(201,169,89,.1);box-shadow:0 0 25px rgba(201,169,89,.18),inset 0 1px 0 rgba(255,255,255,.05)}
+.jl-diff-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(#c9a959,#8a6a2a);transform:scaleY(0);transition:transform .35s;border-radius:4px 0 0 4px}
 .jl-diff-card.jl-sel::before{transform:scaleY(1)}
-.jl-dname{font-size:15px;font-weight:700;color:#e8d5a3;letter-spacing:3px;margin-bottom:3px}
-.jl-ddesc{font-size:11px;color:#7a6e5c;line-height:1.5}
-.jl-dpts{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:22px;font-weight:900;color:#d4a854;opacity:.3;transition:opacity .3s}
-.jl-diff-card.jl-sel .jl-dpts{opacity:1}
-.jl-cust-input{width:100%;padding:10px 12px;font-size:12px;background:rgba(0,0,0,.3);border:1px solid rgba(212,168,84,.2);border-radius:5px;color:#e0d5c0;font-family:inherit;margin:8px 0;resize:vertical}
-.jl-cust-input::placeholder{color:#5a4e3c}
-.jl-cust-input:focus{outline:none;border-color:#d4a854;box-shadow:0 0 8px rgba(212,168,84,.15)}
-.jl-event-tip{font-size:10px;color:#9b8c72;margin-top:6px;line-height:1.6;padding:8px 12px;background:rgba(212,168,84,.05);border-radius:4px;border-left:2px solid #d4a854}
-.jl-summary{font-size:11px;line-height:1.8;color:#c4b998}
-.jl-summary b{color:#e8d5a3}
-.jl-summary .jl-miss{color:#5a4e3c}
-.jl-sex{display:flex;gap:12px;justify-content:center;margin:14px 0}
-.jl-sex-opt{cursor:pointer;flex:1;max-width:140px;text-align:center;padding:18px 10px;border:1px solid rgba(212,168,84,.15);border-radius:8px;background:rgba(255,255,255,.02);transition:all .25s;user-select:none}
-.jl-sex-opt:hover{border-color:rgba(212,168,84,.4);transform:translateY(-2px)}
-.jl-sex-opt.jl-sel{border-color:#d4a854;background:rgba(212,168,84,.08);box-shadow:0 0 16px rgba(212,168,84,.15)}
-.jl-sex-ico{font-size:26px;margin-bottom:6px;color:#d4a854}
-.jl-sex-name{font-size:13px;color:#e8d5a3;letter-spacing:3px}
-.jl-field{margin:10px auto;max-width:420px}
-.jl-field-lbl{font-size:11px;color:#8b7535;letter-spacing:2px;margin-bottom:4px;padding-left:2px}
-.jl-wld{font-size:14px!important;padding:10px 18px!important;min-width:calc(50% - 8px)}
+.jl-dname{font-size:17px;font-weight:700;color:#e8d5a3;letter-spacing:4px;margin-bottom:5px}
+.jl-ddesc{font-size:12px;color:#8a7d64;line-height:1.6;letter-spacing:.5px}
+.jl-dpts{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:26px;font-weight:900;color:#c9a959;opacity:.25;transition:opacity .35s;text-shadow:0 0 10px rgba(201,169,89,.2)}
+.jl-diff-card.jl-sel .jl-dpts{opacity:1;text-shadow:0 0 15px rgba(201,169,89,.5)}
+
+/* === 自定义输入 === */
+.jl-cust-input{width:100%;padding:12px 14px;font-size:13px;background:rgba(0,0,0,.35);border:1px solid rgba(201,169,89,.25);border-radius:6px;color:#d8ccb0;font-family:inherit;margin:10px 0;resize:vertical;letter-spacing:1px}
+.jl-cust-input::placeholder{color:#5a4e38}
+.jl-cust-input:focus{outline:none;border-color:#c9a959;box-shadow:0 0 12px rgba(201,169,89,.18)}
+
+/* === 事件提示 === */
+.jl-event-tip{font-size:11px;color:#a89878;margin-top:8px;line-height:1.7;padding:10px 14px;background:rgba(201,169,89,.06);border-radius:6px;border-left:3px solid #c9a959;letter-spacing:.5px}
+
+/* === 总结区域 === */
+.jl-summary{font-size:12px;line-height:2;color:#c4b89a}
+.jl-summary b{color:#e8d5a3;letter-spacing:1px}
+.jl-summary .jl-miss{color:#5a4e38}
+
+/* === 性别选择 === */
+.jl-sex{display:flex;gap:14px;justify-content:center;margin:16px 0}
+.jl-sex-opt{cursor:pointer;flex:1;max-width:150px;text-align:center;padding:22px 12px;border:1px solid rgba(201,169,89,.18);border-radius:10px;background:rgba(255,255,255,.02);transition:all .3s cubic-bezier(.4,0,.2,1);user-select:none}
+.jl-sex-opt:hover{border-color:rgba(201,169,89,.45);transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.jl-sex-opt.jl-sel{border-color:#c9a959;background:rgba(201,169,89,.1);box-shadow:0 0 20px rgba(201,169,89,.18)}
+.jl-sex-ico{font-size:32px;margin-bottom:8px;color:#c9a959}
+.jl-sex-name{font-size:14px;color:#e8d5a3;letter-spacing:4px;font-weight:500}
+
+/* === 表单 === */
+.jl-field{margin:12px auto;max-width:440px}
+.jl-field-lbl{font-size:12px;color:#9a8a68;letter-spacing:3px;margin-bottom:6px;padding-left:2px}
+
+/* === 天下选择器 === */
+.jl-wld{font-size:15px!important;padding:12px 20px!important;min-width:calc(50% - 10px)}
+
+/* === 时间节点 · 水墨风 === */
+.jl-timeline{position:relative;margin:14px 0;padding-left:20px}
+.jl-timeline::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,rgba(201,169,89,.4),rgba(201,169,89,.1))}
+.jl-tl-group{margin-bottom:14px}
+.jl-tl-era{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:6px 0}
+.jl-tl-era-dot{width:10px;height:10px;border-radius:50%;background:#c9a959;box-shadow:0 0 8px rgba(201,169,89,.4);flex-shrink:0;position:relative}
+.jl-tl-era-dot::after{content:"";position:absolute;inset:-4px;border:1px solid rgba(201,169,89,.2);border-radius:50%}
+.jl-tl-era-name{font-size:13px;font-weight:700;color:#c9a959;letter-spacing:4px}
+.jl-tl-era-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(201,169,89,.3),transparent)}
+.jl-tl-items{display:flex;flex-wrap:wrap;gap:6px;margin-left:20px}
+
+/* === 水墨印章装饰 === */
+.jl-ink-seal{position:absolute;right:20px;bottom:20px;width:60px;height:60px;border:2px solid rgba(192,57,43,.5);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#c0392b;font-size:24px;font-weight:900;transform:rotate(-8deg);background:rgba(20,10,8,.3);opacity:.6;pointer-events:none;font-family:"Noto Serif SC",serif}
+
+/* === 响应式 === */
+@media(max-width:480px){
+.jl-hero-title{font-size:42px;letter-spacing:12px}
+.jl-sex{flex-direction:column;align-items:center}
+.jl-sex-opt{max-width:100%;width:100%}
+.jl-wld{min-width:100%}
+.jl-it{font-size:11px;padding:8px 12px}
+.jl-pg{padding:20px 14px}
+}
 </style>
 </head>
 <body>
@@ -257,23 +315,57 @@
 
 <!-- 柒·时间节点 -->
 <div class="jl-pg" id="jlPage8">
-<div class="jl-pg-head"><div class="jl-pg-title">柒 · 时 间 节 点</div><div class="jl-pg-sub">你的故事从何时开始？</div></div>
+<div class="jl-pg-head"><div class="jl-pg-title">柒 · 时 间 节 点</div><div class="jl-pg-sub">光阴长河，哪一段才是你的故事起点</div></div>
 <div class="jl-prog"><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-done"></div><div class="jl-pdot jl-now"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div><div class="jl-pdot"></div></div>
 <div class="jl-pts"><span class="jl-pts-lbl">剩余点数</span><span class="jl-pts-num jl-pts-dyn">—</span></div>
-<div class="jl-items">
-  <div class="jl-it" data-key="g5a" data-cost="0">太古·三教立规矩<span class="jl-cst">0</span></div>
-  <div class="jl-it" data-key="g5b" data-cost="50">远古·剑修问剑托月山<span class="jl-cst">50</span></div>
-  <div class="jl-it" data-key="g5c" data-cost="100">中古·骊珠棋局（真龙陨落）<span class="jl-cst">100</span></div>
-  <div class="jl-it" data-key="g5d" data-cost="200">近古·剑气长城决战<span class="jl-cst">200</span></div>
-  <div class="jl-it" data-key="g5e" data-cost="0">当代·陈平安少年时期<span class="jl-cst">0</span></div>
-  <div class="jl-it" data-key="g5f" data-cost="50">当代·书简湖问心局<span class="jl-cst">50</span></div>
-  <div class="jl-it" data-key="g5g" data-cost="150">当代·剑气长城隐官时期<span class="jl-cst">150</span></div>
-  <div class="jl-it" data-key="g5h" data-cost="250">当代·蛮荒大战之后<span class="jl-cst">250</span></div>
-  <div class="jl-it" data-key="g5j" data-cost="200">当代·剑气长城破碎后<span class="jl-cst">200</span></div>
-  <div class="jl-it" data-key="g5k" data-cost="300">当代·登天之战前后<span class="jl-cst">300</span></div>
-  <div class="jl-it jl-free" data-key="g5i" data-cost="0">✦ 自定义时间线（自由开局）<span class="jl-cst">0</span></div>
+
+<div class="jl-timeline">
+  <div class="jl-tl-group">
+    <div class="jl-tl-era"><div class="jl-tl-era-dot"></div><div class="jl-tl-era-name">太 古 · 神 道 纪 元</div><div class="jl-tl-era-line"></div></div>
+    <div class="jl-tl-items">
+      <div class="jl-it jl-neg" data-key="g5a" data-cost="-300">远古神道<span class="jl-cst">+300</span></div>
+      <div class="jl-it jl-neg" data-key="g5b" data-cost="-200">破天之战<span class="jl-cst">+200</span></div>
+    </div>
+  </div>
+  <div class="jl-tl-group">
+    <div class="jl-tl-era"><div class="jl-tl-era-dot"></div><div class="jl-tl-era-name">上 古 · 秩 序 初 建</div><div class="jl-tl-era-line"></div></div>
+    <div class="jl-tl-items">
+      <div class="jl-it jl-neg" data-key="g5c" data-cost="-100">三教立规矩<span class="jl-cst">+100</span></div>
+      <div class="jl-it" data-key="g5d" data-cost="0">骊珠棋局<span class="jl-cst">0</span></div>
+    </div>
+  </div>
+  <div class="jl-tl-group">
+    <div class="jl-tl-era"><div class="jl-tl-era-dot"></div><div class="jl-tl-era-name">近 古 · 暗 流 涌 动</div><div class="jl-tl-era-line"></div></div>
+    <div class="jl-tl-items">
+      <div class="jl-it" data-key="g5e" data-cost="50">崔瀺布局<span class="jl-cst">50</span></div>
+    </div>
+  </div>
+  <div class="jl-tl-group">
+    <div class="jl-tl-era"><div class="jl-tl-era-dot" style="background:#e8d5a3"></div><div class="jl-tl-era-name" style="color:#e8d5a3">剑 来 纪 年</div><div class="jl-tl-era-line"></div></div>
+    <div class="jl-tl-items">
+      <div class="jl-it" data-key="g5f" data-cost="100">剑来元年<span class="jl-cst">100</span></div>
+      <div class="jl-it" data-key="g5g" data-cost="150">剑来十四年<span class="jl-cst">150</span></div>
+      <div class="jl-it" data-key="g5h" data-cost="200">剑来十五年<span class="jl-cst">200</span></div>
+      <div class="jl-it" data-key="g5i" data-cost="250">剑来十六年<span class="jl-cst">250</span></div>
+      <div class="jl-it" data-key="g5j" data-cost="300">剑来十七至十九年<span class="jl-cst">300</span></div>
+      <div class="jl-it" data-key="g5k" data-cost="350">剑来二十年<span class="jl-cst">350</span></div>
+      <div class="jl-it" data-key="g5l" data-cost="400">剑来二十一至二十四年<span class="jl-cst">400</span></div>
+      <div class="jl-it" data-key="g5m" data-cost="450">剑来二十五至二十六年<span class="jl-cst">450</span></div>
+      <div class="jl-it" data-key="g5n" data-cost="500">剑来二十七年<span class="jl-cst">500</span></div>
+      <div class="jl-it" data-key="g5o" data-cost="400">剑来二十八至三十七年<span class="jl-cst">400</span></div>
+      <div class="jl-it" data-key="g5p" data-cost="350">剑来三十八年<span class="jl-cst">350</span></div>
+      <div class="jl-it" data-key="g5q" data-cost="300">剑来三十九年<span class="jl-cst">300</span></div>
+    </div>
+  </div>
+  <div class="jl-tl-group">
+    <div class="jl-tl-era"><div class="jl-tl-era-dot" style="background:#c0392b"></div><div class="jl-tl-era-name" style="color:#c0392b">终 局 · 登 天 之 战</div><div class="jl-tl-era-line"></div></div>
+    <div class="jl-tl-items">
+      <div class="jl-it" data-key="g5r" data-cost="250">终局之战<span class="jl-cst">250</span></div>
+    </div>
+  </div>
 </div>
-<div class="jl-event-tip" id="jlTimeTip">选择时间节点后，此处显示该时期的背景说明...</div>
+
+<div class="jl-event-tip" id="jlTimeTip">选择时间节点后，此处将显示该时期的详细背景与因果脉络</div>
 <div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回出生地</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
 </div>
 
@@ -457,16 +549,24 @@ var realmTips={
 };
 
 var timeTips={
-  g5a:'太古·三教立规矩：至圣先师、道祖、佛祖达十五境，联手修建剑气长城。天下四分，三教确立规矩。',
-  g5b:'远古·剑修问剑托月山：陈清都等远古剑修远征蛮荒，问剑托月山，剑气长城初成。',
-  g5c:'中古·骊珠棋局：青童天君坑杀最后一条真龙，骊珠洞天形成。妖族最大规模入侵，剑气长城血战。',
-  g5d:'近古·剑气长城决战：妖族倾巢而出，隐官陈平安率众死守。最终一战，剑气长城陷落。',
-  g5e:'当代·陈平安少年时期：泥瓶巷孤儿初入江湖，齐静春以命换命，骊珠洞天。',
-  g5f:'当代·书简湖问心局：顾璨设局，陈平安面临心性与道义的终极考验。',
-  g5g:'当代·剑气长城隐官时期：陈平安出任隐官，镇守剑气长城，与宁姚履行十年之约。',
-  g5h:'当代·蛮荒大战之后：剑气长城陷落，陈平安转战各天下，新的格局正在形成。',
-  g5j:'当代·剑气长城破碎后：陈清都殉道，长城飞升为五彩天下，人妖格局剧变，旧秩序崩塌。',
-  g5k:'当代·登天之战前后：周密复辟布局，三教祖师与远古神道终极对决，天下命运悬于一线。'
+  g5a:'【远古神道纪元】天庭共主执掌世界本源「一」，五至高神统治天地。火神水神大战撞断天柱，神道术法泄露人间。持剑者授人族剑修法门，十豪崛起。',
+  g5b:'【破天之战】人妖联军攻破天庭，持剑者倒戈斩披甲者。神道终结，三教祖师联手建剑气长城，白泽退守蛮荒。',
+  g5c:'【上古秩序纪元】三教分治确立，四座天下以天幕分隔。至圣先师、道祖、佛祖证道十五境。陈清都合道剑气长城。',
+  g5d:'【中古固化纪元】妖族最大规模入侵。贾生化名周密投蛮荒位列第二王座。末代真龙陨落，骊珠洞天形成。',
+  g5e:'【近古布局纪元】文圣落败一脉分崩。崔瀺入大骊启动挽天倾。齐静春贬至骊珠洞天。阿良闯下斗笠剑仙名号。',
+  g5f:'【剑来元年】陈平安出生泥瓶巷。剑来5年本命瓷碎，父母离世，入龙窑做学徒。',
+  g5g:'【剑来十四年·骊珠洞天】宁姚闯入小镇。齐静春代师收徒，扛天劫护六千凡人身死道消。陈平安买下落魄山。',
+  g5h:'【剑来十五年】阿良护送陈平安至大隋。崔瀺分离崔东山。陈平安首入剑气长城送剑，定十年之约。',
+  g5i:'【剑来十六年】陈平安入藕花福地，收裴钱为徒，带出朱敛、隋右边。炼化水字本命印。',
+  g5j:'【书简湖】陈平安任账房直面顾璨杀业，三年了结因果。武夫破六境，破金身境。',
+  g5k:'【隐官上任】陈平安出任末代隐官。接受缝衣人刻大妖真名，结识化外天魔天然。',
+  g5l:'【镇守岁月】整合隐官势力，与宁姚开小酒馆。炼化火神佐官心脏，五行本命物圆满。',
+  g5m:'【战云密布】与宁姚确定道侣。宁姚破元婴获仙剑天真。陈平安武夫第九境山巅境。',
+  g5n:'【天崩】托月山大祖苏醒，周密率十四王座强攻。陈清都殉道，长城飞升。陈平安合道独守。',
+  g5o:'【十年独守】妖族突破防线，三洲沦陷。宁姚五彩天下成战力第一人。',
+  g5p:'【挽天倾】崔瀺山水颠倒大阵重创妖族，以身死道消换陈平安离开长城。',
+  g5q:'【反攻】浩然全面反攻，陈平安破境十四境。旧秩序崩塌，新秩序重建。',
+  g5r:'【终局】登天之战已至，周密终极布局揭晓。天下格局面临最终重构。'
 };
 
 var itemTips={
@@ -488,6 +588,10 @@ function showPage(n){
   if(pg) pg.style.display='block';
   if(n===1) page1.style.display='flex';
   else page1.style.display='none';
+  if(n==='7b'){
+    var pg7b=document.getElementById('jlPage7b');
+    if(pg7b) pg7b.style.display='block';
+  }
   updateDyn();
 }
 
@@ -636,7 +740,7 @@ function updateSummary(){
   }
   if(subPlace) lines.push('<b>出生地：</b>'+subPlace);
 
-  var timeLabels={g5a:'太古·三教立规矩',g5b:'远古·剑修问剑',g5c:'中古·骊珠棋局',g5d:'近古·剑气长城决战',g5e:'当代·陈平安少年',g5f:'当代·书简湖',g5g:'当代·隐官时期',g5h:'当代·蛮荒大战后',g5i:'自定义时间线'};
+  var timeLabels={g5a:'远古神道纪元',g5b:'破天之战',g5c:'上古秩序纪元',g5d:'中古固化纪元',g5e:'近古布局纪元',g5f:'剑来元年',g5g:'剑来十四年·骊珠洞天',g5h:'剑来十五年',g5i:'剑来十六年',g5j:'剑来十七至十九年',g5k:'剑来二十年',g5l:'剑来二十一至二十四年',g5m:'剑来二十五至二十六年',g5n:'剑来二十七年',g5o:'剑来二十八至三十七年',g5p:'剑来三十八年',g5q:'剑来三十九年',g5r:'终局·登天之战'};
   var time=null;
   for(var k in state.sel){if(timeLabels[k]){time=timeLabels[k];break;}}
   lines.push('<b>时间：</b>'+(time||'<span class="jl-miss">未选择</span>'));
@@ -668,15 +772,24 @@ function updateSummary(){
     // 时间
     var timeDesc='';
     for(var k in state.sel){
-      if(k==='g5a') timeDesc='太古时代，三教初立规矩，天下格局方才奠定。';
-      if(k==='g5b') timeDesc='远古时代，陈清都等剑修远征蛮荒，问剑托月山。';
-      if(k==='g5c') timeDesc='中古时代，骊珠棋局落子，最后一条真龙陨落，骊珠洞天形成。';
-      if(k==='g5d') timeDesc='近古时代，剑气长城迎来最终决战，妖族倾巢而出。';
-      if(k==='g5e') timeDesc='当代，陈平安还是泥瓶巷里那个少年，故事刚刚开始。';
-      if(k==='g5f') timeDesc='当代，书简湖问心局已设，杀机与道义交织。';
-      if(k==='g5g') timeDesc='当代，陈平安出任隐官，镇守剑气长城，风雨欲来。';
-      if(k==='g5h') timeDesc='当代，蛮荒大战落幕，旧格局破碎，新的秩序在废墟中萌芽。';
-      if(k==='g5i') timeDesc='一个特殊的时代节点，光阴长河在此处泛起涟漪。';
+      if(k==='g5a') timeDesc='远古神道纪元——天庭共主执掌大道，五至高神统治天地，神道术法泄露人间。';
+      if(k==='g5b') timeDesc='破天之战——人妖联军攻破天庭，神道终结，剑气长城始建。';
+      if(k==='g5c') timeDesc='上古秩序纪元——三教分治确立，四座天下以天幕分隔，陈清都合道长城。';
+      if(k==='g5d') timeDesc='中古固化纪元——末代真龙陨落，骊珠洞天形成，大骊立国。';
+      if(k==='g5e') timeDesc='近古布局纪元——崔瀺启动挽天倾，齐静春贬至骊珠洞天，暗流涌动。';
+      if(k==='g5f') timeDesc='剑来元年——陈平安出生泥瓶巷，本命瓷由窑场烧制，命运之轮开始转动。';
+      if(k==='g5g') timeDesc='剑来十四年——骊珠洞天开启，齐静春扛天劫殉道，陈平安踏上修行路。';
+      if(k==='g5h') timeDesc='剑来十五年——阿良护送陈平安至大隋，首入剑气长城送剑，定十年之约。';
+      if(k==='g5i') timeDesc='剑来十六年——陈平安入藕花福地，收裴钱为徒，炼化水字本命印。';
+      if(k==='g5j') timeDesc='剑来十七至十九年——书简湖问心局，陈平安任账房，三年了结顾璨因果。';
+      if(k==='g5k') timeDesc='剑来二十年——陈平安出任末代隐官，执掌剑气长城情报暗杀。';
+      if(k==='g5l') timeDesc='剑来二十一至二十四年——镇守长城岁月，与宁姚开小酒馆，五行本命物圆满。';
+      if(k==='g5m') timeDesc='剑来二十五至二十六年——战云密布，与宁姚确定道侣，获仙剑天真。';
+      if(k==='g5n') timeDesc='剑来二十七年——陈清都殉道，长城飞升，陈平安合道独守，天崩地裂。';
+      if(k==='g5o') timeDesc='剑来二十八至三十七年——十年独守长城，妖族连陷三洲，宁姚五彩天下成战力第一人。';
+      if(k==='g5p') timeDesc='剑来三十八年——崔瀺山水颠倒大阵重创妖族，以身死道消换陈平安离开长城。';
+      if(k==='g5q') timeDesc='剑来三十九年——浩然全面反攻，陈平安破境十四境，旧秩序崩塌。';
+      if(k==='g5r') timeDesc='终局·登天之战——周密终极布局揭晓，天下格局面临最终重构，大道将倾。';
     }
     if(timeDesc) desc.push(timeDesc);
 
