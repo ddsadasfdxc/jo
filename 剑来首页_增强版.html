@@ -151,6 +151,8 @@
   <div class="jl-it jl-neg" data-key="g1l" data-cost="-100">剑气长城遗孤<span class="jl-cst">+100</span></div>
   <div class="jl-it" data-key="g1m" data-cost="200">儒家学宫门生<span class="jl-cst">200</span></div>
   <div class="jl-it" data-key="g1n" data-cost="150">商家子弟<span class="jl-cst">150</span></div>
+  <div class="jl-it" data-key="g1o" data-cost="300">藕花福地出身<span class="jl-cst">300</span></div>
+  <div class="jl-it" data-key="g1p" data-cost="250">倒悬山修士<span class="jl-cst">250</span></div>
   <div class="jl-it jl-free" data-key="g1g" data-cost="0">✦ 穿越者（现代灵魂）<span class="jl-cst">0</span></div>
   <div class="jl-it jl-free" data-key="g1h" data-cost="0">✦ 魂穿原著角色（自定义）<span class="jl-cst">0</span></div>
 </div>
@@ -267,6 +269,8 @@
   <div class="jl-it" data-key="g5f" data-cost="50">当代·书简湖问心局<span class="jl-cst">50</span></div>
   <div class="jl-it" data-key="g5g" data-cost="150">当代·剑气长城隐官时期<span class="jl-cst">150</span></div>
   <div class="jl-it" data-key="g5h" data-cost="250">当代·蛮荒大战之后<span class="jl-cst">250</span></div>
+  <div class="jl-it" data-key="g5j" data-cost="200">当代·剑气长城破碎后<span class="jl-cst">200</span></div>
+  <div class="jl-it" data-key="g5k" data-cost="300">当代·登天之战前后<span class="jl-cst">300</span></div>
   <div class="jl-it jl-free" data-key="g5i" data-cost="0">✦ 自定义时间线（自由开局）<span class="jl-cst">0</span></div>
 </div>
 <div class="jl-event-tip" id="jlTimeTip">选择时间节点后，此处显示该时期的背景说明...</div>
@@ -293,6 +297,8 @@
   <div class="jl-it" data-key="g6l" data-cost="250">养剑葫（温养飞剑）<span class="jl-cst">250</span></div>
   <div class="jl-it" data-key="g6m" data-cost="150">符箓册（上古符箓）<span class="jl-cst">150</span></div>
   <div class="jl-it" data-key="g6n" data-cost="100">《太平广记》手抄本<span class="jl-cst">100</span></div>
+  <div class="jl-it" data-key="g6o" data-cost="350">骊珠碎片（蕴含洞天残余气运）<span class="jl-cst">350</span></div>
+  <div class="jl-it" data-key="g6p" data-cost="200">龙纹玉佩（远古遗物）<span class="jl-cst">200</span></div>
 </div>
 <div class="jl-event-tip" id="jlItemTip">选择本命之物后，此处显示该物品的详细说明...</div>
 <div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回时间</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
@@ -313,6 +319,8 @@
   <div class="jl-it" data-key="g7g" data-cost="100">剑气长城守城军<span class="jl-cst">100</span></div>
   <div class="jl-it" data-key="g7h" data-cost="300">隐官（执掌情报暗杀）<span class="jl-cst">300</span></div>
   <div class="jl-it" data-key="g7i" data-cost="200">商家商队（富甲天下）<span class="jl-cst">200</span></div>
+  <div class="jl-it" data-key="g7o" data-cost="250">落魄山（陈平安门下）<span class="jl-cst">250</span></div>
+  <div class="jl-it" data-key="g7p" data-cost="100">藕花福地（隐世修行）<span class="jl-cst">100</span></div>
 </div>
 <div class="jl-field-lbl" style="text-align:center;margin-top:10px">命格</div>
 <div class="jl-items">
@@ -321,6 +329,8 @@
   <div class="jl-it jl-neg" data-key="g7l" data-cost="-150">天煞孤星（克亲克友）<span class="jl-cst">+150</span></div>
   <div class="jl-it" data-key="g7m" data-cost="300">光阴长河眷顾（可窥天机）<span class="jl-cst">300</span></div>
   <div class="jl-it" data-key="g7n" data-cost="100">剑道奇才（剑意天成）<span class="jl-cst">100</span></div>
+  <div class="jl-it" data-key="g7o2" data-cost="150">骊珠遗珠（洞天遗泽）<span class="jl-cst">150</span></div>
+  <div class="jl-it" data-key="g7p2" data-cost="200">文运天赋（学宫选拔）<span class="jl-cst">200</span></div>
 </div>
 <div class="jl-nav"><div class="jl-nbtn jl-nav-back">◀ 返回本命物</div><div class="jl-nbtn jl-go jl-off jl-nav-next">下一步 ▶</div></div>
 </div>
@@ -378,17 +388,27 @@ var subData={
     {key:'g4a4',cost:100,name:'北俱芦洲·剑修大陆',tip:'杀伐最重的洲，剑修遍地，以战养战'},
     {key:'g4a5',cost:80,name:'南婆娑洲·桐叶洲',tip:'妖族渗透严重，局势复杂，正道式微'},
     {key:'g4a6',cost:60,name:'中土神洲·儒家学宫',tip:'浩然天下中心，文运昌盛，儒家圣地'},
-    {key:'g4a7',cost:120,name:'白玉京·道家祖庭',tip:'道家最高圣地，道祖曾在此讲道'}
+    {key:'g4a7',cost:120,name:'白玉京·道家祖庭',tip:'道家最高圣地，道祖曾在此讲道'},
+    {key:'g4a8',cost:80,name:'扶摇洲',tip:'浩然天下九洲之一，扶揺之风不绝，练气士多修于此'},
+    {key:'g4a9',cost:70,name:'金甲洲',tip:'浩然天下九洲之一，兵家鼎盛，修士刚健尚武'},
+    {key:'g4a10',cost:90,name:'南婆娑洲',tip:'浩然天下九洲之一，妖族渗透严重，局势混乱'},
+    {key:'g4a11',cost:60,name:'皑皑洲',tip:'浩然天下九洲之一，常年冰雪覆盖，隐秘势力潜伏'},
+    {key:'g4a12',cost:70,name:'东宝瓶洲',tip:'宝瓶洲以东，海上修行者聚集，散修居多'},
+    {key:'g4a13',cost:100,name:'藕花福地',tip:'隐秘洞天，遗世独立，与骊珠洞天齐名'}
   ],
   g4b:[
     {key:'g4b1',cost:0,name:'城头守军',tip:'生在剑气长城城头，从小面对蛮荒妖族'},
     {key:'g4b2',cost:50,name:'隐官暗部',tip:'陈平安一手建立的暗杀情报组织，阴影中的利剑'},
-    {key:'g4b3',cost:80,name:'剑仙后裔',tip:'剑气长城某位大剑仙的直系血亲'}
+    {key:'g4b3',cost:80,name:'剑仙后裔',tip:'剑气长城某位大剑仙的直系血亲'},
+    {key:'g4b4',cost:40,name:'升仙楼',tip:'剑气长城核心，剑修英灵汇聚之所'},
+    {key:'g4b5',cost:60,name:'归墟剑宫',tip:'远古剑修传承之地，剑气弥漫千年不绝'}
   ],
   g4c:[
     {key:'g4c1',cost:0,name:'托月山外围',tip:'远古剑修曾在此问剑，妖族圣地'},
     {key:'g4c2',cost:-50,name:'蛮荒王庭',tip:'妖族最高权力中心，大祖曾在此号令天下'},
-    {key:'g4c3',cost:30,name:'人族遗民聚落',tip:'蛮荒天下中残存的人族聚居地，夹缝求生'}
+    {key:'g4c3',cost:30,name:'人族遗民聚落',tip:'蛮荒天下中残存的人族聚居地，夹缝求生'},
+    {key:'g4c4',cost:-60,name:'青丘洲·妖族祖地',tip:'蛮荒核心，九尾狐族等远古妖族盘踞'},
+    {key:'g4c5',cost:20,name:'蛮荒边境',tip:'人妖混居的灰色地带，最危险也最自由'}
   ],
   g4d:[
     {key:'g4d1',cost:0,name:'道门小洞天',tip:'青冥天下中某处道门小世界'},
@@ -444,7 +464,9 @@ var timeTips={
   g5e:'当代·陈平安少年时期：泥瓶巷孤儿初入江湖，齐静春以命换命，骊珠洞天。',
   g5f:'当代·书简湖问心局：顾璨设局，陈平安面临心性与道义的终极考验。',
   g5g:'当代·剑气长城隐官时期：陈平安出任隐官，镇守剑气长城，与宁姚履行十年之约。',
-  g5h:'当代·蛮荒大战之后：剑气长城陷落，陈平安转战各天下，新的格局正在形成。'
+  g5h:'当代·蛮荒大战之后：剑气长城陷落，陈平安转战各天下，新的格局正在形成。',
+  g5j:'当代·剑气长城破碎后：陈清都殉道，长城飞升为五彩天下，人妖格局剧变，旧秩序崩塌。',
+  g5k:'当代·登天之战前后：周密复辟布局，三教祖师与远古神道终极对决，天下命运悬于一线。'
 };
 
 var itemTips={
@@ -582,7 +604,7 @@ function updateSummary(){
     g1a:'泥瓶巷孤儿',g1b:'宗门嫡传',g1c:'王朝贵胄',g1d:'蛮荒妖裔',
     g1e:'远古遗族',g1f:'山野散人',g1g:'穿越者',g1h:'魂穿原著角色',
     g1i:'骊珠洞天遗民',g1j:'文圣一脉后裔',g1k:'北俱芦洲剑修世家',
-    g1l:'剑气长城遗孤',g1m:'儒家学宫门生',g1n:'商家子弟'
+    g1l:'剑气长城遗孤',g1m:'儒家学宫门生',g1n:'商家子弟',g1o:'藕花福地出身',g1p:'倒悬山修士'
   };
   var origin=null;
   for(var k in state.sel){if(originLabels[k]){origin=originLabels[k];break;}}
@@ -619,17 +641,17 @@ function updateSummary(){
   for(var k in state.sel){if(timeLabels[k]){time=timeLabels[k];break;}}
   lines.push('<b>时间：</b>'+(time||'<span class="jl-miss">未选择</span>'));
 
-  var itemLabels={g6a:'本命飞剑',g6b:'仙兵',g6c:'半仙兵',g6d:'上品灵器',g6e:'凡铁',g6f:'四大仙剑仿品',g6g:'儒家圣言书',g6h:'道家法印',g6i:'佛门金刚杵',g6j:'身无长物'};
+  var itemLabels={g6a:'本命飞剑',g6b:'仙兵',g6c:'半仙兵',g6d:'上品灵器',g6e:'凡铁',g6f:'四大仙剑仿品',g6g:'儒家圣言书',g6h:'道家法印',g6i:'佛门金刚杵',g6j:'身无长物',g6o:'骊珠碎片',g6p:'龙纹玉佩'};
   var item=null;
   for(var k in state.sel){if(itemLabels[k]){item=itemLabels[k];break;}}
   lines.push('<b>本命物：</b>'+(item||'<span class="jl-miss">未选择</span>'));
 
-  var campLabels={g7a:'文圣一脉',g7b:'道家祖庭',g7c:'佛门莲花',g7d:'兵家祖庭',g7e:'散修',g7f:'蛮荒妖族',g7g:'剑气长城守城军',g7h:'隐官',g7i:'商家商队'};
+  var campLabels={g7a:'文圣一脉',g7b:'道家祖庭',g7c:'佛门莲花',g7d:'兵家祖庭',g7e:'散修',g7f:'蛮荒妖族',g7g:'剑气长城守城军',g7h:'隐官',g7i:'商家商队',g7o:'落魄山',g7p:'藕花福地'};
   var camp=null;
   for(var k in state.sel){if(campLabels[k]){camp=campLabels[k];break;}}
   lines.push('<b>阵营：</b>'+(camp||'<span class="jl-miss">未选择</span>'));
 
-  var fateLabels={g7j:'天眷之子',g7k:'平凡命格',g7l:'天煞孤星',g7m:'光阴长河眷顾',g7n:'剑道奇才'};
+  var fateLabels={g7j:'天眷之子',g7k:'平凡命格',g7l:'天煞孤星',g7m:'光阴长河眷顾',g7n:'剑道奇才',g7o2:'骊珠遗珠',g7p2:'文运天赋'};
   var fate=null;
   for(var k in state.sel){if(fateLabels[k]){fate=fateLabels[k];break;}}
   lines.push('<b>命格：</b>'+(fate||'<span class="jl-miss">未选择</span>'));
@@ -820,6 +842,8 @@ root.addEventListener('click',function(e){
   };
   var mvuPlaceMap={
     g4a1:'宝瓶洲·大骊王朝',g4a2:'宝瓶洲·书简湖',g4a3:'宝瓶洲·泥瓶巷',
+    g4a8:'扶摇洲',g4a9:'金甲洲',g4a10:'南婆娑洲',g4a11:'皑皑洲',g4a12:'东宝瓶洲',g4a13:'藕花福地',
+    g4b4:'剑气长城·升仙楼',g4b5:'剑气长城·归墟剑宫',
     g4a4:'北俱芦洲',g4a5:'南婆娑洲',g4a6:'中土神洲',g4a7:'白玉京',
     g4b1:'城头守军',g4b2:'隐官暗部',g4b3:'剑仙后裔',
     g4c1:'托月山外围',g4c2:'托月山内殿',g4c3:'文海麾下',
@@ -830,7 +854,7 @@ root.addEventListener('click',function(e){
   var mvuTimeMap={
     g5a:'太古·三教立规矩',g5b:'远古·剑修问剑托月山',g5c:'中古·骊珠棋局',
     g5d:'近古·剑气长城决战',g5e:'当代·剑来14年',g5f:'当代·剑来17年',
-    g5g:'当代·剑来21年',g5h:'当代·剑来27年',g5i:'自定义时间线'
+    g5g:'当代·剑来21年',g5h:'当代·剑来27年',g5j:'当代·剑来28年',g5k:'当代·剑来39年',g5i:'自定义时间线'
   };
   var mvuItemMap={
     g6a:'本命飞剑',g6b:'仙兵',g6c:'半仙兵',g6d:'上品灵器',g6e:'凡铁',
