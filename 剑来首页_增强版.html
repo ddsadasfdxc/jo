@@ -527,10 +527,10 @@ function updateDyn(){
     b.classList.remove('jl-off');
     if(state.page===2 && (!state.name||!state.sex)) b.classList.add('jl-off');
     if(state.page===3 && !state.diff) b.classList.add('jl-off');
-    if(state.page===7b && !state.sel['g4a']&&!state.sel['g4b']&&!state.sel['g4c']&&!state.sel['g4d']&&!state.sel['g4e']&&!state.sel['g4f']) b.classList.add('jl-off');
+    if(state.page==='7b' && !state.sel['g4a']&&!state.sel['g4b']&&!state.sel['g4c']&&!state.sel['g4d']&&!state.sel['g4e']&&!state.sel['g4f']) b.classList.add('jl-off');
   });
   // 更新出生地细化页
-  if(state.page===7b){
+  if(state.page==='7b'){
     var subEl=document.getElementById('jl4SubItems');
     var subTip=document.getElementById('jl4SubTip');
     var subTitle=document.getElementById('jl7bSub');
