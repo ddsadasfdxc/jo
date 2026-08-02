@@ -1,7 +1,7 @@
 /* 钢铁雄心4 3D v2 - 主入口：相机/触屏/特效/循环/UI */
 import * as THREE from 'three';
-import { initWorld, WORLD, render, tileCenter, tileHeight, recolorTile } from './world.js';
-import { preloadUnits, spawnUnitMesh, removeUnitMesh, getUnitRec, moveUnitAnim, tickUnits, setSelected, updateHpBar } from './units.js';
+import { initWorld, WORLD, render, tileCenter, tileHeight, recolorTile } from './world.js?v=20260802a';
+import { preloadUnits, spawnUnitMesh, removeUnitMesh, getUnitRec, moveUnitAnim, tickUnits, setSelected, updateHpBar } from './units.js?v=20260802a';
 
 // ---------- 战斗特效 ----------
 function battleFX(x,y){
