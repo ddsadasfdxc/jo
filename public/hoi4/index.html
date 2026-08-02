@@ -86,8 +86,8 @@ html,body{height:100%;background:#070d16;color:#dfe6ee;font-family:system-ui,san
   <button id="restartBtn">再来一局</button>
 </div>
 
-<script src="data.js"></script>
-<script src="game.js"></script>
+<script src="data.js?v=20260802a"></script>
+<script src="game.js?v=20260802a"></script>
 <script type="importmap">
 {"imports":{
   "three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -95,7 +95,7 @@ html,body{height:100%;background:#070d16;color:#dfe6ee;font-family:system-ui,san
 }}
 </script>
 <script type="module">
-import { boot } from './main.js';
+import { boot } from './main.js?v=20260802a';
 const grid=document.getElementById('nationGrid');
 ['GER','SOV','ENG','FRA','ITA','POL'].forEach(t=>{
   const n=NATIONS[t];
