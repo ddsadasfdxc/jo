@@ -3,7 +3,7 @@ const G = {
   date:new Date(1936,0,1), speed:0, player:'GER',
   tiles:null, units:[], uid:1, nations:{}, research:{}, queue:{},
   rel:{}, selUnit:null, log:[], aiTimer:0, gameOver:false,
-  listeners:{move:[],battle:[],capture:[]}
+  listeners:{move:[],battle:[],capture:[],spawn:[],die:[]}
 };
 function relKey(a,b){return a<b?a+'-'+b:b+'-'+a;}
 function atWar(a,b){const r=G.rel[relKey(a,b)];return r&&r.war;}
