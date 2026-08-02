@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone as skClone } from 'three/addons/utils/SkeletonUtils.js';
-import { WORLD, tileCenter, tileHeight } from './world.js';
+import { WORLD, tileCenter, tileHeight } from './world.js?v=20260802a';
 
 const unitMeshes = {};   // unit.id -> {group, mixer, actions, current}
 let soldierProto = null, soldierClips = null;
